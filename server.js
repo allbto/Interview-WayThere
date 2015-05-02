@@ -14,6 +14,7 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/src/html/main.html');
 });
 
+app.use('/fonts/bootstrap', express.static('bower_components/bootstrap-sass/assets/fonts/bootstrap'));
 app.use('/vendor', express.static('bower_components'));
 app.use('/js', express.static('dest/js'));
 app.use('/css', express.static('dest/css'));
