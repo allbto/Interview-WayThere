@@ -65,16 +65,35 @@ module.exports = function(grunt) {
             js: {
                  files: RootSrcFolder + 'js/**/*.js',
                  tasks: ['uglify:dev']
+            },
+
+            express: {
+                files:  [ 'server.js' ],
+                tasks:  [ 'express:dest' ],
+                options: {
+                    spawn: false,                   // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
+                    nospawn: true
+                }
+            }
+        },
+
+        express: {
+            // https://github.com/ericclemmons/grunt-express-server
+            dest: {
+                options: {
+                    script: 'server.js'
+                }
             }
         }
     });
 
+    grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sass');
 
-    grunt.registerTask('prod', ['sass', 'concat', 'uglify']);
-    grunt.registerTask('dev', ['sass:dev', 'concat', 'watch']);
+    grunt.registerTask('prod', ['sass', 'concat', 'uglify', 'express:dest']);
+    grunt.registerTask('dev', ['sass:dev', 'concat', 'express:dest', 'watch']);
     grunt.registerTask('default', ['dev']);
 };
