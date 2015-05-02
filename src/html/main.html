@@ -28,5 +28,13 @@
         <youtube-video class="yt-player" video-id="currentYtId" player-vars="ytPlayerVars" player="ytPlayer"></youtube-video>
     </div>
 
+    <carousel class="weather-carousel" interval="'0'">
+        <slide ng-repeat="weather in weathers" active="slide.active">
+            <div class="carousel-caption">
+                <h4>{{ weather.name }}</h4>
+                <p>{{ weather.subtitle }}</p>
+            </div>
+        </slide>
+    </carousel>
 </body>
 </html>
