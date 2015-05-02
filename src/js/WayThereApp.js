@@ -16,7 +16,9 @@
 
         /// WayThere
 
-        $scope.weathers = WayThereDataStore.retrieveWeathers();
+        $scope.weathers = WayThereDataStore.retrieveWeathers(function(weathers) {
+            $scope.weathers = weathers;
+        });
 
         /// Youtube player
 
@@ -26,7 +28,7 @@
             autoplay: 1,
             disablekb : 1,
             showinfo : 0,
-            hd : 1
+            vq : 'hd720'
         };
 
         $scope.currentYtId = '2G8LAiHSCAs';
@@ -39,6 +41,7 @@
 
         $scope.$on('youtube.player.ready', function ($event, player) {
             player.mute();
+            player.setPlaybackQuality('hd720');
         });
 
         $scope.$on('youtube.player.ended', function ($event, player) {

@@ -75,7 +75,38 @@
             ];
         }
 
-        self.retrieveWeathers = function()
+        /**
+         * Recursive functions that goes through weathers and fetch forecast for each of them, one after the others
+         * @param {Array} weathers
+         * @param {Number} index = current index, if index == weathers.length, success is called
+         * @param {Function} success
+         * @private
+         */
+        function _getWeatherForeCastForWeathers(weathers, index, success)
+        {
+            if (index == weathers.length) return success(weathers);
+
+            RemoteStorage.get(Forecast10daysURL.buildURL(weathers[index]['l']), null, function(data) {
+
+                /**
+                 "forecast": {
+                    "txt_forecast": {
+                        "date": "9:10 PM CEST",
+                        "forecastday": [
+                 */
+                if (data && data.forecast && data.forecast.txt_forecast && data.forecast.txt_forecast.forecastday)
+                    weathers[index].forecasts = data.forecast.txt_forecast.forecastday;
+
+                _getWeatherForeCastForWeathers(weathers, index + 1, success);
+
+            }, function(error) {
+                console.log("Error getting weather forecast : ", error);
+
+                _getWeatherForeCastForWeathers(weathers, index + 1, success);
+            });
+        }
+
+        self.retrieveWeathers = function(success)
         {
             var weathers = LocalStorage.get(WeathersKey, []);
 
@@ -84,6 +115,8 @@
                 weathers = _defaultWeathers();
                 LocalStorage.get(WeathersKey, weathers);
             }
+
+            _getWeatherForeCastForWeathers(weathers, 0, success);
 
             return weathers;
         }

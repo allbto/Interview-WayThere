@@ -5,6 +5,8 @@
 (function(ng) {
     'use strict';
 
+    var _DEV_ = true;
+
     var mod = angular.module("remote-storage", []);
 
     mod.factory('RemoteStorageFactory', function() {
@@ -114,12 +116,10 @@
                     if (_DEV_) console.log('Request : [' + method + '] ' + url, params, '\n', status, ' Response: ', data);
 
                     if (status != 204) {
-                        if (data.data_param)
-                            success(data.data, data.data_param);
-                        else if (data.data)
-                            success(data.data);
+                        if (data.error)
+                            failure(data.error);
                         else
-                            success(defaultResult);
+                            success(data);
                     }
                     else
                         success(defaultResult);

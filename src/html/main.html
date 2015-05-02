@@ -31,8 +31,14 @@
     <carousel class="weather-carousel" interval="'0'">
         <slide ng-repeat="weather in weathers" active="slide.active">
             <div class="carousel-caption">
-                <h4>{{ weather.name }}</h4>
-                <p>{{ weather.subtitle }}</p>
+                <h2>{{ weather.name }}</h2>
+                <div class="row weather-days">
+                    <div class="weather-day-container" ng-repeat="forecast in weather.forecasts">
+                        <img ng-src="{{forecast.icon_url}}"/>
+                        <h4>{{forecast.title}}</h4>
+                        <p>{{forecast.fcttext_metric}}</p>
+                    </div>
+                </div>
             </div>
         </slide>
     </carousel>
