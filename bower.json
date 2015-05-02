@@ -1,0 +1,22 @@
+{
+  "name": "WayThere",
+  "version": "0.1",
+  "authors": [
+    "Allan"
+  ],
+  "description": "WayThere is a simple yet beautiful weather web app",
+  "keywords": [
+    "weather",
+    "web",
+    "app",
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
