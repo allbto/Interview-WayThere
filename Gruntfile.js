@@ -7,6 +7,33 @@ module.exports = function(grunt) {
 
     var RootSrcFolder = 'src/';
 
+    var jsFiles = [
+        'services/LocalStorage',
+        'services/RemoteStorage',
+        'WayThereDataStore',
+        'WayThereApp'
+    ];
+
+    var scssFiles = [
+        'main'
+    ];
+
+    /**
+     * Generates file paths according to fileNames and their extension
+     * @param {Array} fileNames : array of file names
+     * @param {String} extension e.g. 'js', 'scss', ...
+     * @returns {Array}
+     */
+    function _getFilePaths(fileNames, extension) {
+        var filePaths = [];
+
+        fileNames.forEach(function(name) {
+            filePaths.push(RootSrcFolder + extension + '/' + name + '.' + extension);
+        });
+
+        return filePaths;
+    }
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -18,7 +45,7 @@ module.exports = function(grunt) {
                     sourceMap: true
                 },
                 files: {
-                    'dest/css/main.min.css': RootSrcFolder + 'scss/main.scss'
+                    'dest/css/main.min.css': _getFilePaths(scssFiles, 'scss')
                 }
             },
             dev: {
@@ -27,7 +54,7 @@ module.exports = function(grunt) {
                     sourceComments : true           // Add comments to css file to help you find where a class is defined for example
                 },
                 files: {
-                    'dest/css/main.css': RootSrcFolder + 'scss/main.scss'
+                    'dest/css/main.css': _getFilePaths(scssFiles, 'scss')
                 }
             }
         },
@@ -41,7 +68,7 @@ module.exports = function(grunt) {
             },
             prod: {
                 files: {
-                    'dest/js/main.min.js': RootSrcFolder + 'js/**/*.js'
+                    'dest/js/main.min.js': _getFilePaths(jsFiles, 'js')
                 }
             }
         },
@@ -50,7 +77,7 @@ module.exports = function(grunt) {
             // https://github.com/gruntjs/grunt-contrib-concat
             js: {
                 files: {
-                    'dest/js/main.js': RootSrcFolder + 'js/**/*.js'
+                    'dest/js/main.js': _getFilePaths(jsFiles, 'js')
                 }
             }
         },
