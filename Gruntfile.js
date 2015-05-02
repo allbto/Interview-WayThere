@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 
             js: {
                  files: RootSrcFolder + 'js/**/*.js',
-                 tasks: ['uglify:dev']
+                 tasks: ['concat:js']
             },
 
             express: {
