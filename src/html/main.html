@@ -25,10 +25,16 @@
 </head>
 <body ng-controller="WayThereController">
     <div class="yt-player-container">
-        <youtube-video class="yt-player" video-id="currentYtId" player-vars="ytPlayerVars" player="ytPlayer"></youtube-video>
+        <youtube-video class="yt-player" video-id="currentYtId" player-vars="ytPlayerVars"></youtube-video>
     </div>
 
-    <carousel class="weather-carousel" interval="'0'">
+    <div class="controls">
+        <button class="btn btn-default" ng-click="setMute(!mute)"><span class="glyphicon" ng-class="mute ? 'glyphicon-volume-off' : 'glyphicon-volume-up'"></span></button>
+        <button class="btn btn-default" ng-click="isPlaying() ? ytPlayer.pauseVideo() : ytPlayer.playVideo()">
+            <span class="glyphicon" ng-class="isPlaying() ? 'glyphicon-pause' : 'glyphicon-play'"></span>
+        </button>
+    </div>
+    <carousel class="weather-carousel" interval="'0'" on-carousel-change="onSlideChanged(index)">
         <slide ng-repeat="weather in weathers" active="slide.active">
             <div class="carousel-caption">
                 <h2>{{ weather.name }}</h2>

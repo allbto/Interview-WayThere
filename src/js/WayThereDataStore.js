@@ -74,6 +74,50 @@
                 }
             ];
         }
+        
+        function _videoIdsForForecast(forecast)
+        {
+            var ids = [];
+
+            switch (forecast.icon)
+            {
+                case 'chanceflurries':
+                case 'chancesnow':
+                case 'chancesleet':
+                case 'flurries':
+                case 'sleet':
+                case 'snow':
+                    ids = ['V6cNXL2TUIM', 'u153b2MO5Lg', 'RuqVnqNPyC0', 'zGD5C4wLsrs'];
+                    break;
+
+                case 'chancerain':
+                case 'rain':
+                    ids = ['yYZioushoK4', 'naOBXOdLiig', 'UmHEU2LArbA', 'RvInwvtZw-8'];
+                    break;
+
+                case 'chancetstorms':
+                case 'tstorms':
+                    ids = ['XZD1zK4QQSA', 'ywBxqqpyfOc', 'aQlJRMOJfyQ'];
+                    break;
+
+                case 'cloudy':
+                case 'fog':
+                case 'hazy':
+                case 'mostlycloudy':
+                case 'mostlysunny':
+                case 'partlycloudy':
+                case 'partlysunny':
+                    ids = ['psdLqhWmhe8', '8gD_9WPPFb4', 'E8TUzXK6nu4', 'v-vXqBJCqI0'];
+                    break;
+
+                case 'sunny':
+                case 'clear':
+                case 'unknown':
+                default:
+                    ids = ['ubVa-Lygl2I', '4NG30BMPqn8', '2G8LAiHSCAs', 'PwSHOI7DwWM', 'OG2eGVt6v2o'];
+            }
+            return ids;
+        }
 
         /**
          * Recursive functions that goes through weathers and fetch forecast for each of them, one after the others
@@ -95,7 +139,11 @@
                         "forecastday": [
                  */
                 if (data && data.forecast && data.forecast.txt_forecast && data.forecast.txt_forecast.forecastday)
-                    weathers[index].forecasts = data.forecast.txt_forecast.forecastday;
+                {
+                    var forecasts = data.forecast.txt_forecast.forecastday;
+                    weathers[index].forecasts = forecasts || [];
+                    weathers[index].video_ids = _videoIdsForForecast(forecasts[0]);
+                }
 
                 _getWeatherForeCastForWeathers(weathers, index + 1, success);
 
@@ -116,7 +164,10 @@
                 LocalStorage.get(WeathersKey, weathers);
             }
 
-            _getWeatherForeCastForWeathers(weathers, 0, success);
+            _getWeatherForeCastForWeathers(weathers, 0, function(updatedWeathers) {
+                LocalStorage.get(WeathersKey, weathers);
+                success(updatedWeathers);
+            });
 
             return weathers;
         }
