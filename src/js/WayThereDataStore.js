@@ -74,6 +74,51 @@
                 }
             ];
         }
+
+        function _handleSpecialIcons(forecast)
+        {
+            switch (forecast.icon)
+            {
+                case 'chanceflurries':
+                    forecast.icon = 'chancesnow';
+                    break;
+                case 'nt_chanceflurries':
+                    forecast.icon = 'nt_chancesnow';
+                    break;
+                case 'flurries':
+                    forecast.icon = 'snow';
+                    break;
+                case 'nt_flurries':
+                    forecast.icon = 'nt_snow';
+                    break;
+                case 'chancesleet':
+                case 'nt_chancesleet':
+                case 'nt_sleet':
+                    forecast.icon = 'sleet';
+                    break;
+                case 'nt_rain':
+                    forecast.icon = 'rain';
+                    break;
+
+                case 'nt_cloudy':
+                    forecast.icon = 'cloudy';
+                    break;
+                case 'hazy':
+                    forecast.icon = 'fog';
+                    break;
+                case 'nt_hazy':
+                    forecast.icon = 'nt_fog';
+                    break;
+                case 'clear':
+                    forecast.icon = 'sunny';
+                    break;
+                case 'nt_clear':
+                    forecast.icon = 'nt_sunny';
+                    break;
+                case 'nt_unknown':
+                    forecast.icon = 'unknown';
+            }
+        }
         
         function _videoIdsForForecast(forecast)
         {
@@ -87,16 +132,26 @@
                 case 'flurries':
                 case 'sleet':
                 case 'snow':
+                case 'nt_chanceflurries':
+                case 'nt_chancesnow':
+                case 'nt_chancesleet':
+                case 'nt_flurries':
+                case 'nt_sleet':
+                case 'nt_snow':
                     ids = ['V6cNXL2TUIM', 'u153b2MO5Lg', 'RuqVnqNPyC0', 'zGD5C4wLsrs'];
                     break;
 
                 case 'chancerain':
                 case 'rain':
+                case 'nt_chancerain':
+                case 'nt_rain':
                     ids = ['yYZioushoK4', 'naOBXOdLiig', 'UmHEU2LArbA', 'RvInwvtZw-8'];
                     break;
 
                 case 'chancetstorms':
                 case 'tstorms':
+                case 'nt_chancetstorms':
+                case 'nt_tstorms':
                     ids = ['XZD1zK4QQSA', 'ywBxqqpyfOc', 'aQlJRMOJfyQ'];
                     break;
 
@@ -107,12 +162,22 @@
                 case 'mostlysunny':
                 case 'partlycloudy':
                 case 'partlysunny':
+                case 'nt_cloudy':
+                case 'nt_fog':
+                case 'nt_hazy':
+                case 'nt_mostlycloudy':
+                case 'nt_mostlysunny':
+                case 'nt_partlycloudy':
+                case 'nt_partlysunny':
                     ids = ['psdLqhWmhe8', '8gD_9WPPFb4', 'E8TUzXK6nu4', 'v-vXqBJCqI0'];
                     break;
 
                 case 'sunny':
                 case 'clear':
                 case 'unknown':
+                case 'nt_sunny':
+                case 'nt_clear':
+                case 'nt_unknown':
                 default:
                     ids = ['ubVa-Lygl2I', '4NG30BMPqn8', '2G8LAiHSCAs', 'PwSHOI7DwWM', 'OG2eGVt6v2o'];
             }
@@ -143,6 +208,10 @@
                     var forecasts = data.forecast.txt_forecast.forecastday;
                     weathers[index].forecasts = forecasts || [];
                     weathers[index].video_ids = _videoIdsForForecast(forecasts[0]);
+
+                    weathers[index].forecasts.forEach(function(forecast) {
+                        _handleSpecialIcons(forecast);
+                    })
                 }
 
                 _getWeatherForeCastForWeathers(weathers, index + 1, success);

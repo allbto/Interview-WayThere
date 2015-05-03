@@ -25,7 +25,7 @@
 </head>
 <body ng-controller="WayThereController">
     <div class="yt-player-container">
-        <youtube-video class="yt-player" video-id="currentYtId" player-vars="ytPlayerVars"></youtube-video>
+        <youtube-video class="yt-player" video-id="currentYtId" player="ytPlayer" player-vars="ytPlayerVars"></youtube-video>
     </div>
 
     <div class="controls">
@@ -37,10 +37,14 @@
     <carousel class="weather-carousel" interval="'0'" on-carousel-change="onSlideChanged(index)">
         <slide ng-repeat="weather in weathers" active="slide.active">
             <div class="carousel-caption">
-                <h2>{{ weather.name }}</h2>
+                <div class="carousel-header">
+                    <h2>{{ weather.name }}</h2>
+                    <img ng-src="/images/icons/{{weather.forecasts[0].icon}}.png"/>
+                    <p>{{ weather.forecasts[0].fcttext_metric }}</p>
+                </div>
                 <div class="row weather-days">
-                    <div class="weather-day-container" ng-repeat="forecast in weather.forecasts">
-                        <img ng-src="{{forecast.icon_url}}"/>
+                    <div class="weather-day-container" ng-repeat="forecast in weather.forecasts" ng-show="$index > 0">
+                        <img ng-src="/images/icons/{{forecast.icon}}.png"/>
                         <h4>{{forecast.title}}</h4>
                         <p>{{forecast.fcttext_metric}}</p>
                     </div>

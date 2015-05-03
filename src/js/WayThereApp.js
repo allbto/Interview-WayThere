@@ -64,7 +64,6 @@
         /// Carousel
 
         $scope.$watch('currentYtId', function(newVal) {
-            console.log('New val id : ', newVal);
             if ($scope.ytPlayer)
                 $scope.ytPlayer.loadVideoById(newVal, 50 * 5, "hd720");
         });
