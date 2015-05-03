@@ -36,24 +36,22 @@
 
         /// WayThere
 
-        $scope.weathers = WayThereDataStore.retrieveWeathers(function(weathers) {
-            $scope.weathers = weathers;
-            $scope.onSlideChanged(0);
-        });
+        $scope.weathers = [];
 
         /// Youtube player
 
-        //$scope.ytPlayer = {};
-        $scope.ytPlayerVars = {
-            controls: 0,
-            autoplay: 1,
-            disablekb : 1,
-            showinfo : 0,
-            vq : 'hd720',
-            iv_load_policy : 3
+        $scope.yt = {
+            player : null,
+            playerVars : {
+                controls: 0,
+                autoplay: 1,
+                disablekb : 1,
+                showinfo : 0,
+                vq : 'hd720',
+                iv_load_policy : 3
+            },
+            videoId : 'x0Pa8aIqmNI'
         };
-
-        $scope.currentYtId = '2G8LAiHSCAs';
 
         $scope.mute = true;
 
@@ -63,20 +61,26 @@
 
         /// Carousel
 
-        $scope.$watch('currentYtId', function(newVal) {
-            if ($scope.ytPlayer)
-                $scope.ytPlayer.loadVideoById(newVal, 50 * 5, "hd720");
+        $scope.$watch('yt.player', function(newVal, oldVal) {
+            // Override of angular-youtube-embed assignation to not loose original player
+            if (oldVal && !newVal.hasOwnProperty('mute'))
+                $scope.yt.player = oldVal;
+        });
+
+        $scope.$watch('yt.videoId', function(newVal) {
+            if ($scope.yt.player)
+                $scope.yt.player.loadVideoById(newVal, 50 * 5, "hd720");
         });
 
         $scope.setMute =  function(newVal) {
             $scope.mute = newVal;
-            if ($scope.ytPlayer)
-                newVal ? $scope.ytPlayer.mute() : $scope.ytPlayer.unMute();
+            if ($scope.yt.player && $scope.yt.player.mute)
+                newVal ? $scope.yt.player.mute() : $scope.yt.player.unMute();
         };
 
         $scope.isPlaying = function() {
-            if ($scope.ytPlayer)
-                return $scope.ytPlayer.getPlayerState() != 2;
+            if ($scope.yt.player && $scope.yt.player.getPlayerState)
+                return $scope.yt.player.getPlayerState() != 2;
             return false;
         };
 
@@ -89,16 +93,26 @@
             if (index < $scope.weathers.length && $scope.weathers[index].video_ids && $scope.weathers[index].video_ids.length > 0)
             {
                 var ids = $scope.weathers[index].video_ids;
-                $scope.currentYtId = ids[_randomTo(ids.length)];
+                $scope.yt.videoId = ids[_randomTo(ids.length)];
             }
         };
 
         /// Youtube player
 
         $scope.$on('youtube.player.ready', function ($event, player) {
-            player.mute();
-            player.setPlaybackQuality('hd720');
-            $scope.ytPlayer = player;
+
+            if ($scope.weathers.length == 0)
+            {
+                $scope.weathers = WayThereDataStore.retrieveWeathers(function(weathers) {
+                    $scope.weathers = weathers;
+                    $scope.onSlideChanged(0);
+                });
+            }
+            if (player.hasOwnProperty('mute'))
+            {
+                player.mute();
+                player.setPlaybackQuality('hd720');
+            }
         });
 
         $scope.$on('youtube.player.ended', function ($event, player) {

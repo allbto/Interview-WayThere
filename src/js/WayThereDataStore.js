@@ -37,6 +37,18 @@
             // Got from wunderground api
             return [
                 {
+                    "name": "Prague, Czech Republic",
+                    "type": "city",
+                    "c": "CZ",
+                    "zmw": "00000.1.11518",
+                    "tz": "Europe/Prague",
+                    "tzs": "CEST",
+                    "l": "/q/zmw:00000.1.11518",
+                    "ll": "50.099998 14.280000",
+                    "lat": "50.099998",
+                    "lon": "14.280000"
+                },
+                {
                     "name": "Nice, France",
                     "type": "city",
                     "c": "FR",
@@ -59,18 +71,6 @@
                     "ll": "48.866665 2.333333",
                     "lat": "48.866665",
                     "lon": "2.333333"
-                },
-                {
-                    "name": "Prague, Czech Republic",
-                    "type": "city",
-                    "c": "CZ",
-                    "zmw": "00000.1.11518",
-                    "tz": "Europe/Prague",
-                    "tzs": "CEST",
-                    "l": "/q/zmw:00000.1.11518",
-                    "ll": "50.099998 14.280000",
-                    "lat": "50.099998",
-                    "lon": "14.280000"
                 }
             ];
         }
@@ -230,11 +230,11 @@
             if (weathers.length == 0)
             {
                 weathers = _defaultWeathers();
-                LocalStorage.get(WeathersKey, weathers);
+                LocalStorage.set(WeathersKey, weathers);
             }
 
             _getWeatherForeCastForWeathers(weathers, 0, function(updatedWeathers) {
-                LocalStorage.get(WeathersKey, weathers);
+                LocalStorage.set(WeathersKey, weathers);
                 success(updatedWeathers);
             });
 

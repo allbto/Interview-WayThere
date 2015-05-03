@@ -30,7 +30,7 @@
 
     <div class="controls">
         <button class="btn btn-default" ng-click="setMute(!mute)"><span class="glyphicon" ng-class="mute ? 'glyphicon-volume-off' : 'glyphicon-volume-up'"></span></button>
-        <button class="btn btn-default" ng-click="isPlaying() ? ytPlayer.pauseVideo() : ytPlayer.playVideo()">
+        <button class="btn btn-default" ng-click="isPlaying() ? yt.player.pauseVideo() : yt.player.playVideo()">
             <span class="glyphicon" ng-class="isPlaying() ? 'glyphicon-pause' : 'glyphicon-play'"></span>
         </button>
     </div>
