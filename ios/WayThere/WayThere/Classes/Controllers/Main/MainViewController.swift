@@ -39,14 +39,13 @@ class MainViewController: UIPageViewController
     
     // MARK: - Page view controller content
     
-    private func _mainStoryboard() -> UIStoryboard
-    {
-        return UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-    }
-    
     private func _viewControllerAtIndex(index : Int) -> TodayViewController
     {
-        var todayVC = _mainStoryboard().instantiateViewControllerWithIdentifier(TodayViewControllerIdentifier) as! TodayViewController
+        if index < 0 || index > (cities.count - 1) {
+            return TodayViewController()
+        }
+        
+        var todayVC = self.storyboard?.instantiateViewControllerWithIdentifier(TodayViewControllerIdentifier) as! TodayViewController
         
         todayVC.view.frame = self.view.bounds
         todayVC.index = index
@@ -65,9 +64,8 @@ extension MainViewController: MainDataStoreDelegate
     func foundWeatherConfiguration(cities : [City])
     {
         self.cities = cities
-        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { (_) -> Void in
-            // View controllers set
-        }
+        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false, completion: nil)
+    }
     }
 }
 
