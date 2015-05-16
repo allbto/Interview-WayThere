@@ -12,6 +12,8 @@ class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
     
+    var dataStore = MainDataStore()
+
     var weathers = [Weather]()
     
     // MARK: UIViewController
