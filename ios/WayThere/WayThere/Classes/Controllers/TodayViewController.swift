@@ -21,11 +21,23 @@ class TodayViewController: UIViewController
     @IBOutlet weak var infoWindSpeedLabel: UILabel!
     @IBOutlet weak var infoWindDirectionLabel: UILabel!
     
-    var weather : Weather? {
+    var city : City? {
         didSet
         {
-            if let sWeather = weather {
-                // Do view changes here
+            if let sCity = city {
+                locationLabel.text = "\(sCity.name!), \(sCity.country!)"
+                
+                if let weather = sCity.todayWeather {
+                    conditionLabel.text = "\(weather.temp)°C | \(weather.title)"
+                    infoRainPercentLabel.text = "\(weather.humidity)%"
+                    infoRainPressureLabel.text = "\(weather.pressure) hPa"
+                    infoRainQuantityLabel.text = "\(weather.rainAmount ?? 0) mm"
+                }
+
+                if let wind = sCity.wind {
+                    infoWindSpeedLabel.text = "\(wind.speedMetric) \(Wind.metricUnit)"
+                    infoWindDirectionLabel.text = wind.direction
+                }
             }
         }
     }
@@ -36,7 +48,14 @@ class TodayViewController: UIViewController
     {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Reset label (I like to see them full when I edit the view)
+        locationLabel.text = ""
+        conditionLabel.text = ""
+        infoRainPercentLabel.text = ""
+        infoRainQuantityLabel.text = ""
+        infoRainPressureLabel.text = ""
+        infoWindSpeedLabel.text = ""
+        infoWindDirectionLabel.text = ""
     }
 
     override func didReceiveMemoryWarning()

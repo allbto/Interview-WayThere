@@ -7,25 +7,28 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
     
     var dataStore = MainDataStore()
+    let locationManager = CLLocationManager()
 
-    var weathers = [Weather]()
+    var cities = [City]()
     
-    // MARK: UIViewController
+    // MARK: - UIViewController
+    
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         self.dataSource = self
-        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { (complete : Bool) -> Void in
-            // Did set view controllers
-        }
+        
+        dataStore.delegate = self
+        dataStore.retrieveWeatherConfiguration()
     }
 
     override func didReceiveMemoryWarning()
@@ -34,7 +37,7 @@ class MainViewController: UIPageViewController
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Page view controller content
+    // MARK: - Page view controller content
     
     private func _mainStoryboard() -> UIStoryboard
     {
@@ -45,16 +48,30 @@ class MainViewController: UIPageViewController
     {
         var todayVC = _mainStoryboard().instantiateViewControllerWithIdentifier(TodayViewControllerIdentifier) as! TodayViewController
         
+        todayVC.view.frame = self.view.bounds
         todayVC.index = index
         
-        if index < weathers.count {
-            todayVC.weather = weathers[index]
+        if index < cities.count {
+            todayVC.city = cities[index]
         }
 
         return todayVC
     }
 }
 
+// MARK: - MainDataStoreDelegate
+extension MainViewController: MainDataStoreDelegate
+{
+    func foundWeatherConfiguration(cities : [City])
+    {
+        self.cities = cities
+        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { (_) -> Void in
+            // View controllers set
+        }
+    }
+}
+
+// MARK: - UIPageViewControllerDataSource
 extension MainViewController: UIPageViewControllerDataSource
 {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
@@ -84,7 +101,7 @@ extension MainViewController: UIPageViewControllerDataSource
             return nil
         }
         
-        if index >= (weathers.count - 1) {
+        if index >= (cities.count - 1) {
             return nil
         }
         
@@ -93,7 +110,7 @@ extension MainViewController: UIPageViewControllerDataSource
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
     {
-        return weathers.count
+        return cities.count
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
