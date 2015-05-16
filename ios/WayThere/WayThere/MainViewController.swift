@@ -19,7 +19,11 @@ class MainViewController: UIPageViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.dataSource = self
+        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { (complete : Bool) -> Void in
+            // Did set view controllers
+        }
     }
 
     override func didReceiveMemoryWarning()
@@ -51,31 +55,48 @@ class MainViewController: UIPageViewController
 
 extension MainViewController: UIPageViewControllerDataSource
 {
-    private func viewControllerWithPreviousViewController(viewController: UIViewController) -> UIViewController?
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
         let index : Int
         
         if let vc = viewController as? TodayViewController {
             index = vc.index
         } else {
-            index = 0
-        }
-        
-        if index == 0 || index == (weathers.count - 1) {
             return nil
         }
         
-        return _viewControllerAtIndex(index)
-    }
-    
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
-    {
-        return viewControllerWithPreviousViewController(viewController)
+        if index <= 0 {
+            return nil
+        }
+        
+        return _viewControllerAtIndex(index - 1)
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        return viewControllerWithPreviousViewController(viewController)
+        let index : Int
+        
+        if let vc = viewController as? TodayViewController {
+            index = vc.index
+        } else {
+            return nil
+        }
+        
+        if index >= (weathers.count - 1) {
+            return nil
+        }
+        
+        return _viewControllerAtIndex(index + 1)
+    }
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
+    {
+        return weathers.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
+    {
+        return 0
     }
 }
 
