@@ -1,29 +1,10 @@
 # WayThere
-WayThere is a simple yet beautiful weather web/ios app
+WayThere is a simple yet beautiful weather iOS/web app
 
-To compile this project, please run the following:
+This is a test project for [STRV](http://strv.com).
+In this repo you will find 2 folders `ios` and `web` each of them containing a README.md for further instructions.
 
-```shell
-npm install     # may need to be administrator or root
-bower install
-grunt prod
-```
+* `ios` contains all the Swift source code and the Xcode project for **WayThere**
+* `web` is a *little* bonus that I made before getting the instructions, just to show that I'm not the man of one techno.
 
-Troubleshooting
-==========
-
-Make sure to have the following packages installed in this order:
-
-* `npm` is included in `nodejs`
-```shell
-brew install node                 # For mac user (may require to run with `sudo`)
-sudo apt-get install -y nodejs    # For linux user
-```
-* `bower` you can use bower installed in node_modules/.bin/ by running `npm install bower`. Or run the following :
-```shell
-npm install -g bower              # may need to be administrator or root
-```
-* `grunt` run the following
-```shell
-npm install -g grunt-cli          # may need to be administrator or root
-```
+Enjoy !
