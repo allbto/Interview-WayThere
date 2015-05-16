@@ -1,0 +1,13 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '7.0'
+use_frameworks!
+
+target 'WayThere' do
+    pod 'Alamofire', '~> 1.2'
+    pod 'SwiftyJSON', '~> 2.2'
+end
+
+#target 'WayThereTests' do
+
+#end
+
