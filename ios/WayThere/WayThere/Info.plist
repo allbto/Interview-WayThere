@@ -34,5 +34,12 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ProximaNova-Bold.otf</string>
+		<string>ProximaNova-Light.otf</string>
+		<string>ProximaNova-Regular.otf</string>
+		<string>ProximaNova-Semibold.otf</string>
+	</array>
 </dict>
 </plist>
