@@ -26,6 +26,7 @@ class MainViewController: UIPageViewController
         super.viewDidLoad()
         
         self.dataSource = self
+        self.view.backgroundColor = UIColor.whiteColor()
         
         dataStore.delegate = self
         dataStore.retrieveWeatherConfiguration()
@@ -66,6 +67,10 @@ extension MainViewController: MainDataStoreDelegate
         self.cities = cities
         self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false, completion: nil)
     }
+    
+    func unableToFindWeatherConfiguration(error : NSError?)
+    {
+        UIAlertView(title: "Oups !", message: "Something went wrong while loading weathers. Please try again later.", delegate: nil, cancelButtonTitle: "OK").show()
     }
 }
 

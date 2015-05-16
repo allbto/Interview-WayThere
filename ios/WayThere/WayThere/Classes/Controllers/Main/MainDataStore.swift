@@ -13,6 +13,7 @@ import SwiftyJSON
 protocol MainDataStoreDelegate
 {
     func foundWeatherConfiguration(cities : [City])
+    func unableToFindWeatherConfiguration(error : NSError?)
 }
 
 class MainDataStore
@@ -45,14 +46,20 @@ class MainDataStore
             "id" : ",".join(cities.map { $0.id }),
             "units" : "metric"
             ])
-            .responseJSON { [unowned self] (req, _, json, _) in
-                println(req, json)
-                var json = JSON(json!)
+            .responseJSON { [unowned self] (req, _, json, error) in
+                println(req, json, error)
                 
-                for (index, (sIndex : String, city : JSON)) in enumerate(json["list"]) {
-                    cities[index].fromJson(city)
+                if (error == nil && json != nil) {
+                    var json = JSON(json!)
+                    
+                    for (index, (sIndex : String, city : JSON)) in enumerate(json["list"]) {
+                        cities[index].fromJson(city)
+                    }
+                    self.delegate?.foundWeatherConfiguration(cities)
                 }
-                self.delegate?.foundWeatherConfiguration(cities)
+                else {
+                    self.delegate?.unableToFindWeatherConfiguration(error)
+                }
         }
     }
     
