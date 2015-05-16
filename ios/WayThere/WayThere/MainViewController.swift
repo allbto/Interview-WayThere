@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  WayThere
 //
 //  Created by Allan BARBATO on 5/16/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

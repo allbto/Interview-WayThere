@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */; };
 		9D8E072F1B074F1100E0FFF3 /* WayThere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072D1B074F1100E0FFF3 /* WayThere.xcdatamodeld */; };
-		9D8E07311B074F1100E0FFF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E07301B074F1100E0FFF3 /* ViewController.swift */; };
+		9D8E07311B074F1100E0FFF3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E07301B074F1100E0FFF3 /* MainViewController.swift */; };
 		9D8E07341B074F1100E0FFF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E07321B074F1100E0FFF3 /* Main.storyboard */; };
 		9D8E07361B074F1100E0FFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E07351B074F1100E0FFF3 /* Images.xcassets */; };
 		9D8E07391B074F1100E0FFF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E07371B074F1100E0FFF3 /* LaunchScreen.xib */; };
@@ -35,7 +35,7 @@
 		9D8E072A1B074F1100E0FFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D8E072E1B074F1100E0FFF3 /* WayThere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WayThere.xcdatamodel; sourceTree = "<group>"; };
-		9D8E07301B074F1100E0FFF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9D8E07301B074F1100E0FFF3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9D8E07331B074F1100E0FFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D8E07351B074F1100E0FFF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D8E07381B074F1100E0FFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */,
-				9D8E07301B074F1100E0FFF3 /* ViewController.swift */,
+				9D8E07301B074F1100E0FFF3 /* MainViewController.swift */,
 				9D8E07321B074F1100E0FFF3 /* Main.storyboard */,
 				9D8E07351B074F1100E0FFF3 /* Images.xcassets */,
 				9D8E07371B074F1100E0FFF3 /* LaunchScreen.xib */,
@@ -290,7 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D8E07311B074F1100E0FFF3 /* ViewController.swift in Sources */,
+				9D8E07311B074F1100E0FFF3 /* MainViewController.swift in Sources */,
 				9D8E072F1B074F1100E0FFF3 /* WayThere.xcdatamodeld in Sources */,
 				9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */,
 			);
@@ -421,7 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WayThere/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -433,7 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WayThere/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
