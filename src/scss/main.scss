@@ -101,6 +101,10 @@ body {
                     height: 64px;
                 }
             }
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
     }
 }
