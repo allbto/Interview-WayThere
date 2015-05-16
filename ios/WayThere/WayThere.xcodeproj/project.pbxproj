@@ -7,18 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D186BE41B0763E400C66CC2 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D186BE31B0763E400C66CC2 /* TodayViewController.swift */; };
-		9D186BE71B0765A200C66CC2 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D186BE61B0765A200C66CC2 /* Weather.swift */; };
-		9D6B549C1B076950001BE5AF /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54981B076950001BE5AF /* ProximaNova-Bold.otf */; };
-		9D6B549D1B076950001BE5AF /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54991B076950001BE5AF /* ProximaNova-Light.otf */; };
-		9D6B549E1B076950001BE5AF /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B549A1B076950001BE5AF /* ProximaNova-Regular.otf */; };
-		9D6B549F1B076950001BE5AF /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B549B1B076950001BE5AF /* ProximaNova-Semibold.otf */; };
+		9D6B54AC1B07A678001BE5AF /* Classes in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54AA1B07A678001BE5AF /* Classes */; };
+		9D6B54AD1B07A678001BE5AF /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54AB1B07A678001BE5AF /* Resources */; };
+		9D6B54B21B07A691001BE5AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54AE1B07A691001BE5AF /* LaunchScreen.xib */; };
+		9D6B54B31B07A691001BE5AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54B01B07A691001BE5AF /* Main.storyboard */; };
 		9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */; };
-		9D8E072F1B074F1100E0FFF3 /* WayThere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072D1B074F1100E0FFF3 /* WayThere.xcdatamodeld */; };
-		9D8E07311B074F1100E0FFF3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E07301B074F1100E0FFF3 /* MainViewController.swift */; };
-		9D8E07341B074F1100E0FFF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E07321B074F1100E0FFF3 /* Main.storyboard */; };
-		9D8E07361B074F1100E0FFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E07351B074F1100E0FFF3 /* Images.xcassets */; };
-		9D8E07391B074F1100E0FFF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E07371B074F1100E0FFF3 /* LaunchScreen.xib */; };
 		9D8E07451B074F1100E0FFF3 /* WayThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */; };
 		A386F3B33A67772338037183 /* Pods_WayThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -37,20 +30,13 @@
 		58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7405800F8DDAE5E15788282F /* Pods-WayThere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WayThere.release.xcconfig"; path = "Pods/Target Support Files/Pods-WayThere/Pods-WayThere.release.xcconfig"; sourceTree = "<group>"; };
 		81872A91FE87AB5C9F4DC40E /* Pods-WayThere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WayThere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WayThere/Pods-WayThere.debug.xcconfig"; sourceTree = "<group>"; };
-		9D186BE31B0763E400C66CC2 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		9D186BE61B0765A200C66CC2 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		9D6B54981B076950001BE5AF /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Bold.otf"; path = "ProximaNova/ProximaNova-Bold.otf"; sourceTree = "<group>"; };
-		9D6B54991B076950001BE5AF /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Light.otf"; path = "ProximaNova/ProximaNova-Light.otf"; sourceTree = "<group>"; };
-		9D6B549A1B076950001BE5AF /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Regular.otf"; path = "ProximaNova/ProximaNova-Regular.otf"; sourceTree = "<group>"; };
-		9D6B549B1B076950001BE5AF /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ProximaNova-Semibold.otf"; path = "ProximaNova/ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		9D6B54AA1B07A678001BE5AF /* Classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Classes; sourceTree = "<group>"; };
+		9D6B54AB1B07A678001BE5AF /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		9D6B54AF1B07A691001BE5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9D6B54B11B07A691001BE5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D8E07261B074F1100E0FFF3 /* WayThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WayThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8E072A1B074F1100E0FFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9D8E072E1B074F1100E0FFF3 /* WayThere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WayThere.xcdatamodel; sourceTree = "<group>"; };
-		9D8E07301B074F1100E0FFF3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		9D8E07331B074F1100E0FFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9D8E07351B074F1100E0FFF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9D8E07381B074F1100E0FFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9D8E073E1B074F1100E0FFF3 /* WayThereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WayThereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8E07431B074F1100E0FFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayThereTests.swift; sourceTree = "<group>"; };
@@ -84,35 +70,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9D186BE51B07656600C66CC2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9D186BE61B0765A200C66CC2 /* Weather.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		9D6B54971B076937001BE5AF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				9D8E072D1B074F1100E0FFF3 /* WayThere.xcdatamodeld */,
-				9D8E07351B074F1100E0FFF3 /* Images.xcassets */,
-				9D6B54A11B07695C001BE5AF /* Fonts */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		9D6B54A11B07695C001BE5AF /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				9D6B54981B076950001BE5AF /* ProximaNova-Bold.otf */,
-				9D6B54991B076950001BE5AF /* ProximaNova-Light.otf */,
-				9D6B549A1B076950001BE5AF /* ProximaNova-Regular.otf */,
-				9D6B549B1B076950001BE5AF /* ProximaNova-Semibold.otf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 		9D8E071D1B074F1100E0FFF3 = {
 			isa = PBXGroup;
 			children = (
@@ -136,13 +93,11 @@
 		9D8E07281B074F1100E0FFF3 /* WayThere */ = {
 			isa = PBXGroup;
 			children = (
-				9D6B54971B076937001BE5AF /* Resources */,
-				9D186BE51B07656600C66CC2 /* Models */,
+				9D6B54AA1B07A678001BE5AF /* Classes */,
 				9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */,
-				9D8E07301B074F1100E0FFF3 /* MainViewController.swift */,
-				9D186BE31B0763E400C66CC2 /* TodayViewController.swift */,
-				9D8E07321B074F1100E0FFF3 /* Main.storyboard */,
-				9D8E07371B074F1100E0FFF3 /* LaunchScreen.xib */,
+				9D6B54AE1B07A691001BE5AF /* LaunchScreen.xib */,
+				9D6B54B01B07A691001BE5AF /* Main.storyboard */,
+				9D6B54AB1B07A678001BE5AF /* Resources */,
 				9D8E07291B074F1100E0FFF3 /* Supporting Files */,
 			);
 			path = WayThere;
@@ -264,13 +219,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D8E07341B074F1100E0FFF3 /* Main.storyboard in Resources */,
-				9D6B549E1B076950001BE5AF /* ProximaNova-Regular.otf in Resources */,
-				9D8E07391B074F1100E0FFF3 /* LaunchScreen.xib in Resources */,
-				9D8E07361B074F1100E0FFF3 /* Images.xcassets in Resources */,
-				9D6B549C1B076950001BE5AF /* ProximaNova-Bold.otf in Resources */,
-				9D6B549D1B076950001BE5AF /* ProximaNova-Light.otf in Resources */,
-				9D6B549F1B076950001BE5AF /* ProximaNova-Semibold.otf in Resources */,
+				9D6B54AD1B07A678001BE5AF /* Resources in Resources */,
+				9D6B54B21B07A691001BE5AF /* LaunchScreen.xib in Resources */,
+				9D6B54AC1B07A678001BE5AF /* Classes in Resources */,
+				9D6B54B31B07A691001BE5AF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,11 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D186BE41B0763E400C66CC2 /* TodayViewController.swift in Sources */,
-				9D8E07311B074F1100E0FFF3 /* MainViewController.swift in Sources */,
-				9D8E072F1B074F1100E0FFF3 /* WayThere.xcdatamodeld in Sources */,
 				9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */,
-				9D186BE71B0765A200C66CC2 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,20 +311,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9D8E07321B074F1100E0FFF3 /* Main.storyboard */ = {
+		9D6B54AE1B07A691001BE5AF /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9D8E07331B074F1100E0FFF3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9D8E07371B074F1100E0FFF3 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9D8E07381B074F1100E0FFF3 /* Base */,
+				9D6B54AF1B07A691001BE5AF /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		9D6B54B01B07A691001BE5AF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9D6B54B11B07A691001BE5AF /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -552,19 +500,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9D8E072D1B074F1100E0FFF3 /* WayThere.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9D8E072E1B074F1100E0FFF3 /* WayThere.xcdatamodel */,
-			);
-			currentVersion = 9D8E072E1B074F1100E0FFF3 /* WayThere.xcdatamodel */;
-			path = WayThere.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9D8E071E1B074F1100E0FFF3 /* Project object */;
 }

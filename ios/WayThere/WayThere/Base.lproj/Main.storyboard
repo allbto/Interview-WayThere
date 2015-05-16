@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FbD-hC-3zQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -11,6 +12,10 @@
             <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
+            <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
             <string>ProximaNova-Semibold</string>
         </mutableArray>
@@ -43,9 +48,10 @@
                         <viewControllerLayoutGuide type="bottom" id="FJ9-wy-KOQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="g2O-wr-2UD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4l0-LH-f2H">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunny" translatesAutoresizingMaskIntoConstraints="NO" id="4l0-LH-f2H">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="132" id="P4n-gH-gUj"/>
@@ -85,6 +91,9 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="61" y="326" width="41" height="18"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22°C | Sunny" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmz-iU-q2B">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -105,7 +114,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YFZ-4m-iPS">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainy" translatesAutoresizingMaskIntoConstraints="NO" id="YFZ-4m-iPS">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="IzP-FT-BHF"/>
@@ -129,8 +138,11 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="175" y="326" width="51" height="18"/>
+                                </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1iv-A5-gdW">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain_drop" translatesAutoresizingMaskIntoConstraints="NO" id="1iv-A5-gdW">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="czu-Hi-3Kp"/>
@@ -154,8 +166,11 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="289" y="326" width="64" height="18"/>
+                                </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="blb-Ml-Z4H">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="celcius" translatesAutoresizingMaskIntoConstraints="NO" id="blb-Ml-Z4H">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4VN-GN-72e"/>
@@ -163,14 +178,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="PRR-U1-B6i"/>
                                         <exclude reference="4VN-GN-72e"/>
+                                        <exclude reference="PRR-U1-B6i"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="PRR-U1-B6i"/>
                                         <include reference="4VN-GN-72e"/>
+                                        <include reference="PRR-U1-B6i"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -179,8 +194,11 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="95" y="410" width="55" height="18"/>
+                                </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-Vq-iLq">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind_small" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-Vq-iLq">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="JPW-BR-31e"/>
@@ -192,7 +210,8 @@
                                         <exclude reference="clV-v5-dcB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="101" y="368" width="40" height="40"/>
                                     <mask key="constraints">
                                         <include reference="JPW-BR-31e"/>
                                         <include reference="clV-v5-dcB"/>
@@ -204,8 +223,11 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="271" y="410" width="19" height="18"/>
+                                </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PLQ-Px-mwN">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compass" translatesAutoresizingMaskIntoConstraints="NO" id="PLQ-Px-mwN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="VfB-rn-kJj"/>
@@ -213,14 +235,15 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="kJW-gh-LMB"/>
                                         <exclude reference="VfB-rn-kJj"/>
+                                        <exclude reference="kJW-gh-LMB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="259" y="368" width="40" height="40"/>
                                     <mask key="constraints">
-                                        <include reference="kJW-gh-LMB"/>
                                         <include reference="VfB-rn-kJj"/>
+                                        <include reference="kJW-gh-LMB"/>
                                     </mask>
                                 </variation>
                             </imageView>
@@ -253,14 +276,15 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="gBl-S4-bRg"/>
                                         <exclude reference="W22-yt-duk"/>
+                                        <exclude reference="gBl-S4-bRg"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="134" y="453" width="132" height="1"/>
                                     <mask key="constraints">
-                                        <include reference="gBl-S4-bRg"/>
                                         <include reference="W22-yt-duk"/>
+                                        <include reference="gBl-S4-bRg"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -271,6 +295,9 @@
                                     <color key="titleColor" red="1" green="0.53333333333333333" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="177" y="471" width="47" height="33"/>
+                                </variation>
                                 <connections>
                                     <action selector="shareWeatherAction:" destination="K5K-Zd-BJM" eventType="touchUpInside" id="Dbt-kB-92F"/>
                                 </connections>
@@ -356,49 +383,49 @@
                                 <exclude reference="Z8P-xg-YPd"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="7gp-5h-EFu"/>
-                                <exclude reference="EzS-XK-uyS"/>
-                                <exclude reference="uQK-MF-Kv2"/>
+                                <exclude reference="GGK-mW-leC"/>
+                                <exclude reference="7gA-aM-vCx"/>
+                                <exclude reference="CC6-Hi-Z4t"/>
+                                <exclude reference="VYh-JG-iZr"/>
+                                <exclude reference="kbG-J8-EkA"/>
                                 <exclude reference="4nQ-61-EiZ"/>
                                 <exclude reference="KNu-Ob-377"/>
                                 <exclude reference="TOa-e4-gMU"/>
+                                <exclude reference="cGL-2D-v0f"/>
                                 <exclude reference="9sy-PO-Nmb"/>
                                 <exclude reference="hRm-mD-Sd3"/>
                                 <exclude reference="pzs-43-wQz"/>
+                                <exclude reference="xv5-Xl-SA9"/>
+                                <exclude reference="YMf-9s-AGj"/>
+                                <exclude reference="VEU-uD-TOj"/>
+                                <exclude reference="ac2-vB-6A0"/>
+                                <exclude reference="RdN-sD-L4f"/>
+                                <exclude reference="tVQ-p0-d8f"/>
+                                <exclude reference="7gp-5h-EFu"/>
+                                <exclude reference="EzS-XK-uyS"/>
+                                <exclude reference="uQK-MF-Kv2"/>
+                                <exclude reference="Rc1-ux-6IG"/>
+                                <exclude reference="ccx-yc-nu9"/>
+                                <exclude reference="tuy-Im-4Ig"/>
                                 <exclude reference="4di-4Z-NF6"/>
                                 <exclude reference="FGv-kf-oDD"/>
                                 <exclude reference="UGH-dG-8Ew"/>
                                 <exclude reference="UMw-cI-qif"/>
                                 <exclude reference="olj-jD-iKe"/>
                                 <exclude reference="wi4-6V-02F"/>
+                                <exclude reference="7dG-7D-fXI"/>
+                                <exclude reference="7de-83-JbN"/>
+                                <exclude reference="btG-RB-6x2"/>
+                                <exclude reference="XLJ-W4-oTh"/>
+                                <exclude reference="ZBM-NN-Oxn"/>
+                                <exclude reference="hNp-ii-fvP"/>
                                 <exclude reference="ZyT-Xh-TT9"/>
                                 <exclude reference="bRZ-V2-dqu"/>
                                 <exclude reference="hLT-PK-CtJ"/>
                                 <exclude reference="nvN-Nn-LfZ"/>
-                                <exclude reference="GGK-mW-leC"/>
-                                <exclude reference="RdN-sD-L4f"/>
-                                <exclude reference="tVQ-p0-d8f"/>
-                                <exclude reference="YMf-9s-AGj"/>
-                                <exclude reference="XLJ-W4-oTh"/>
-                                <exclude reference="ZBM-NN-Oxn"/>
-                                <exclude reference="hNp-ii-fvP"/>
-                                <exclude reference="7dG-7D-fXI"/>
-                                <exclude reference="7de-83-JbN"/>
-                                <exclude reference="btG-RB-6x2"/>
-                                <exclude reference="cGL-2D-v0f"/>
-                                <exclude reference="7gA-aM-vCx"/>
-                                <exclude reference="Rc1-ux-6IG"/>
-                                <exclude reference="ccx-yc-nu9"/>
-                                <exclude reference="tuy-Im-4Ig"/>
                                 <exclude reference="HV5-PE-fpW"/>
                                 <exclude reference="Jtv-Px-10n"/>
                                 <exclude reference="NGE-ir-O6T"/>
-                                <exclude reference="xv5-Xl-SA9"/>
-                                <exclude reference="VEU-uD-TOj"/>
-                                <exclude reference="ac2-vB-6A0"/>
-                                <exclude reference="CC6-Hi-Z4t"/>
-                                <exclude reference="VYh-JG-iZr"/>
-                                <exclude reference="kbG-J8-EkA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -421,49 +448,49 @@
                                 <include reference="Z8P-xg-YPd"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="7gp-5h-EFu"/>
-                                <include reference="EzS-XK-uyS"/>
-                                <include reference="uQK-MF-Kv2"/>
+                                <include reference="GGK-mW-leC"/>
+                                <include reference="7gA-aM-vCx"/>
+                                <exclude reference="CC6-Hi-Z4t"/>
+                                <exclude reference="VYh-JG-iZr"/>
+                                <exclude reference="kbG-J8-EkA"/>
                                 <include reference="4nQ-61-EiZ"/>
                                 <include reference="KNu-Ob-377"/>
                                 <include reference="TOa-e4-gMU"/>
+                                <include reference="cGL-2D-v0f"/>
                                 <include reference="9sy-PO-Nmb"/>
                                 <include reference="hRm-mD-Sd3"/>
                                 <include reference="pzs-43-wQz"/>
+                                <include reference="xv5-Xl-SA9"/>
+                                <include reference="YMf-9s-AGj"/>
+                                <include reference="VEU-uD-TOj"/>
+                                <include reference="ac2-vB-6A0"/>
+                                <include reference="RdN-sD-L4f"/>
+                                <include reference="tVQ-p0-d8f"/>
+                                <include reference="7gp-5h-EFu"/>
+                                <include reference="EzS-XK-uyS"/>
+                                <include reference="uQK-MF-Kv2"/>
+                                <include reference="Rc1-ux-6IG"/>
+                                <include reference="ccx-yc-nu9"/>
+                                <include reference="tuy-Im-4Ig"/>
                                 <include reference="4di-4Z-NF6"/>
                                 <exclude reference="FGv-kf-oDD"/>
                                 <include reference="UGH-dG-8Ew"/>
                                 <include reference="UMw-cI-qif"/>
                                 <exclude reference="olj-jD-iKe"/>
                                 <include reference="wi4-6V-02F"/>
+                                <include reference="7dG-7D-fXI"/>
+                                <include reference="7de-83-JbN"/>
+                                <include reference="btG-RB-6x2"/>
+                                <include reference="XLJ-W4-oTh"/>
+                                <include reference="ZBM-NN-Oxn"/>
+                                <include reference="hNp-ii-fvP"/>
                                 <exclude reference="ZyT-Xh-TT9"/>
                                 <include reference="bRZ-V2-dqu"/>
                                 <exclude reference="hLT-PK-CtJ"/>
                                 <include reference="nvN-Nn-LfZ"/>
-                                <include reference="GGK-mW-leC"/>
-                                <include reference="RdN-sD-L4f"/>
-                                <include reference="tVQ-p0-d8f"/>
-                                <include reference="YMf-9s-AGj"/>
-                                <include reference="XLJ-W4-oTh"/>
-                                <include reference="ZBM-NN-Oxn"/>
-                                <include reference="hNp-ii-fvP"/>
-                                <include reference="7dG-7D-fXI"/>
-                                <include reference="7de-83-JbN"/>
-                                <include reference="btG-RB-6x2"/>
-                                <include reference="cGL-2D-v0f"/>
-                                <include reference="7gA-aM-vCx"/>
-                                <include reference="Rc1-ux-6IG"/>
-                                <include reference="ccx-yc-nu9"/>
-                                <include reference="tuy-Im-4Ig"/>
                                 <include reference="HV5-PE-fpW"/>
                                 <include reference="Jtv-Px-10n"/>
                                 <include reference="NGE-ir-O6T"/>
-                                <include reference="xv5-Xl-SA9"/>
-                                <include reference="VEU-uD-TOj"/>
-                                <include reference="ac2-vB-6A0"/>
-                                <exclude reference="CC6-Hi-Z4t"/>
-                                <exclude reference="VYh-JG-iZr"/>
-                                <exclude reference="kbG-J8-EkA"/>
                             </mask>
                         </variation>
                     </view>
@@ -501,5 +528,11 @@
     </scenes>
     <resources>
         <image name="ListIcon" width="22" height="14"/>
+        <image name="celcius" width="21" height="15"/>
+        <image name="compass" width="17" height="17"/>
+        <image name="rain_drop" width="16" height="19"/>
+        <image name="rainy" width="22" height="22"/>
+        <image name="sunny" width="50" height="50"/>
+        <image name="wind_small" width="25" height="16"/>
     </resources>
 </document>
