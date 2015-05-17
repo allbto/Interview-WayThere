@@ -13,6 +13,7 @@ class TodayViewController: UIViewController
     var index : Int = 0
 
     @IBOutlet weak var topImageView: UIImageView!
+    @IBOutlet weak var currentIconImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var infoRainPercentLabel: UILabel!
@@ -20,12 +21,23 @@ class TodayViewController: UIViewController
     @IBOutlet weak var infoRainPressureLabel: UILabel!
     @IBOutlet weak var infoWindSpeedLabel: UILabel!
     @IBOutlet weak var infoWindDirectionLabel: UILabel!
+    @IBOutlet weak var shareSmallScreenButton: UIButton!
+    @IBOutlet weak var shareBiggerScreenButton: UIButton!
     
     var city : City? {
         didSet
         {
             if let sCity = city {
                 locationLabel.text = "\(sCity.name!), \(sCity.country!)"
+                
+                if sCity.isCurrentLocation {
+                    // Icon positioning
+                    var f = locationLabel.sizeThatFits(locationLabel.frame.size)
+                    currentIconImageView.frame.origin.x += f.width + 4;
+                    currentIconImageView.center.y = locationLabel.center.y
+                } else {
+                    currentIconImageView.hidden = true
+                }
                 
                 if let weather = sCity.todayWeather {
                     conditionLabel.text = "\(weather.temp)°C | \(weather.title)"
@@ -47,6 +59,9 @@ class TodayViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        shareSmallScreenButton.hidden = !Device.IS_3_5_INCHES_OR_SMALLER()
+        shareBiggerScreenButton.hidden = !shareSmallScreenButton.hidden
 
         // Reset label (I like to see them full when I edit the view)
         locationLabel.text = ""
@@ -68,9 +83,18 @@ class TodayViewController: UIViewController
 
     @IBAction func shareWeatherAction(sender: AnyObject)
     {
+        let opening = "Check out today's weather in \(locationLabel.text!) !"
+        let weatherStatus = conditionLabel.text!
         
+        let activityVC = UIActivityViewController(activityItems: [opening, weatherStatus], applicationActivities: nil)
+        
+        //New Excluded Activities Code
+        activityVC.excludedActivityTypes = [UIActivityTypeAddToReadingList]
+        //
+        
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
-
+    
     /*
     // MARK: - Navigation
 
