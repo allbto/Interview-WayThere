@@ -12,6 +12,7 @@
         <mutableArray key="ProximaNova-Regular.otf">
             <string>ProximaNova-Regular</string>
             <string>ProximaNova-Regular</string>
+            <string>ProximaNova-Regular</string>
         </mutableArray>
         <mutableArray key="ProximaNova-Semibold.otf">
             <string>ProximaNova-Semibold</string>
@@ -23,6 +24,31 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Table View Controller-->
+        <scene sceneID="qjT-hb-vdC">
+            <objects>
+                <tableViewController id="xDw-sY-6qt" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EUJ-dc-oJu">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UPG-ZM-FyS">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UPG-ZM-FyS" id="A4G-e2-IiX">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xDw-sY-6qt" id="qCc-1K-8qB"/>
+                            <outlet property="delegate" destination="xDw-sY-6qt" id="AQj-Rg-Isp"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DJm-jP-mf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="816" y="-176"/>
+        </scene>
         <!--WayThere-->
         <scene sceneID="LR5-W9-3zo">
             <objects>
@@ -292,6 +318,9 @@
                                     <action selector="shareWeatherAction:" destination="K5K-Zd-BJM" eventType="touchUpInside" id="0AJ-4g-SRX"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="current" translatesAutoresizingMaskIntoConstraints="NO" id="JA4-8Z-ljS">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -307,6 +336,7 @@
                             <constraint firstItem="Xmz-iU-q2B" firstAttribute="leading" secondItem="g2O-wr-2UD" secondAttribute="leadingMargin" id="9sy-PO-Nmb"/>
                             <constraint firstAttribute="trailing" secondItem="PLQ-Px-mwN" secondAttribute="trailing" constant="101" id="A1C-8l-Ng4"/>
                             <constraint firstItem="FJ9-wy-KOQ" firstAttribute="top" secondItem="YFZ-4m-iPS" secondAttribute="bottom" constant="254" id="CC6-Hi-Z4t"/>
+                            <constraint firstItem="GJV-rt-cE1" firstAttribute="leading" secondItem="JA4-8Z-ljS" secondAttribute="trailing" constant="-73" id="Eyo-2y-nCK"/>
                             <constraint firstAttribute="centerX" secondItem="4l0-LH-f2H" secondAttribute="centerX" id="EzS-XK-uyS"/>
                             <constraint firstItem="YFZ-4m-iPS" firstAttribute="top" secondItem="NpH-BE-x9H" secondAttribute="bottom" constant="11" id="FGv-kf-oDD"/>
                             <constraint firstItem="23z-dy-n6M" firstAttribute="top" secondItem="YFZ-4m-iPS" secondAttribute="bottom" constant="-2" id="GGK-mW-leC">
@@ -356,6 +386,7 @@
                             <constraint firstAttribute="trailing" secondItem="XNs-Dt-TMN" secondAttribute="trailing" constant="16" id="sgG-ZK-G4N"/>
                             <constraint firstItem="1iv-A5-gdW" firstAttribute="centerX" secondItem="r00-ap-xGa" secondAttribute="centerX" constant="-1" id="tVQ-p0-d8f"/>
                             <constraint firstItem="PLQ-Px-mwN" firstAttribute="centerX" secondItem="hmg-eT-EYZ" secondAttribute="centerX" constant="-1" id="tuy-Im-4Ig"/>
+                            <constraint firstItem="GJV-rt-cE1" firstAttribute="centerY" secondItem="JA4-8Z-ljS" secondAttribute="centerY" constant="0.5" id="xqY-xt-q1G"/>
                             <constraint firstItem="hmg-eT-EYZ" firstAttribute="top" secondItem="PLQ-Px-mwN" secondAttribute="bottom" constant="2" id="xv5-Xl-SA9"/>
                         </constraints>
                         <variation key="default">
@@ -377,14 +408,17 @@
                                 <exclude reference="Z8P-xg-YPd"/>
                                 <exclude reference="4l0-LH-f2H"/>
                                 <exclude reference="XNs-Dt-TMN"/>
+                                <exclude reference="JA4-8Z-ljS"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="1K1-TE-bch"/>
                                 <exclude reference="EzS-XK-uyS"/>
                                 <exclude reference="URI-gM-GBm"/>
                                 <exclude reference="4nQ-61-EiZ"/>
+                                <exclude reference="Eyo-2y-nCK"/>
                                 <exclude reference="KNu-Ob-377"/>
                                 <exclude reference="TOa-e4-gMU"/>
+                                <exclude reference="xqY-xt-q1G"/>
                                 <exclude reference="9sy-PO-Nmb"/>
                                 <exclude reference="hRm-mD-Sd3"/>
                                 <exclude reference="pzs-43-wQz"/>
@@ -448,14 +482,17 @@
                                 <include reference="Z8P-xg-YPd"/>
                                 <include reference="4l0-LH-f2H"/>
                                 <include reference="XNs-Dt-TMN"/>
+                                <include reference="JA4-8Z-ljS"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="1K1-TE-bch"/>
                                 <include reference="EzS-XK-uyS"/>
                                 <include reference="URI-gM-GBm"/>
                                 <include reference="4nQ-61-EiZ"/>
+                                <include reference="Eyo-2y-nCK"/>
                                 <include reference="KNu-Ob-377"/>
                                 <include reference="TOa-e4-gMU"/>
+                                <include reference="xqY-xt-q1G"/>
                                 <include reference="9sy-PO-Nmb"/>
                                 <include reference="hRm-mD-Sd3"/>
                                 <include reference="pzs-43-wQz"/>
@@ -504,6 +541,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="conditionLabel" destination="Xmz-iU-q2B" id="d2U-re-d4f"/>
+                        <outlet property="currentIconImageView" destination="JA4-8Z-ljS" id="4Gf-iZ-1RG"/>
                         <outlet property="infoRainPercentLabel" destination="23z-dy-n6M" id="sQU-Hg-1E5"/>
                         <outlet property="infoRainPressureLabel" destination="9bm-O0-y1L" id="ShS-Sg-gSq"/>
                         <outlet property="infoRainQuantityLabel" destination="r00-ap-xGa" id="SFA-Uw-gGL"/>
@@ -540,6 +578,7 @@
         <image name="ListIcon" width="22" height="14"/>
         <image name="celcius" width="21" height="15"/>
         <image name="compass" width="17" height="17"/>
+        <image name="current" width="11" height="11"/>
         <image name="rain_drop" width="16" height="19"/>
         <image name="rainy" width="22" height="22"/>
         <image name="sunny" width="50" height="50"/>

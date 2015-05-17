@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-typealias Coordinates = (latitude: Float, longitude: Float)
+typealias Coordinates = (latitude: Double, longitude: Double)
 typealias Weather = (temp: Int, pressure: Int, humidity: Int, rainAmount: Float, title: String, description : String)
 
 class Wind {
@@ -36,11 +36,12 @@ class Wind {
     }
 }
 
-class City {
-    
+class City
+{
     var id : String
     var name : String?
     var country : String?
+    var isCurrentLocation : Bool = false
     var coordinates : Coordinates?
     var wind : Wind?
     var todayWeather : Weather?
@@ -62,7 +63,7 @@ class City {
         name = json["name"].string
         country = json["sys"]["country"].string
         
-        if let lat = json["coord"]["lat"].float, lon = json["coord"]["lon"].float {
+        if let lat = json["coord"]["lat"].double, lon = json["coord"]["lon"].double {
             coordinates = Coordinates(latitude: lat, longitude: lon)
         }
         if let deg = json["wind"]["deg"].float, speed = json["wind"]["speed"].float {

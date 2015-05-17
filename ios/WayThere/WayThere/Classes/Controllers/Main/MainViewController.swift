@@ -12,6 +12,7 @@ import CoreLocation
 class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
+    let LocationAccuracy : Double = 100
     
     /// Views
     var activityIndicator: UIActivityIndicatorView?
@@ -20,8 +21,26 @@ class MainViewController: UIPageViewController
     var dataStore = MainDataStore()
     var locationManager = CLLocationManager()
     var cities = [City]()
+    var currentCity: City?
     
     // MARK: - UIViewController
+    
+    private func _retrieveUserCoordinates()
+    {
+        if Device.isVersionOrLater(.Eight) {
+            self.locationManager.requestAlwaysAuthorization()
+            
+            // For use in foreground
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.distanceFilter = LocationAccuracy // Will notify the LocationManager every LocationAccuracy meters
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+    }
     
     private func _showActivityIndicator()
     {
@@ -49,6 +68,8 @@ class MainViewController: UIPageViewController
         self.dataSource = self
         self.view.backgroundColor = UIColor.whiteColor()
 
+        // Get user coordinates
+        _retrieveUserCoordinates()
         
         // Show activity indicator while waiting for weather data
         _showActivityIndicator()
@@ -88,18 +109,43 @@ class MainViewController: UIPageViewController
 // MARK: - MainDataStoreDelegate
 extension MainViewController: MainDataStoreDelegate
 {
-    func foundWeatherConfiguration(cities : [City])
+    func _updateViewControllers()
     {
-        self.cities = cities
+        if let city = currentCity {
+            if cities.count > 0 && cities[0].isCurrentLocation {
+                cities[0] = city
+            } else {
+                cities.insert(city, atIndex: 0)
+            }
+        }
+        
         self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { [unowned self] (complete:Bool) -> Void in
             self._hideActivityIndicator()
         }
+    }
+    
+    func foundWeatherConfiguration(cities : [City])
+    {
+        self.cities = cities
+        _updateViewControllers()
     }
     
     func unableToFindWeatherConfiguration(error : NSError?)
     {
         _hideActivityIndicator()
         UIAlertView(title: "Oups !", message: "Something went wrong while loading weathers. Please try again later.", delegate: nil, cancelButtonTitle: "OK").show()
+    }
+    
+    func foundWeatherForCoordinates(city : City)
+    {
+        city.isCurrentLocation = true
+        currentCity = city
+        _updateViewControllers()
+    }
+
+    func unableToFindWeatherForCoordinates(error : NSError?)
+    {
+        // Do nothing
     }
 }
 
@@ -148,6 +194,20 @@ extension MainViewController: UIPageViewControllerDataSource
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
     {
         return 0
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate
+{
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    {
+        var locValue : CLLocationCoordinate2D = manager.location.coordinate;
+
+        if manager.location.horizontalAccuracy < LocationAccuracy {
+            locationManager.stopUpdatingLocation()
+            dataStore.retrieveWeatherForLocation(Coordinates(latitude: locValue.latitude, longitude: locValue.longitude))
+        }
     }
 }
 

@@ -13,6 +13,7 @@ class TodayViewController: UIViewController
     var index : Int = 0
 
     @IBOutlet weak var topImageView: UIImageView!
+    @IBOutlet weak var currentIconImageView: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var infoRainPercentLabel: UILabel!
@@ -28,6 +29,15 @@ class TodayViewController: UIViewController
         {
             if let sCity = city {
                 locationLabel.text = "\(sCity.name!), \(sCity.country!)"
+                
+                if sCity.isCurrentLocation {
+                    // Icon positioning
+                    var f = locationLabel.sizeThatFits(locationLabel.frame.size)
+                    currentIconImageView.frame.origin.x += f.width + 4;
+                    currentIconImageView.center.y = locationLabel.center.y
+                } else {
+                    currentIconImageView.hidden = true
+                }
                 
                 if let weather = sCity.todayWeather {
                     conditionLabel.text = "\(weather.temp)°C | \(weather.title)"
