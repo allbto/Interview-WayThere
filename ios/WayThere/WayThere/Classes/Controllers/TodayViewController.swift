@@ -20,6 +20,8 @@ class TodayViewController: UIViewController
     @IBOutlet weak var infoRainPressureLabel: UILabel!
     @IBOutlet weak var infoWindSpeedLabel: UILabel!
     @IBOutlet weak var infoWindDirectionLabel: UILabel!
+    @IBOutlet weak var shareSmallScreenButton: UIButton!
+    @IBOutlet weak var shareBiggerScreenButton: UIButton!
     
     var city : City? {
         didSet
@@ -47,6 +49,9 @@ class TodayViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        shareSmallScreenButton.hidden = !Device.IS_3_5_INCHES_OR_SMALLER()
+        shareBiggerScreenButton.hidden = !shareSmallScreenButton.hidden
 
         // Reset label (I like to see them full when I edit the view)
         locationLabel.text = ""

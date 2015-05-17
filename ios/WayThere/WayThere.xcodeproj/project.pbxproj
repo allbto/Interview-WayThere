@@ -20,6 +20,7 @@
 		9D2FF3B01B07AA82008EFFB8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3AF1B07AA82008EFFB8 /* CoreLocation.framework */; };
 		9D2FF3B41B07B433008EFFB8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3B31B07B433008EFFB8 /* Alamofire.framework */; };
 		9D2FF3B61B07B621008EFFB8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3B51B07B621008EFFB8 /* SwiftyJSON.framework */; };
+		9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3B81B08A88F008EFFB8 /* Device.swift */; };
 		9D6B54B21B07A691001BE5AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54AE1B07A691001BE5AF /* LaunchScreen.xib */; };
 		9D6B54B31B07A691001BE5AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54B01B07A691001BE5AF /* Main.storyboard */; };
 		9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		9D2FF3B11B07B422008EFFB8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/Alamofire.framework"; sourceTree = "<group>"; };
 		9D2FF3B31B07B433008EFFB8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/Alamofire.framework"; sourceTree = "<group>"; };
 		9D2FF3B51B07B621008EFFB8 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		9D2FF3B81B08A88F008EFFB8 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		9D6B54AF1B07A691001BE5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9D6B54B11B07A691001BE5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D8E07261B074F1100E0FFF3 /* WayThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WayThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 		9D2FF3921B07A869008EFFB8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9D2FF3B71B08A88F008EFFB8 /* Utils */,
 				9D2FF3931B07A869008EFFB8 /* Controllers */,
 				9D2FF3981B07A869008EFFB8 /* Models */,
 			);
@@ -150,6 +153,14 @@
 				9D2FF39F1B07A869008EFFB8 /* ProximaNova-Semibold.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9D2FF3B71B08A88F008EFFB8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9D2FF3B81B08A88F008EFFB8 /* Device.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		9D8E071D1B074F1100E0FFF3 = {
@@ -382,6 +393,7 @@
 				9D2FF3A41B07A869008EFFB8 /* MainViewController.swift in Sources */,
 				9D2FF3A51B07A869008EFFB8 /* TodayViewController.swift in Sources */,
 				9D2FF3AE1B07A891008EFFB8 /* MainDataStore.swift in Sources */,
+				9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */,
 				9D2FF3AC1B07A869008EFFB8 /* WayThere.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
