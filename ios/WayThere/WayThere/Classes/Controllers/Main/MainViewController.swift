@@ -13,21 +13,47 @@ class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
     
-    var dataStore = MainDataStore()
-    let locationManager = CLLocationManager()
+    /// Views
+    var activityIndicator: UIActivityIndicatorView?
 
+    /// Objects
+    var dataStore = MainDataStore()
+    var locationManager = CLLocationManager()
     var cities = [City]()
     
     // MARK: - UIViewController
     
+    private func _showActivityIndicator()
+    {
+        if activityIndicator == nil {
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            activityIndicator!.frame = CGRectMake(0, 0, 24, 24)
+            activityIndicator!.center = self.view.center
+            self.view.addSubview(activityIndicator!)
+        }
+        activityIndicator!.hidden = false
+        activityIndicator!.startAnimating()
+    }
+    
+    private func _hideActivityIndicator()
+    {
+        activityIndicator?.stopAnimating()
+        activityIndicator?.hidden = true
+    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
+        // Configure PageViewController
         self.dataSource = self
         self.view.backgroundColor = UIColor.whiteColor()
+
         
+        // Show activity indicator while waiting for weather data
+        _showActivityIndicator()
+
+        // Configure DataStore
         dataStore.delegate = self
         dataStore.retrieveWeatherConfiguration()
     }
@@ -42,7 +68,7 @@ class MainViewController: UIPageViewController
     
     private func _viewControllerAtIndex(index : Int) -> TodayViewController
     {
-        if index < 0 || index > (cities.count - 1) {
+        if index < 0 || index >= cities.count {
             return TodayViewController()
         }
         
@@ -65,11 +91,14 @@ extension MainViewController: MainDataStoreDelegate
     func foundWeatherConfiguration(cities : [City])
     {
         self.cities = cities
-        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false, completion: nil)
+        self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { [unowned self] (complete:Bool) -> Void in
+            self._hideActivityIndicator()
+        }
     }
     
     func unableToFindWeatherConfiguration(error : NSError?)
     {
+        _hideActivityIndicator()
         UIAlertView(title: "Oups !", message: "Something went wrong while loading weathers. Please try again later.", delegate: nil, cancelButtonTitle: "OK").show()
     }
 }
