@@ -38,6 +38,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9D2FF3CC1B08AC2E008EFFB8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7405800F8DDAE5E15788282F /* Pods-WayThere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WayThere.release.xcconfig"; path = "Pods/Target Support Files/Pods-WayThere/Pods-WayThere.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +259,7 @@
 				9D8E07241B074F1100E0FFF3 /* Resources */,
 				326BD260081447B841C23FC7 /* Embed Pods Frameworks */,
 				020296FAFA915557A01E7163 /* Copy Pods Resources */,
+				9D2FF3CC1B08AC2E008EFFB8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -285,6 +299,7 @@
 				TargetAttributes = {
 					9D8E07251B074F1100E0FFF3 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = ECJB8MMNL4;
 					};
 					9D8E073D1B074F1100E0FFF3 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -522,6 +537,7 @@
 			baseConfigurationReference = 81872A91FE87AB5C9F4DC40E /* Pods-WayThere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-WayThere",
@@ -538,6 +554,7 @@
 			baseConfigurationReference = 7405800F8DDAE5E15788282F /* Pods-WayThere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-WayThere",

@@ -73,9 +73,18 @@ class TodayViewController: UIViewController
 
     @IBAction func shareWeatherAction(sender: AnyObject)
     {
+        let opening = "Check out today's weather in \(locationLabel.text!) !"
+        let weatherStatus = conditionLabel.text!
         
+        let activityVC = UIActivityViewController(activityItems: [opening, weatherStatus], applicationActivities: nil)
+        
+        //New Excluded Activities Code
+        activityVC.excludedActivityTypes = [UIActivityTypeAddToReadingList]
+        //
+        
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
-
+    
     /*
     // MARK: - Navigation
 
