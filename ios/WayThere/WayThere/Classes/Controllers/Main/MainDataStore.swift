@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import MagicalRecord
 
 protocol MainDataStoreDelegate
 {
@@ -30,24 +31,38 @@ class MainDataStore
     /// Vars
     
     var delegate: MainDataStoreDelegate?
-    var defaultCities : [City]
     
-    init()
+    static func retrieveCities() -> [CD_City]
     {
-        defaultCities = [
-            City(id: "3067696", name: "Prague"),
-            City(id: "2990440", name: "Nice"),
-            City(id: "2988507", name: "Paris")
-        ]
+        var cities = CD_City.MR_findAll() as? [CD_City]
+
+        if cities == nil || cities!.count == 0 {
+            var citiesTuples = [
+                ("3067696", "Prague"),
+                ("2990440", "Nice"),
+                ("2988507", "Paris")
+            ]
+
+            cities = []
+            for (id, name) in citiesTuples {
+                if var city = CD_City.MR_createEntity() as? CD_City {
+                    city.remoteId = id
+                    city.name = name
+                    cities!.append(city)
+                }
+            }
+
+            CoreDataHelper.saveAndWait()
+        }
+        return cities!
     }
     
     func retrieveWeatherConfiguration()
     {
-        // TODO: Use CoreData
-        var cities = defaultCities
+        var cities = MainDataStore.retrieveCities()
 
         Alamofire.request(.GET, BaseUrl + SeveralCitiesUrl, parameters: [
-            "id" : ",".join(cities.map { $0.id }),
+            "id" : ",".join(cities.map { $0.remoteId }),
             "units" : "metric"
             ])
             .responseJSON { [unowned self] (req, _, json, error) in
@@ -59,9 +74,9 @@ class MainDataStore
                     for (index, (sIndex : String, city : JSON)) in enumerate(json["list"]) {
                         cities[index].fromJson(city)
                     }
-                    self.delegate?.foundWeatherConfiguration(cities)
-                }
-                else {
+                    CoreDataHelper.saveAndWait()
+                    self.delegate?.foundWeatherConfiguration(cities.map({ City(model: $0) }))
+                } else {
                     self.delegate?.unableToFindWeatherConfiguration(error)
                 }
         }
@@ -80,8 +95,12 @@ class MainDataStore
                 if (error == nil && json != nil) {
                     var json = JSON(json!)
                     
-                    if let id = json["id"].int {
-                        self.delegate?.foundWeatherForCoordinates(City(id: String(id), json: json))
+                    if var city = CD_City.MR_createEntity() as? CD_City {
+                        city.fromJson(json)
+                        
+                        self.delegate?.foundWeatherForCoordinates(City(model: city))
+ 
+                        city.MR_deleteEntity()
                     } else {
                         self.delegate?.unableToFindWeatherForCoordinates(nil)
                     }

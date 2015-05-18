@@ -15,13 +15,13 @@
 		9D2FF3A91B07A869008EFFB8 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2FF39E1B07A869008EFFB8 /* ProximaNova-Regular.otf */; };
 		9D2FF3AA1B07A869008EFFB8 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2FF39F1B07A869008EFFB8 /* ProximaNova-Semibold.otf */; };
 		9D2FF3AB1B07A869008EFFB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2FF3A01B07A869008EFFB8 /* Images.xcassets */; };
-		9D2FF3AC1B07A869008EFFB8 /* WayThere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3A11B07A869008EFFB8 /* WayThere.xcdatamodeld */; };
 		9D2FF3AE1B07A891008EFFB8 /* MainDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3AD1B07A891008EFFB8 /* MainDataStore.swift */; };
 		9D2FF3B01B07AA82008EFFB8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3AF1B07AA82008EFFB8 /* CoreLocation.framework */; };
 		9D2FF3B41B07B433008EFFB8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3B31B07B433008EFFB8 /* Alamofire.framework */; };
 		9D2FF3B61B07B621008EFFB8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3B51B07B621008EFFB8 /* SwiftyJSON.framework */; };
 		9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3B81B08A88F008EFFB8 /* Device.swift */; };
 		9D3CF1671B08F79800F626F6 /* UIVIew+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CF1661B08F79800F626F6 /* UIVIew+Adds.swift */; };
+		9D47E0EC1B09EAC6005CD736 /* WayThere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D47E0EA1B09EAC6005CD736 /* WayThere.xcdatamodeld */; };
 		9D5998531B08FEA100E2FB04 /* UIImage+ImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5998521B08FEA100E2FB04 /* UIImage+ImageEffects.swift */; };
 		9D5998551B0921A900E2FB04 /* SettingsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5998541B0921A900E2FB04 /* SettingsDataStore.swift */; };
 		9D59985F1B0937F800E2FB04 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D59985E1B0937F800E2FB04 /* Weather.swift */; };
@@ -35,10 +35,12 @@
 		9D59987C1B093DDA00E2FB04 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D59987B1B093DDA00E2FB04 /* Wind.swift */; };
 		9D59987E1B093EA200E2FB04 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D59987D1B093EA200E2FB04 /* City.swift */; };
 		9D5998831B09438300E2FB04 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D5998821B09438300E2FB04 /* MagicalRecord.framework */; };
-		9D5998851B09447400E2FB04 /* MR_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5998841B09447400E2FB04 /* MR_Tests.swift */; };
+		9D5998851B09447400E2FB04 /* CoreDataModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5998841B09447400E2FB04 /* CoreDataModelsTests.swift */; };
 		9D5A28101B094E9A00B3E5C8 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D5A280F1B094E9A00B3E5C8 /* Nimble.framework */; };
 		9D6A4EA01B08CDC9002725BF /* XLForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6A4E9F1B08CDC9002725BF /* XLForm.framework */; };
 		9D6A4EA41B08D04B002725BF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6A4EA31B08D04B002725BF /* SettingsViewController.swift */; };
+		9D6ADB481B09F326003AB030 /* WayThere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D47E0EA1B09EAC6005CD736 /* WayThere.xcdatamodeld */; };
+		9D6ADB4A1B0A5EB4003AB030 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6ADB491B0A5EB4003AB030 /* CoreDataHelper.swift */; };
 		9D6B54B21B07A691001BE5AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54AE1B07A691001BE5AF /* LaunchScreen.xib */; };
 		9D6B54B31B07A691001BE5AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54B01B07A691001BE5AF /* Main.storyboard */; };
 		9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */; };
@@ -82,7 +84,6 @@
 		9D2FF39E1B07A869008EFFB8 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		9D2FF39F1B07A869008EFFB8 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
 		9D2FF3A01B07A869008EFFB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9D2FF3A21B07A869008EFFB8 /* WayThere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WayThere.xcdatamodel; sourceTree = "<group>"; };
 		9D2FF3AD1B07A891008EFFB8 /* MainDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDataStore.swift; sourceTree = "<group>"; };
 		9D2FF3AF1B07AA82008EFFB8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9D2FF3B11B07B422008EFFB8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/Alamofire.framework"; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		9D2FF3B51B07B621008EFFB8 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		9D2FF3B81B08A88F008EFFB8 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		9D3CF1661B08F79800F626F6 /* UIVIew+Adds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIew+Adds.swift"; sourceTree = "<group>"; };
+		9D47E0EB1B09EAC6005CD736 /* WayThere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WayThere.xcdatamodel; sourceTree = "<group>"; };
 		9D5998521B08FEA100E2FB04 /* UIImage+ImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageEffects.swift"; sourceTree = "<group>"; };
 		9D5998541B0921A900E2FB04 /* SettingsDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDataStore.swift; sourceTree = "<group>"; };
 		9D59985E1B0937F800E2FB04 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 		9D59987D1B093EA200E2FB04 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		9D59987F1B09409400E2FB04 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/MagicalRecord.framework"; sourceTree = "<group>"; };
 		9D5998821B09438300E2FB04 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/MagicalRecord.framework"; sourceTree = "<group>"; };
-		9D5998841B09447400E2FB04 /* MR_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MR_Tests.swift; sourceTree = "<group>"; };
+		9D5998841B09447400E2FB04 /* CoreDataModelsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataModelsTests.swift; sourceTree = "<group>"; };
 		9D5998861B0948D600E2FB04 /* Expecta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Expecta.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/Expecta.framework"; sourceTree = "<group>"; };
 		9D5998881B094BF900E2FB04 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/Nimble.framework"; sourceTree = "<group>"; };
 		9D59988A1B094C9800E2FB04 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/Nimble.framework"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		9D5A280F1B094E9A00B3E5C8 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/Nimble.framework"; sourceTree = "<group>"; };
 		9D6A4E9F1B08CDC9002725BF /* XLForm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XLForm.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/XLForm.framework"; sourceTree = "<group>"; };
 		9D6A4EA31B08D04B002725BF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Settings/SettingsViewController.swift; sourceTree = "<group>"; };
+		9D6ADB491B0A5EB4003AB030 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		9D6B54AF1B07A691001BE5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9D6B54B11B07A691001BE5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D8E07261B074F1100E0FFF3 /* WayThere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WayThere.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,7 +211,7 @@
 			children = (
 				9D2FF39B1B07A869008EFFB8 /* Fonts */,
 				9D2FF3A01B07A869008EFFB8 /* Images.xcassets */,
-				9D2FF3A11B07A869008EFFB8 /* WayThere.xcdatamodeld */,
+				9D47E0EA1B09EAC6005CD736 /* WayThere.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				9D5998521B08FEA100E2FB04 /* UIImage+ImageEffects.swift */,
 				9D2FF3B81B08A88F008EFFB8 /* Device.swift */,
 				9D3CF1661B08F79800F626F6 /* UIVIew+Adds.swift */,
+				9D6ADB491B0A5EB4003AB030 /* CoreDataHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -237,8 +241,8 @@
 		9D59986A1B093D5E00E2FB04 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				9D59986B1B093D6700E2FB04 /* CD_Weather.swift */,
 				9D59986C1B093D6700E2FB04 /* CD_City.swift */,
+				9D59986B1B093D6700E2FB04 /* CD_Weather.swift */,
 				9D59986D1B093D6700E2FB04 /* CD_Wind.swift */,
 				9D59986E1B093D6700E2FB04 /* CD_Coordinates.swift */,
 				9D59986F1B093D6700E2FB04 /* CD_AModel.swift */,
@@ -300,7 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */,
-				9D5998841B09447400E2FB04 /* MR_Tests.swift */,
+				9D5998841B09447400E2FB04 /* CoreDataModelsTests.swift */,
 				9D8E07421B074F1100E0FFF3 /* Supporting Files */,
 			);
 			path = WayThereTests;
@@ -544,6 +548,7 @@
 				9D5998731B093D6700E2FB04 /* CD_Coordinates.swift in Sources */,
 				9D59987C1B093DDA00E2FB04 /* Wind.swift in Sources */,
 				9D3CF1671B08F79800F626F6 /* UIVIew+Adds.swift in Sources */,
+				9D6ADB4A1B0A5EB4003AB030 /* CoreDataHelper.swift in Sources */,
 				9D5998741B093D6700E2FB04 /* CD_AModel.swift in Sources */,
 				9D5998701B093D6700E2FB04 /* CD_Weather.swift in Sources */,
 				9D5998761B093D8D00E2FB04 /* Coordinates.swift in Sources */,
@@ -558,7 +563,7 @@
 				9D2FF3AE1B07A891008EFFB8 /* MainDataStore.swift in Sources */,
 				9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */,
 				9D59985F1B0937F800E2FB04 /* Weather.swift in Sources */,
-				9D2FF3AC1B07A869008EFFB8 /* WayThere.xcdatamodeld in Sources */,
+				9D47E0EC1B09EAC6005CD736 /* WayThere.xcdatamodeld in Sources */,
 				9D5998711B093D6700E2FB04 /* CD_City.swift in Sources */,
 				9D6A4EA41B08D04B002725BF /* SettingsViewController.swift in Sources */,
 			);
@@ -568,7 +573,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D5998851B09447400E2FB04 /* MR_Tests.swift in Sources */,
+				9D6ADB481B09F326003AB030 /* WayThere.xcdatamodeld in Sources */,
+				9D5998851B09447400E2FB04 /* CoreDataModelsTests.swift in Sources */,
 				9D8E07451B074F1100E0FFF3 /* WayThereTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,12 +807,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9D2FF3A11B07A869008EFFB8 /* WayThere.xcdatamodeld */ = {
+		9D47E0EA1B09EAC6005CD736 /* WayThere.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9D2FF3A21B07A869008EFFB8 /* WayThere.xcdatamodel */,
+				9D47E0EB1B09EAC6005CD736 /* WayThere.xcdatamodel */,
 			);
-			currentVersion = 9D2FF3A21B07A869008EFFB8 /* WayThere.xcdatamodel */;
+			currentVersion = 9D47E0EB1B09EAC6005CD736 /* WayThere.xcdatamodel */;
 			path = WayThere.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

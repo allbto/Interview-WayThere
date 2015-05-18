@@ -40,7 +40,7 @@ class TodayViewController: UIViewController
                 }
                 
                 if let weather = sCity.todayWeather {
-                    conditionLabel.text = "\(weather.temp)°C | \(weather.title)"
+                    conditionLabel.text = "\(weather.tempCelcius)°C | \(weather.title)"
                     infoRainPercentLabel.text = "\(weather.humidity)%"
                     infoRainPressureLabel.text = "\(weather.pressure) hPa"
                     infoRainQuantityLabel.text = "\(weather.rainAmount ?? 0) mm"
