@@ -6,6 +6,7 @@ target 'WayThere' do
     pod 'Alamofire', '~> 1.2'
     pod 'SwiftyJSON', '~> 2.2'
     pod 'MagicalRecord'
+    pod 'UIActionSheet+Blocks'
 end
 
 target 'WayThereTests' do

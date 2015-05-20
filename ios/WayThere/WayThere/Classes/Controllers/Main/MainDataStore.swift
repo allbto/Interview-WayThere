@@ -32,6 +32,12 @@ class MainDataStore
     
     var delegate: MainDataStoreDelegate?
     
+    /**
+    Retrieve cities stored in CoreData
+    If no city is stored there, it creates some default cities
+    
+    :returns: List of city stored in CoreData
+    */
     static func retrieveCities() -> [CD_City]
     {
         var cities = CD_City.MR_findAll() as? [CD_City]
