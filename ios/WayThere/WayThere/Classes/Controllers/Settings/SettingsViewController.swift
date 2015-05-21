@@ -106,6 +106,8 @@ extension SettingsViewController
                 selectCell.rightLabel?.text = (cell.value as? String) ?? ""
                 
                 return selectCell
+            default:
+                break
             }
         }
         return UITableViewCell()

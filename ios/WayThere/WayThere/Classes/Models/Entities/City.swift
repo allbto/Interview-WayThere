@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public class City : AModel
+public class City : AEntity
 {
     public var remoteId: String
     public var country: String?

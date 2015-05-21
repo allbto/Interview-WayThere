@@ -12,6 +12,7 @@ enum CellType : String
 {
     case SwitchCell = "SwitchCellIdentifier"
     case SelectCell = "SelectCellIdentifier"
+    case CityWeatherCell = "CityWeatherCellIdentifier"
 }
 
 typealias Cell = (title: String, key: String, value: AnyObject?, type: CellType, data: [AnyObject]?)

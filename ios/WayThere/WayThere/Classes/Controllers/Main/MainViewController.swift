@@ -13,11 +13,14 @@ class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
     let SettingsViewControllerIdentifier = "SettingsViewControllerIdentifier"
+    let CitiesViewControllerIdentifier = "CitiesViewControllerIdentifier"
     let LocationAccuracy : Double = 100
     
     /// Views
     var settingsNavigationViewController : UINavigationController?
+    var citiesNavigationViewController : UINavigationController?
     var activityIndicator: UIActivityIndicatorView?
+    var viewImage: UIImageView?
 
     /// Objects
     var dataStore = MainDataStore()
@@ -90,12 +93,28 @@ class MainViewController: UIPageViewController
     @IBAction func menuAction(sender: AnyObject)
     {
         if settingsNavigationViewController == nil {
-            settingsNavigationViewController = self.storyboard?.instantiateViewControllerWithIdentifier(SettingsViewControllerIdentifier) as? UINavigationController
-            (settingsNavigationViewController?.viewControllers[0] as! SettingsViewController).delegate = self
+            var vc = self.storyboard?.instantiateViewControllerWithIdentifier(SettingsViewControllerIdentifier) as! SettingsViewController
+            
+            vc.delegate = self
+            settingsNavigationViewController = UINavigationController(rootViewController: vc)
         }
         
         if let settingsNVC = settingsNavigationViewController {
             self.presentViewController(settingsNVC, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func citiesMenuAction(sender: AnyObject)
+    {
+        if citiesNavigationViewController == nil {
+            var vc = self.storyboard?.instantiateViewControllerWithIdentifier(CitiesViewControllerIdentifier) as! CitiesViewController
+            
+            vc.delegate = self
+            citiesNavigationViewController = UINavigationController(rootViewController: vc)
+        }
+        
+        if let citiesNVC = citiesNavigationViewController {
+            self.presentViewController(citiesNVC, animated: true, completion: nil)
         }
     }
     
@@ -124,6 +143,14 @@ class MainViewController: UIPageViewController
 extension MainViewController: SettingsViewControllerDelegate
 {
     func didFinishEditingSettings()
+    {
+    }
+}
+
+// MARK: - CitiesViewControllerDelegate
+extension MainViewController: CitiesViewControllerDelegate
+{
+    func didFinishEditingCities()
     {
     }
 }
@@ -174,7 +201,8 @@ extension MainViewController: MainDataStoreDelegate
 // MARK: - UIAlertViewDelegate
 extension MainViewController: UIAlertViewDelegate
 {
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
+    {
         if buttonIndex != alertView.cancelButtonIndex {
             // Show activity indicator while waiting for weather data
             _showActivityIndicator()

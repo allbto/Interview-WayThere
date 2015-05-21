@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Wind : AModel
+public class Wind : AEntity
 {
     public var degrees : Float
     public var speedMetric : Float

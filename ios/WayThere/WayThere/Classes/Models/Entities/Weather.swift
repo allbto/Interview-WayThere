@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public class Weather: AModel
+public class Weather: AEntity
 {
     public var title: String
     public var descriptionText: String
@@ -28,5 +28,33 @@ public class Weather: AModel
         pressure = model.pressure?.integerValue ?? 0
         humidity = model.humidity?.integerValue ?? 0
         rainAmount = model.rainAmount?.floatValue ?? 0
+    }
+    
+    public func weatherImage() -> UIImage?
+    {
+        let formatedTitle : String
+        
+        switch title {
+        case "Clouds":
+            formatedTitle = "Cloudy"
+        case "Clear":
+            formatedTitle = "Sunny"
+        case "Rain", "Drizzle":
+            formatedTitle = "Rainy"
+        case "Extreme":
+            formatedTitle = "Thunderstorm"
+        case "Atmosphere":
+            formatedTitle = "Windy"
+        default:
+            formatedTitle = title
+        }
+
+        var image = UIImage(named: formatedTitle)
+        
+        if image == nil {
+            image = UIImage(named: "Unknown")
+        }
+        
+        return image
     }
 }

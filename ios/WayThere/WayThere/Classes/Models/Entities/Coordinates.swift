@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Coordinates: AModel
+public class Coordinates: AEntity
 {
     public var latitude: Double
     public var longitude: Double

@@ -44,6 +44,7 @@ class TodayViewController: UIViewController
                     infoRainPercentLabel.text = "\(weather.humidity)%"
                     infoRainPressureLabel.text = "\(weather.pressure) hPa"
                     infoRainQuantityLabel.text = "\(weather.rainAmount ?? 0) mm"
+                    topImageView.image = weather.weatherImage()
                 }
 
                 if let wind = sCity.wind {
