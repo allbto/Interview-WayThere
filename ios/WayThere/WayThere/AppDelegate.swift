@@ -14,18 +14,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        /// CoreData
+    private func _setUpCoreData()
+    {
         MagicalRecord.setupCoreDataStack()
-                
-        /// Design
+    }
+    
+    private func _setUpApparences()
+    {
         var pageControl = UIPageControl.appearance();
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
         pageControl.backgroundColor = UIColor.whiteColor()
+    }
+    
+    private func _setUpUserDefaults()
+    {
+        NSUserDefaults.standardUserDefaults().registerDefaults(SettingKey.defaults)
+    }
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        
+        /// CoreData
+        _setUpCoreData()
+        
+        /// Design
+        _setUpApparences()
+        
+        // User defaults
+        _setUpUserDefaults()
         
         return true
     }

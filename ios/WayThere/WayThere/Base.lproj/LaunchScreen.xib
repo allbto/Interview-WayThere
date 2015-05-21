@@ -67,7 +67,7 @@
                         </mask>
                     </variation>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunny" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-nR-brB">
+                <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunny" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-nR-brB">
                     <rect key="frame" x="192" y="93" width="96" height="93"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="96" id="Nsy-1N-czJ"/>
@@ -105,6 +105,6 @@
         </view>
     </objects>
     <resources>
-        <image name="sunny" width="50" height="50"/>
+        <image name="Sunny" width="50" height="50"/>
     </resources>
 </document>

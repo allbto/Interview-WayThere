@@ -23,6 +23,7 @@ public class CD_City: CD_AModel {
     
     public func fromJson(json: JSON)
     {
+        remoteId = json["id"].string ?? ""
         name = json["name"].string
         country = json["sys"]["country"].string
         

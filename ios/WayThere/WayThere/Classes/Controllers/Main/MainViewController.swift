@@ -12,10 +12,15 @@ import CoreLocation
 class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
+    let SettingsViewControllerIdentifier = "SettingsViewControllerIdentifier"
+    let CitiesViewControllerIdentifier = "CitiesViewControllerIdentifier"
     let LocationAccuracy : Double = 100
     
     /// Views
+    var settingsNavigationViewController : UINavigationController?
+    var citiesNavigationViewController : UINavigationController?
     var activityIndicator: UIActivityIndicatorView?
+    var viewImage: UIImageView?
 
     /// Objects
     var dataStore = MainDataStore()
@@ -85,6 +90,34 @@ class MainViewController: UIPageViewController
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func menuAction(sender: AnyObject)
+    {
+        if settingsNavigationViewController == nil {
+            var vc = self.storyboard?.instantiateViewControllerWithIdentifier(SettingsViewControllerIdentifier) as! SettingsViewController
+            
+            vc.delegate = self
+            settingsNavigationViewController = UINavigationController(rootViewController: vc)
+        }
+        
+        if let settingsNVC = settingsNavigationViewController {
+            self.presentViewController(settingsNVC, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func citiesMenuAction(sender: AnyObject)
+    {
+        if citiesNavigationViewController == nil {
+            var vc = self.storyboard?.instantiateViewControllerWithIdentifier(CitiesViewControllerIdentifier) as! CitiesViewController
+            
+            vc.delegate = self
+            citiesNavigationViewController = UINavigationController(rootViewController: vc)
+        }
+        
+        if let citiesNVC = citiesNavigationViewController {
+            self.presentViewController(citiesNVC, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Page view controller content
     
     private func _viewControllerAtIndex(index : Int) -> TodayViewController
@@ -103,6 +136,22 @@ class MainViewController: UIPageViewController
         }
 
         return todayVC
+    }
+}
+
+// MARK: - SettingsViewControllerDelegate
+extension MainViewController: SettingsViewControllerDelegate
+{
+    func didFinishEditingSettings()
+    {
+    }
+}
+
+// MARK: - CitiesViewControllerDelegate
+extension MainViewController: CitiesViewControllerDelegate
+{
+    func didFinishEditingCities()
+    {
     }
 }
 
@@ -133,7 +182,7 @@ extension MainViewController: MainDataStoreDelegate
     func unableToFindWeatherConfiguration(error : NSError?)
     {
         _hideActivityIndicator()
-        UIAlertView(title: "Oups !", message: "Something went wrong while loading weathers. Please try again later.", delegate: nil, cancelButtonTitle: "OK").show()
+        UIAlertView(title: "Oups !", message: "Seems like a giant thunderstorm prevent the app from getting forecasts", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
     }
     
     func foundWeatherForCoordinates(city : City)
@@ -146,6 +195,21 @@ extension MainViewController: MainDataStoreDelegate
     func unableToFindWeatherForCoordinates(error : NSError?)
     {
         // Do nothing
+    }
+}
+
+// MARK: - UIAlertViewDelegate
+extension MainViewController: UIAlertViewDelegate
+{
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
+    {
+        if buttonIndex != alertView.cancelButtonIndex {
+            // Show activity indicator while waiting for weather data
+            _showActivityIndicator()
+            
+            // Fetch weather data
+            dataStore.retrieveWeatherConfiguration()
+        }
     }
 }
 

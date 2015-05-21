@@ -24,14 +24,20 @@ class MainDataStore
 {
     /// Urls
     
-    let BaseUrl = "http://api.openweathermap.org/data/2.5"
-    let WeatherUrl = "/weather"
-    let SeveralCitiesUrl = "/group"
+    static let BaseUrl = "http://api.openweathermap.org/data/2.5"
+    let WeatherUrl = MainDataStore.BaseUrl + "/weather"
+    let SeveralCitiesUrl = MainDataStore.BaseUrl + "/group"
     
     /// Vars
     
     var delegate: MainDataStoreDelegate?
     
+    /**
+    Retrieve cities stored in CoreData
+    If no city is stored there, it creates some default cities
+    
+    :returns: List of city stored in CoreData
+    */
     static func retrieveCities() -> [CD_City]
     {
         var cities = CD_City.MR_findAll() as? [CD_City]
@@ -61,11 +67,11 @@ class MainDataStore
     {
         var cities = MainDataStore.retrieveCities()
 
-        Alamofire.request(.GET, BaseUrl + SeveralCitiesUrl, parameters: [
+        Alamofire.request(.GET, SeveralCitiesUrl, parameters: [
             "id" : ",".join(cities.map { $0.remoteId }),
             "units" : "metric"
             ])
-            .responseJSON { [unowned self] (req, _, json, error) in
+            .responseJSON { [unowned self] (req, response, json, error) in
                 println(req, json, error)
                 
                 if (error == nil && json != nil) {
@@ -84,7 +90,7 @@ class MainDataStore
     
     func retrieveWeatherForLocation(coordinates: Coordinates)
     {
-        Alamofire.request(.GET, BaseUrl + WeatherUrl, parameters: [
+        Alamofire.request(.GET, WeatherUrl, parameters: [
             "lat" : "\(coordinates.latitude)",
             "lon" : "\(coordinates.longitude)",
             "units" : "metric"
