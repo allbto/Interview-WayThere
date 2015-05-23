@@ -98,9 +98,8 @@ class TodayViewController: UIViewController
         
         let activityVC = UIActivityViewController(activityItems: [opening, weatherStatus], applicationActivities: nil)
         
-        //New Excluded Activities Code
+        // New Excluded Activities Code
         activityVC.excludedActivityTypes = [UIActivityTypeAddToReadingList]
-        //
         
         self.presentViewController(activityVC, animated: true, completion: nil)
     }

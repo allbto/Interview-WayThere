@@ -12,15 +12,12 @@ import CoreLocation
 class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
-    let SettingsViewControllerIdentifier = "SettingsViewControllerIdentifier"
     let CitiesViewControllerIdentifier = "CitiesViewControllerIdentifier"
     let LocationAccuracy : Double = 100
     
     /// Views
-    var settingsNavigationViewController : UINavigationController?
     var citiesNavigationViewController : UINavigationController?
     var activityIndicator: UIActivityIndicatorView?
-    var viewImage: UIImageView?
 
     /// Objects
     var dataStore = MainDataStore()
@@ -99,20 +96,6 @@ class MainViewController: UIPageViewController
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func menuAction(sender: AnyObject)
-    {
-        if settingsNavigationViewController == nil {
-            var vc = self.storyboard?.instantiateViewControllerWithIdentifier(SettingsViewControllerIdentifier) as! SettingsViewController
-            
-            vc.delegate = self
-            settingsNavigationViewController = UINavigationController(rootViewController: vc)
-        }
-        
-        if let settingsNVC = settingsNavigationViewController {
-            self.presentViewController(settingsNVC, animated: true, completion: nil)
-        }
-    }
-    
     @IBAction func citiesMenuAction(sender: AnyObject)
     {
         if citiesNavigationViewController == nil {
@@ -145,14 +128,6 @@ class MainViewController: UIPageViewController
         }
 
         return todayVC
-    }
-}
-
-// MARK: - SettingsViewControllerDelegate
-extension MainViewController: SettingsViewControllerDelegate
-{
-    func didFinishEditingSettings()
-    {
     }
 }
 

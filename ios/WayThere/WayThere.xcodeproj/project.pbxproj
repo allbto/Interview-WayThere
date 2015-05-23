@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F891D5C63BC87FA170B08B9 /* Pods_WayThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		9D0F5D411B0E7BE900CE5E1B /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0F5D401B0E7BE900CE5E1B /* ObjectMapper.framework */; };
 		9D0F5D431B109E6800CE5E1B /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F5D421B109E6800CE5E1B /* String+Utils.swift */; };
 		9D2FF3A41B07A869008EFFB8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3961B07A869008EFFB8 /* MainViewController.swift */; };
 		9D2FF3A51B07A869008EFFB8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3971B07A869008EFFB8 /* TodayViewController.swift */; };
@@ -50,6 +49,7 @@
 		9D6B54B31B07A691001BE5AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54B01B07A691001BE5AF /* Main.storyboard */; };
 		9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */; };
 		9D8E07451B074F1100E0FFF3 /* WayThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */; };
+		9DD408431B10C47D00852200 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD408421B10C47D00852200 /* MagicalRecord.framework */; };
 		A386F3B33A67772338037183 /* Pods_WayThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -136,6 +136,7 @@
 		9D8E073E1B074F1100E0FFF3 /* WayThereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WayThereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8E07431B074F1100E0FFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayThereTests.swift; sourceTree = "<group>"; };
+		9DD408421B10C47D00852200 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Release-iphoneos/Pods-WayThere/MagicalRecord.framework"; sourceTree = "<group>"; };
 		EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -144,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D0F5D411B0E7BE900CE5E1B /* ObjectMapper.framework in Frameworks */,
 				9D56A1601B0B7496004304F8 /* UIActionSheet_Blocks.framework in Frameworks */,
 				9D5998831B09438300E2FB04 /* MagicalRecord.framework in Frameworks */,
 				9D2FF3B61B07B621008EFFB8 /* SwiftyJSON.framework in Frameworks */,
@@ -158,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD408431B10C47D00852200 /* MagicalRecord.framework in Frameworks */,
 				9D5A28101B094E9A00B3E5C8 /* Nimble.framework in Frameworks */,
 				0F891D5C63BC87FA170B08B9 /* Pods_WayThereTests.framework in Frameworks */,
 			);
@@ -362,6 +363,7 @@
 		E9C18D85537BB54A6C8322AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DD408421B10C47D00852200 /* MagicalRecord.framework */,
 				9D0F5D401B0E7BE900CE5E1B /* ObjectMapper.framework */,
 				9D56A15F1B0B7496004304F8 /* UIActionSheet_Blocks.framework */,
 				9D56A15D1B0B6BFC004304F8 /* UIColor_Additions.framework */,
@@ -792,6 +794,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-WayThereTests",
+					"$(PROJECT_DIR)/build/Release-iphoneos/Pods-WayThere",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -814,6 +817,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-WayThereTests",
+					"$(PROJECT_DIR)/build/Release-iphoneos/Pods-WayThere",
 				);
 				INFOPLIST_FILE = WayThereTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

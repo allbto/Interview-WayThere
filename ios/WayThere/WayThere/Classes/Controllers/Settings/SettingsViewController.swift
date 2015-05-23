@@ -9,14 +9,8 @@
 import UIKit
 import UIActionSheet_Blocks
 
-protocol SettingsViewControllerDelegate
-{
-    func didFinishEditingSettings()
-}
-
 class SettingsViewController: UITableViewController
 {
-    var delegate: SettingsViewControllerDelegate?
 //    var dataStore = SettingsDataStore()
     
     var sections = [Section]()
@@ -51,12 +45,6 @@ class SettingsViewController: UITableViewController
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func cancelAction(sender: AnyObject)
-    {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        delegate?.didFinishEditingSettings()
     }
 }
 
