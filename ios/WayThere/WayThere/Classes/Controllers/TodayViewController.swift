@@ -40,7 +40,12 @@ class TodayViewController: UIViewController
                 }
                 
                 if let weather = sCity.todayWeather {
-                    conditionLabel.text = "\(String(weather.tempCelcius as? Int))°C | \(String(weather.title))"
+                    if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                        conditionLabel.text = "\(String(weather.tempCelcius as? Int))°C"
+                    } else {
+                        conditionLabel.text = "\(String(weather.tempFahrenheit as? Int))°F"
+                    }
+                    conditionLabel.text! += " | \(String(weather.title))"
                     infoRainPercentLabel.text = "\(String(weather.humidity))%"
                     infoRainPressureLabel.text = "\(String(weather.pressure)) hPa"
                     infoRainQuantityLabel.text = "\(weather.rainAmount ?? 0) mm"
@@ -48,7 +53,11 @@ class TodayViewController: UIViewController
                 }
 
                 if let wind = sCity.wind {
-                    infoWindSpeedLabel.text = "\(String(wind.speedMetric)) \(Wind.metricUnit)"
+                    if SettingsDataStore.settingValueForKey(.UnitOfLenght) as? String == SettingUnitOfLenght.Meters.rawValue {
+                        infoWindSpeedLabel.text = "\(String(wind.speedMetric)) \(Wind.metricUnit)"
+                    } else {
+                        infoWindSpeedLabel.text = "\(String(wind.speedImperial)) \(Wind.imperialUnit)"
+                    }
                     infoWindDirectionLabel.text = wind.direction
                 }
             }

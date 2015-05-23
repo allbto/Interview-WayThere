@@ -85,6 +85,10 @@ class CitiesViewController: UITableViewController
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         _hideSearchBar()
+        
+        if cities.count > 0 {
+            self.tableView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning()
@@ -223,7 +227,11 @@ extension CitiesViewController
         else if let city = cities.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
             weatherCell.mainLabel.text = city.name
             weatherCell.subtitleLabel.text = city.todayWeather?.title
-            weatherCell.temperatureLabel.text = String(city.todayWeather?.tempCelcius)
+            if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempCelcius as? Int))°C"
+            } else {
+                weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempFahrenheit as? Int))°F"
+            }
             weatherCell.weatherImageView.image = city.todayWeather?.weatherImage()
             
             return weatherCell

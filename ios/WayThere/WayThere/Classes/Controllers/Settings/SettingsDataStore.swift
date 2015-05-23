@@ -16,7 +16,7 @@ class SettingsDataStore
     :param: value value of the setting to store
     :param: key   key of the setting to store
     */
-    func setSettingValue(value: AnyObject?, forKey key: SettingKey)
+    static func setSettingValue(value: AnyObject?, forKey key: SettingKey)
     {
         NSUserDefaults.standardUserDefaults().setObject(value, forKey: key.rawValue)
     }
@@ -26,7 +26,7 @@ class SettingsDataStore
     
     :param: key   key of the setting to get
     */
-    func settingValueForKey(key: SettingKey) -> AnyObject?
+    static func settingValueForKey(key: SettingKey) -> AnyObject?
     {
         return NSUserDefaults.standardUserDefaults().objectForKey(key.rawValue)
     }

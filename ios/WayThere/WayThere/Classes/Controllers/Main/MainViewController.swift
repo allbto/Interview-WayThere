@@ -83,6 +83,15 @@ class MainViewController: UIPageViewController
         dataStore.delegate = self
         dataStore.retrieveWeatherConfiguration()
     }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        if cities.count > 0 {
+            _updateViewControllers()
+        }
+    }
 
     override func didReceiveMemoryWarning()
     {
