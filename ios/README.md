@@ -20,7 +20,7 @@ this one will do what it needs to do (send, receive, store data) then call a fun
 
 Here is an example of how to get cities:
 
-![Example get](images/archi_get.png)
+![Example get](images/archi_get.jpg)
 
 Troubleshooting
 ==========
