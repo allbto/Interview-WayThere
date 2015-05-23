@@ -24,9 +24,9 @@ class CoreDataModelsTests: XCTestCase {
         MagicalRecord.setupCoreDataStackWithInMemoryStore()
         
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            CD_City.MR_truncateAllInContext(context)
-            CD_Wind.MR_truncateAllInContext(context)
-            CD_Weather.MR_truncateAllInContext(context)
+            City.MR_truncateAllInContext(context)
+            Wind.MR_truncateAllInContext(context)
+            Weather.MR_truncateAllInContext(context)
         }
     }
     
@@ -39,20 +39,20 @@ class CoreDataModelsTests: XCTestCase {
     func testCreateCity()
     {
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            var city = CD_City.MR_createInContext(context) as? CD_City
+            var city = City.MR_createInContext(context) as? City
             
             expect(city).toNot(beNil())
             
             city!.remoteId = "3067696"
             city!.name = "Prague"
             city!.country = "CZ"
-            city!.coordinates = CD_Coordinates.MR_createInContext(context) as? CD_Coordinates
+            city!.coordinates = Coordinates.MR_createInContext(context) as? Coordinates
             city!.coordinates?.latitude = NSNumber(double: 50.09)
             city!.coordinates?.longitude = NSNumber(double: 14.42)
 
         }
 
-        var city = CD_City.MR_findFirst() as? CD_City
+        var city = City.MR_findFirst() as? City
         
         expect(city).toNot(beNil())
         expect(city!.remoteId).to(equal("3067696"))
@@ -64,13 +64,13 @@ class CoreDataModelsTests: XCTestCase {
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
             city!.MR_deleteInContext(context)
         }
-        expect(CD_City.MR_findFirst()).to(beNil())
+        expect(City.MR_findFirst()).to(beNil())
     }
     
     func testCreateWind()
     {
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            var wind = CD_Wind.MR_createInContext(context) as? CD_Wind
+            var wind = Wind.MR_createInContext(context) as? Wind
 
             expect(wind).toNot(beNil())
 
@@ -78,7 +78,7 @@ class CoreDataModelsTests: XCTestCase {
             wind!.degree = 214.501
         }
         
-        var wind = CD_Wind.MR_findFirst() as? CD_Wind
+        var wind = Wind.MR_findFirst() as? Wind
         
         expect(wind).toNot(beNil())
         expect(wind!.speedMetric!.floatValue).to(equal(2.47))
@@ -98,13 +98,13 @@ class CoreDataModelsTests: XCTestCase {
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
             wind!.MR_deleteInContext(context)
         }
-        expect(CD_Wind.MR_findFirst()).to(beNil())
+        expect(Wind.MR_findFirst()).to(beNil())
     }
     
     func testCreateWeather()
     {
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            var weather = CD_Weather.MR_createInContext(context) as? CD_Weather
+            var weather = Weather.MR_createInContext(context) as? Weather
             
             expect(weather).toNot(beNil())
             
@@ -112,7 +112,7 @@ class CoreDataModelsTests: XCTestCase {
             weather!.temp = 1
         }
         
-        var weather = CD_Weather.MR_findFirst() as? CD_Weather
+        var weather = Weather.MR_findFirst() as? Weather
         
         expect(weather).toNot(beNil())
         expect(weather!.title).to(equal("Clear"))
@@ -130,44 +130,7 @@ class CoreDataModelsTests: XCTestCase {
         MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
             weather!.MR_deleteInContext(context)
         }
-        expect(CD_Wind.MR_findFirst()).to(beNil())
-    }
-    
-    func testConvertCDCityToCity()
-    {
-        func testCreateCity()
-        {
-            MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-                var city = CD_City.MR_createInContext(context) as? CD_City
-                
-                expect(city).toNot(beNil())
-                
-                city!.remoteId = "3067696"
-                city!.name = "Prague"
-                city!.country = "CZ"
-                city!.coordinates = CD_Coordinates.MR_createInContext(context) as? CD_Coordinates
-                city!.coordinates?.latitude = NSNumber(double: 50.09)
-                city!.coordinates?.longitude = NSNumber(double: 14.42)
-                
-            }
-            
-            var cdCity = CD_City.MR_findFirst() as? CD_City
-            
-            expect(cdCity).toNot(beNil())
-            
-            var city = City(model: cdCity!)
-            
-            expect(city.remoteId).to(equal("3067696"))
-            expect(city.name).to(equal("Prague"))
-            expect(city.country).to(equal("CZ"))
-            expect(city.coordinates?.latitude).to(equal(50.09))
-            expect(city.coordinates?.longitude).to(equal(14.42))
-            
-            MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-                cdCity!.MR_deleteInContext(context)
-            }
-            expect(CD_City.MR_findFirst()).to(beNil())
-        }
+        expect(Wind.MR_findFirst()).to(beNil())
     }
 }
 

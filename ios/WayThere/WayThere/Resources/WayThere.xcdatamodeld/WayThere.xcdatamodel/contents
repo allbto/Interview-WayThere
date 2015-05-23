@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="CD_AModel" representedClassName="CD_AModel" isAbstract="YES" syncable="YES"/>
-    <entity name="CD_City" representedClassName="CD_City" parentEntity="CD_AModel" syncable="YES">
+    <entity name="AModel" representedClassName="AModel" isAbstract="YES" syncable="YES"/>
+    <entity name="City" representedClassName="City" parentEntity="AModel" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isCurrentLocation" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteId" attributeType="String" syncable="YES"/>
-        <relationship name="coordinates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CD_Coordinates" syncable="YES"/>
-        <relationship name="todayWeather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CD_Weather" syncable="YES"/>
-        <relationship name="wind" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CD_Wind" syncable="YES"/>
+        <relationship name="coordinates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinates" syncable="YES"/>
+        <relationship name="todayWeather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" syncable="YES"/>
+        <relationship name="wind" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wind" syncable="YES"/>
     </entity>
-    <entity name="CD_Coordinates" representedClassName="CD_Coordinates" parentEntity="CD_AModel" syncable="YES">
+    <entity name="Coordinates" representedClassName="Coordinates" parentEntity="AModel" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="CD_Weather" representedClassName="CD_Weather" parentEntity="CD_AModel" syncable="YES">
+    <entity name="Weather" representedClassName="Weather" parentEntity="AModel" syncable="YES">
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="pressure" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -23,17 +23,17 @@
         <attribute name="tempFahrenheit" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CD_Wind" representedClassName="CD_Wind" parentEntity="CD_AModel" syncable="YES">
+    <entity name="Wind" representedClassName="Wind" parentEntity="AModel" syncable="YES">
         <attribute name="degrees" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="direction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="speedImperial" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speedMetric" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CD_AModel" positionX="-8055" positionY="-6309" width="128" height="45"/>
-        <element name="CD_City" positionX="-8118" positionY="-6435" width="128" height="150"/>
-        <element name="CD_Coordinates" positionX="-8091" positionY="-6354" width="128" height="75"/>
-        <element name="CD_Weather" positionX="-8073" positionY="-6345" width="128" height="150"/>
-        <element name="CD_Wind" positionX="-8109" positionY="-6372" width="128" height="105"/>
+        <element name="AModel" positionX="-8055" positionY="-6309" width="128" height="45"/>
+        <element name="City" positionX="-8118" positionY="-6435" width="128" height="150"/>
+        <element name="Coordinates" positionX="-8091" positionY="-6354" width="128" height="75"/>
+        <element name="Weather" positionX="-8073" positionY="-6345" width="128" height="150"/>
+        <element name="Wind" positionX="-8109" positionY="-6372" width="128" height="105"/>
     </elements>
 </model>

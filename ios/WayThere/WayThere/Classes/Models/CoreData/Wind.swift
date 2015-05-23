@@ -10,16 +10,20 @@ import Foundation
 import SwiftyJSON
 import CoreData
 
-@objc(CD_Wind)
-public class CD_Wind: CD_AModel {
+@objc(Wind)
+public class Wind: AModel {
 
     @NSManaged public var degrees: NSNumber?
     @NSManaged public var direction: String?
     @NSManaged public var speedImperial: NSNumber?
     @NSManaged public var speedMetric: NSNumber?
 
-    static let windDirections = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+    public static let windDirections = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
         "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+    
+    public static var metricUnit = "km/h"
+    public static var imperialUnit = "mph"
+
     
     public var degree : Float {
         get { return self.degrees?.floatValue ?? 0 }
@@ -28,7 +32,7 @@ public class CD_Wind: CD_AModel {
 
             // http://stackoverflow.com/questions/13220367/cardinal-wind-direction-from-degrees
             var i = (newValue + 11.25) / 22.5;
-            self.direction = CD_Wind.windDirections[Int(i % 16)]
+            self.direction = Wind.windDirections[Int(i % 16)]
         }
     }
     
@@ -40,7 +44,7 @@ public class CD_Wind: CD_AModel {
         }
     }
     
-    public func fromJson(json: JSON)
+    public override func fromJson(json: JSON)
     {
         if let deg = json["deg"].float, speed = json["speed"].float {
             self.degree = deg

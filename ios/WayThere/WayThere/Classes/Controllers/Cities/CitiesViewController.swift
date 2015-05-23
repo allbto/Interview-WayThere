@@ -24,7 +24,7 @@ class CitiesViewController: UITableViewController
     var dataStore = CitiesDataStore()
     
     var cities = [City]()
-    var searchingCities = [City]()
+    var searchingCities = [SimpleCity]()
     
     // MARK: - UIViewController
     
@@ -34,8 +34,10 @@ class CitiesViewController: UITableViewController
             activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
             activityIndicator!.frame = CGRectMake(0, 0, 24, 24)
             activityIndicator!.center = self.tableView.center
+            activityIndicator!.frame.origin.y = 53
             self.view.addSubview(activityIndicator!)
         }
+        self.view.bringSubviewToFront(activityIndicator!)
         activityIndicator!.hidden = false
         activityIndicator!.startAnimating()
     }
@@ -119,9 +121,10 @@ extension CitiesViewController : CitiesDataStoreDelegate
         UIAlertView(title: "Oups !", message: "Seems like the cities just disappeared from planet earth", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
     }
     
-    func foundCitiesForQuery(cities: [City])
+    func foundCitiesForQuery(cities: [SimpleCity])
     {
-        println("Found cities : \(cities)")
+        _hideActivityIndicator()
+
         searchingCities = cities
         
         self.searchDisplayController?.searchResultsTableView.reloadData()
@@ -129,7 +132,21 @@ extension CitiesViewController : CitiesDataStoreDelegate
     
     func unableToFindCitiesForQuery(error: NSError?)
     {
-        UIAlertView(title: "Cannot find cities", message: "Seems like it's broken, Johnny !", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
+        _hideActivityIndicator()
+//        UIAlertView(title: "Cannot find cities", message: "Seems like it's broken, Johnny !", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
+    }
+    
+    func didSaveNewCity(city: City)
+    {
+        cities.append(city)
+        self.tableView.reloadSections(NSIndexSet(index:0), withRowAnimation: .Automatic)
+    }
+    
+    func didRemoveCity(city: City)
+    {
+        if let index = cities.remove(city) {
+            self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Automatic)
+        }
     }
 }
 
@@ -165,7 +182,9 @@ extension CitiesViewController
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
         if editingStyle == .Delete {
-            
+            if let city = cities.get(indexPath.row) {
+                dataStore.removeCity(city)
+            }
         }
     }
     
@@ -190,21 +209,21 @@ extension CitiesViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if tableView == self.searchDisplayController?.searchResultsTableView {
-            if let city = searchingCities.get(indexPath.row), cityName = city.name, cityCountry = city.country {
+            if let city = searchingCities.get(indexPath.row) {
                 var cell = tableView.dequeueReusableCellWithIdentifier(DefaultCellIdentifier) as? UITableViewCell
                 
                 if cell == nil {
                     cell = UITableViewCell(style: .Default, reuseIdentifier: DefaultCellIdentifier)
                 }
                 
-                cell!.textLabel?.text = "\(cityName), \(cityCountry)"
+                cell!.textLabel?.text = "\(city.name), \(city.country)"
                 return cell!
             }
         }
         else if let city = cities.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
             weatherCell.mainLabel.text = city.name
             weatherCell.subtitleLabel.text = city.todayWeather?.title
-            weatherCell.temperatureLabel.text = city.todayWeather != nil ? String(city.todayWeather!.tempCelcius) : ""
+            weatherCell.temperatureLabel.text = String(city.todayWeather?.tempCelcius)
             weatherCell.weatherImageView.image = city.todayWeather?.weatherImage()
             
             return weatherCell
@@ -221,7 +240,10 @@ extension CitiesViewController
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if tableView == self.searchDisplayController?.searchResultsTableView {
-            _hideSearchBar(active: true)
+            if let city = searchingCities.get(indexPath.row) {
+                _hideSearchBar(active: true)
+                dataStore.saveCity(city)
+            }
         }
     }
 }
@@ -245,11 +267,14 @@ extension CitiesViewController : UISearchDisplayDelegate
     func searchDisplayControllerDidEndSearch(controller: UISearchDisplayController)
     {
         _hideSearchBar()
+        searchingCities = []
+        self.searchDisplayController?.searchResultsTableView.reloadData()
     }
     
     func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool
     {
         if count(searchString) >= 3 {
+            _showActivityIndicator()
             dataStore.retrieveCitiesForQuery(searchString)
         }
         return false

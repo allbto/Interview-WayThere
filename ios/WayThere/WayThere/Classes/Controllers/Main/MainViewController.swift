@@ -161,7 +161,7 @@ extension MainViewController: MainDataStoreDelegate
     func _updateViewControllers()
     {
         if let city = currentCity {
-            if cities.count > 0 && cities[0].isCurrentLocation {
+            if cities.count > 0 && cities[0].isCurrentLocation?.boolValue == true {
                 cities[0] = city
             } else {
                 cities.insert(city, atIndex: 0)
@@ -270,7 +270,7 @@ extension MainViewController: CLLocationManagerDelegate
 
         if manager.location.horizontalAccuracy < LocationAccuracy {
             locationManager.stopUpdatingLocation()
-            dataStore.retrieveWeatherForLocation(Coordinates(latitude: locValue.latitude, longitude: locValue.longitude))
+            dataStore.retrieveCurrentWeather(coordinates:SimpleCoordinates(latitude: locValue.latitude, longitude: locValue.longitude))
         }
     }
 }

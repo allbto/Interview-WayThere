@@ -28,9 +28,9 @@ class TodayViewController: UIViewController
         didSet
         {
             if let sCity = city {
-                locationLabel.text = "\(sCity.name!), \(sCity.country!)"
+                locationLabel.text = "\(String(sCity.name)), \(String(sCity.country))"
                 
-                if sCity.isCurrentLocation {
+                if sCity.isCurrentLocation?.boolValue == true {
                     // Icon positioning
                     var f = locationLabel.sizeThatFits(locationLabel.frame.size)
                     currentIconImageView.frame.origin.x += f.width + 4;
@@ -40,15 +40,15 @@ class TodayViewController: UIViewController
                 }
                 
                 if let weather = sCity.todayWeather {
-                    conditionLabel.text = "\(weather.tempCelcius)°C | \(weather.title)"
-                    infoRainPercentLabel.text = "\(weather.humidity)%"
-                    infoRainPressureLabel.text = "\(weather.pressure) hPa"
+                    conditionLabel.text = "\(String(weather.tempCelcius as? Int))°C | \(String(weather.title))"
+                    infoRainPercentLabel.text = "\(String(weather.humidity))%"
+                    infoRainPressureLabel.text = "\(String(weather.pressure)) hPa"
                     infoRainQuantityLabel.text = "\(weather.rainAmount ?? 0) mm"
                     topImageView.image = weather.weatherImage()
                 }
 
                 if let wind = sCity.wind {
-                    infoWindSpeedLabel.text = "\(wind.speedMetric) \(Wind.metricUnit)"
+                    infoWindSpeedLabel.text = "\(String(wind.speedMetric)) \(Wind.metricUnit)"
                     infoWindDirectionLabel.text = wind.direction
                 }
             }

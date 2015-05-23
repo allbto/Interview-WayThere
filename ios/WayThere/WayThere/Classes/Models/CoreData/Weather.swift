@@ -10,8 +10,8 @@ import Foundation
 import SwiftyJSON
 import CoreData
 
-@objc(CD_Weather)
-public class CD_Weather: CD_AModel {
+@objc(Weather)
+public class Weather: AModel {
 
     @NSManaged public var title: String?
     @NSManaged public var descriptionText: String?
@@ -29,7 +29,7 @@ public class CD_Weather: CD_AModel {
         }
     }
 
-    public func fromJson(json: JSON)
+    public override func fromJson(json: JSON)
     {
         self.temp = json["main"]["temp"].float ?? 0
         self.pressure = json["main"]["pressure"].float
@@ -37,5 +37,37 @@ public class CD_Weather: CD_AModel {
         self.rainAmount = json["rain"]["3h"].float
         self.title = json["weather"][0]["main"].string
         self.descriptionText = json["weather"][0]["description"].string
+    }
+    
+    public func weatherImage() -> UIImage?
+    {
+        var image : UIImage? = nil
+        
+        if let title = self.title {
+            let formatedTitle : String
+
+            switch title {
+            case "Clouds":
+                formatedTitle = "Cloudy"
+            case "Clear":
+                formatedTitle = "Sunny"
+            case "Rain", "Drizzle":
+                formatedTitle = "Rainy"
+            case "Extreme":
+                formatedTitle = "Thunderstorm"
+            case "Atmosphere":
+                formatedTitle = "Windy"
+            default:
+                formatedTitle = title
+            }
+
+            image = UIImage(named: formatedTitle)
+        }
+        
+        if image == nil {
+            image = UIImage(named: "Unknown")
+        }
+        
+        return image
     }
 }
