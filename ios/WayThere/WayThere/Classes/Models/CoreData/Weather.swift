@@ -22,6 +22,7 @@ public class Weather: AModel {
     @NSManaged public var rainAmount: NSNumber?
     @NSManaged public var tempCelcius: NSNumber?
     @NSManaged public var tempFahrenheit: NSNumber?
+    @NSManaged public var creationDate: NSDate
     
     public var temp : Float {
         get { return tempCelcius?.floatValue ?? 0 }
@@ -31,6 +32,11 @@ public class Weather: AModel {
         }
     }
 
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        creationDate = NSDate()
+    }
+    
     public override func fromJson(json: JSON)
     {
         self.temp = json["main"]["temp"].float ?? 0

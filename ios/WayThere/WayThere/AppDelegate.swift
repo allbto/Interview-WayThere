@@ -21,18 +21,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func _setUpApparences()
     {
+        // Page control
         var pageControl = UIPageControl.appearance();
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
-        pageControl.backgroundColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor.clearColor()
         
+        // Tab bar
         UITabBar.appearance().barTintColor = UIColor.whiteColor()
         UITabBar.appearance().backgroundColor = UIColor.whiteColor()
         
+        // Navigation bar
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "NavigationLine"), forBarMetrics: .Default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
         
+        // Tableview
+        UITableView.appearance().backgroundColor = UIColor.clearColor()
+        
+        // Window
         self.window?.backgroundColor = UIColor.whiteColor()
     }
     

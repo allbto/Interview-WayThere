@@ -71,7 +71,6 @@ class CitiesDataStore
             "cnt" : String(CountOfQueryResult)
             ])
             .responseJSON { [unowned self] (req, response, json, error) in
-                println(req, json, error)
 
                 // Call another query if there is a 'waiting list'
                 if let query = self.lastQuery {
@@ -105,9 +104,11 @@ class CitiesDataStore
     */
     func saveCity(city : SimpleCity)
     {
-        Alamofire.request(.GET, MainDataStore.WeatherUrl, parameters: ["id" : city.id])
+        Alamofire.request(.GET, MainDataStore.WeatherUrl, parameters: [
+            "id" : city.id,
+            "units" : "metric"
+            ])
             .responseJSON { [unowned self] (req, response, json, error) in
-                println(req, json, error)
                 
                 if let cityEntity = City.MR_createEntity() as? City {
 
@@ -155,7 +156,6 @@ class CitiesDataStore
             "units": "metric"
             ])
             .responseJSON { [unowned self] (req, response, json, error) in
-                println(req, json, error)
                 
                 if (error == nil && json != nil) {
                     var json = JSON(json!)

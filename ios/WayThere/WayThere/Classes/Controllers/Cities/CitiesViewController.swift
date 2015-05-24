@@ -23,6 +23,7 @@ protocol CitiesViewControllerDelegate
             if let city = forecastCity {
                 dataStore.delegate = self
                 dataStore.retrieveWeatherForecastForCity(city)
+                self.title = city.name
             }
         }
     }
@@ -128,8 +129,8 @@ protocol CitiesViewControllerDelegate
     
     @IBAction func cancelAction(sender: AnyObject)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
         delegate?.didFinishEditingCities()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
