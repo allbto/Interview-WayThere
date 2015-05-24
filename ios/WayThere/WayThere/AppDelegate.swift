@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setupCoreDataStack()
     }
     
-    private func _setUpApparences()
+    private func _setUpAppearances()
     {
         // Page control
         var pageControl = UIPageControl.appearance();
@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
         
         // Tableview
-        UITableView.appearance().backgroundColor = UIColor.clearColor()
         
         // Window
         self.window?.backgroundColor = UIColor.whiteColor()
@@ -55,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _setUpCoreData()
         
         /// Design
-        _setUpApparences()
+        _setUpAppearances()
         
         // User defaults
         _setUpUserDefaults()

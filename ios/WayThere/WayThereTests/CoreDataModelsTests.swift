@@ -1,5 +1,5 @@
 //
-//  MR_Tests.swift
+//  CoreDataModelsTests.swift
 //  WayThere
 //
 //  Created by Allan BARBATO on 5/17/15.
