@@ -19,6 +19,9 @@ protocol CitiesDataStoreDelegate
     
     func didSaveNewCity(city: City)
     func didRemoveCity(city: City)
+    
+    func foundWeatherForecastForCity(weathers: [SimpleWeather])
+    func unableToFindForecastForCity(error: NSError?)
 }
 
 class CitiesDataStore
@@ -26,6 +29,7 @@ class CitiesDataStore
     /// Vars
     
     let CountOfQueryResult = 5
+    let NumberOfDaysToFetch = 5
     
     var delegate: CitiesDataStoreDelegate?
     var isQuerying = false
@@ -136,6 +140,41 @@ class CitiesDataStore
             CoreDataHelper.saveAndWait()
             self.delegate?.didRemoveCity(cityEntity)
         }
+    }
+    
+    /**
+    Retrieve weather forecast for NumberOfDaysToFetch days
+    
+    :param: city to fetch weather from
+    */
+    func retrieveWeatherForecastForCity(city: City)
+    {
+        Alamofire.request(.GET, FetchCityUrl, parameters: [
+            "id"  : city.remoteId,
+            "cnt" : NumberOfDaysToFetch,
+            "units": "metric"
+            ])
+            .responseJSON { [unowned self] (req, response, json, error) in
+                println(req, json, error)
+                
+                if (error == nil && json != nil) {
+                    var json = JSON(json!)
+                    var weathers = [SimpleWeather]()
+                    
+                    for (index, (sIndex : String, cityJSON : JSON)) in enumerate(json["list"]) {
+                        if let title = cityJSON["weather"][0]["main"].string, timeStamp = cityJSON["dt"].int, temp = cityJSON["temp"]["day"].double {
+                            var date = NSDate(timeIntervalSince1970: Double(timeStamp))
+                            var formater = NSDateFormatter()
+                            
+                            formater.dateFormat = "EEEE"
+                            weathers.append(SimpleWeather(title: title, day: formater.stringFromDate(date), temp: Int(temp)))
+                        }
+                    }
+                    self.delegate?.foundWeatherForecastForCity(weathers)
+                } else {
+                    self.delegate?.unableToFindForecastForCity(error)
+                }
+            }
     }
 }
 

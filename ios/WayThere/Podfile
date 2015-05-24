@@ -11,5 +11,6 @@ end
 
 target 'WayThereTests' do
     pod 'Nimble', '~> 0.4.0'
+    pod 'MagicalRecord'
 end
 

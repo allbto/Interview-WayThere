@@ -40,7 +40,7 @@ class MainDataStore
     */
     static func retrieveCities() -> [City]
     {
-        var cities = City.MR_findAll() as? [City]
+        var cities = City.MR_findByAttribute("isCurrentLocation", withValue: false) as? [City]
 
         if cities == nil || cities!.count == 0 {
             var citiesTuples = [

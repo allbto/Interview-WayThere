@@ -10,7 +10,6 @@
 		0F891D5C63BC87FA170B08B9 /* Pods_WayThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9D0F5D431B109E6800CE5E1B /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0F5D421B109E6800CE5E1B /* String+Utils.swift */; };
 		9D2FF3A41B07A869008EFFB8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3961B07A869008EFFB8 /* MainViewController.swift */; };
-		9D2FF3A51B07A869008EFFB8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3971B07A869008EFFB8 /* TodayViewController.swift */; };
 		9D2FF3A71B07A869008EFFB8 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2FF39C1B07A869008EFFB8 /* ProximaNova-Bold.otf */; };
 		9D2FF3A81B07A869008EFFB8 /* ProximaNova-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2FF39D1B07A869008EFFB8 /* ProximaNova-Light.otf */; };
 		9D2FF3A91B07A869008EFFB8 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2FF39E1B07A869008EFFB8 /* ProximaNova-Regular.otf */; };
@@ -49,7 +48,9 @@
 		9D6B54B31B07A691001BE5AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B54B01B07A691001BE5AF /* Main.storyboard */; };
 		9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E072B1B074F1100E0FFF3 /* AppDelegate.swift */; };
 		9D8E07451B074F1100E0FFF3 /* WayThereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */; };
-		9DD408431B10C47D00852200 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DD408421B10C47D00852200 /* MagicalRecord.framework */; };
+		9D8E54CD1B10CBC0005FE694 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E54CC1B10CBC0005FE694 /* MagicalRecord.framework */; };
+		9D8E54CF1B11E311005FE694 /* TabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E54CE1B11E311005FE694 /* TabsController.swift */; };
+		9D8E54D31B11E356005FE694 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E54D21B11E356005FE694 /* TodayViewController.swift */; };
 		A386F3B33A67772338037183 /* Pods_WayThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -85,7 +86,6 @@
 		9D0F5D401B0E7BE900CE5E1B /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/ObjectMapper.framework"; sourceTree = "<group>"; };
 		9D0F5D421B109E6800CE5E1B /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		9D2FF3961B07A869008EFFB8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		9D2FF3971B07A869008EFFB8 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		9D2FF39C1B07A869008EFFB8 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		9D2FF39D1B07A869008EFFB8 /* ProximaNova-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Light.otf"; sourceTree = "<group>"; };
 		9D2FF39E1B07A869008EFFB8 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
@@ -136,6 +136,9 @@
 		9D8E073E1B074F1100E0FFF3 /* WayThereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WayThereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8E07431B074F1100E0FFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D8E07441B074F1100E0FFF3 /* WayThereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayThereTests.swift; sourceTree = "<group>"; };
+		9D8E54CC1B10CBC0005FE694 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/MagicalRecord.framework"; sourceTree = "<group>"; };
+		9D8E54CE1B11E311005FE694 /* TabsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabsController.swift; path = Tabs/TabsController.swift; sourceTree = "<group>"; };
+		9D8E54D21B11E356005FE694 /* TodayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		9DD408421B10C47D00852200 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Release-iphoneos/Pods-WayThere/MagicalRecord.framework"; sourceTree = "<group>"; };
 		EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -158,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DD408431B10C47D00852200 /* MagicalRecord.framework in Frameworks */,
+				9D8E54CD1B10CBC0005FE694 /* MagicalRecord.framework in Frameworks */,
 				9D5A28101B094E9A00B3E5C8 /* Nimble.framework in Frameworks */,
 				0F891D5C63BC87FA170B08B9 /* Pods_WayThereTests.framework in Frameworks */,
 			);
@@ -191,10 +194,11 @@
 		9D2FF3931B07A869008EFFB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9D8E54D01B11E31A005FE694 /* Tabs */,
+				9D2FF3941B07A869008EFFB8 /* Main */,
+				9D8E54D11B11E356005FE694 /* Today */,
 				9D56A1761B0D07DF004304F8 /* Cities */,
 				9D6A4EA21B08D019002725BF /* Settings */,
-				9D2FF3941B07A869008EFFB8 /* Main */,
-				9D2FF3971B07A869008EFFB8 /* TodayViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -360,9 +364,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9D8E54D01B11E31A005FE694 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				9D8E54CE1B11E311005FE694 /* TabsController.swift */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
+		9D8E54D11B11E356005FE694 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				9D8E54D21B11E356005FE694 /* TodayViewController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
 		E9C18D85537BB54A6C8322AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D8E54CC1B10CBC0005FE694 /* MagicalRecord.framework */,
 				9DD408421B10C47D00852200 /* MagicalRecord.framework */,
 				9D0F5D401B0E7BE900CE5E1B /* ObjectMapper.framework */,
 				9D56A15F1B0B7496004304F8 /* UIActionSheet_Blocks.framework */,
@@ -604,13 +625,14 @@
 				9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */,
 				9D2FF3A41B07A869008EFFB8 /* MainViewController.swift in Sources */,
 				9D56A1711B0CF88A004304F8 /* Settings.swift in Sources */,
+				9D8E54CF1B11E311005FE694 /* TabsController.swift in Sources */,
 				9D5998721B093D6700E2FB04 /* Wind.swift in Sources */,
 				9D56A16F1B0CF840004304F8 /* TableViewCells.swift in Sources */,
 				9D0F5D431B109E6800CE5E1B /* String+Utils.swift in Sources */,
 				9D5998531B08FEA100E2FB04 /* UIImage+ImageEffects.swift in Sources */,
 				9D56A1731B0D0196004304F8 /* Array+Utils.swift in Sources */,
 				9D56A15A1B0B5ABA004304F8 /* SwitchTableViewCell.swift in Sources */,
-				9D2FF3A51B07A869008EFFB8 /* TodayViewController.swift in Sources */,
+				9D8E54D31B11E356005FE694 /* TodayViewController.swift in Sources */,
 				9D2FF3AE1B07A891008EFFB8 /* MainDataStore.swift in Sources */,
 				9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */,
 				9D47E0EC1B09EAC6005CD736 /* WayThere.xcdatamodeld in Sources */,

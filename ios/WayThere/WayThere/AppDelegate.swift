@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().backgroundColor = UIColor.whiteColor()
         
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "NavigationLine"), forBarMetrics: .Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
         
         self.window?.backgroundColor = UIColor.whiteColor()

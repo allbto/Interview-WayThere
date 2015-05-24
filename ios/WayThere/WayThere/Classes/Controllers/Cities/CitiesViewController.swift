@@ -13,18 +13,32 @@ protocol CitiesViewControllerDelegate
     func didFinishEditingCities()
 }
 
-class CitiesViewController: UITableViewController
+@IBDesignable class CitiesViewController: UITableViewController
 {
     let DefaultCellIdentifier = "DefaultCellIdentifier"
+    
+    @IBInspectable weak var isForecast: NSNumber!
+    weak var forecastCity: City? {
+        didSet {
+            if let city = forecastCity {
+                dataStore.delegate = self
+                dataStore.retrieveWeatherForecastForCity(city)
+            }
+        }
+    }
     
     var activityIndicator: UIActivityIndicatorView?
     @IBOutlet weak var addCityButton: UIButton!
 
     var delegate: CitiesViewControllerDelegate?
     var dataStore = CitiesDataStore()
-    
+
+    // Cities manager
     var cities = [City]()
     var searchingCities = [SimpleCity]()
+    
+    // Forecast
+    var weathers = [SimpleWeather]()
     
     // MARK: - UIViewController
     
@@ -75,11 +89,13 @@ class CitiesViewController: UITableViewController
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         
-        _showActivityIndicator()
-        
         // Configure DataStore
         dataStore.delegate = self
-        dataStore.retrieveWeatherConfiguration()
+        
+        if isForecast.boolValue == true {
+            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -88,6 +104,14 @@ class CitiesViewController: UITableViewController
         
         if cities.count > 0 {
             self.tableView.reloadData()
+        }
+        
+        _showActivityIndicator()
+        if isForecast.boolValue ==  false {
+            // Fetch cities data
+            dataStore.retrieveWeatherConfiguration()
+        } else {
+            _hideActivityIndicator()
         }
     }
     
@@ -122,7 +146,7 @@ extension CitiesViewController : CitiesDataStoreDelegate
     func unableToFindWeatherConfiguration(error : NSError)
     {
         _hideActivityIndicator()
-        UIAlertView(title: "Oups !", message: "Seems like the cities just disappeared from planet earth", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
+        UIAlertView(title: "Oups !", message: "Seems like the cities just disappeared", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
     }
     
     func foundCitiesForQuery(cities: [SimpleCity])
@@ -152,6 +176,18 @@ extension CitiesViewController : CitiesDataStoreDelegate
             self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Automatic)
         }
     }
+    
+    func foundWeatherForecastForCity(weathers: [SimpleWeather])
+    {
+        _hideActivityIndicator()
+        self.weathers = weathers
+        self.tableView.reloadData()
+    }
+    
+    func unableToFindForecastForCity(error: NSError?)
+    {
+        UIAlertView(title: "Oups !", message: "Seems like the forecasts are unreachable", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Retry").show()
+    }
 }
 
 // MARK: - UIAlertViewDelegate
@@ -163,8 +199,13 @@ extension CitiesViewController: UIAlertViewDelegate
             // Show activity indicator while waiting for weather data
             _showActivityIndicator()
             
-            // Fetch weather data
-            dataStore.retrieveWeatherConfiguration()
+            if isForecast.boolValue == true && forecastCity != nil {
+                // Fetch weather forecasts
+                dataStore.retrieveWeatherForecastForCity(forecastCity!)
+            } else if isForecast.boolValue ==  false {
+                // Fetch cities data
+                dataStore.retrieveWeatherConfiguration()
+            }
         }
     }
 }
@@ -176,7 +217,9 @@ extension CitiesViewController
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
-        if tableView == self.searchDisplayController?.searchResultsTableView {
+        if  tableView == self.searchDisplayController?.searchResultsTableView ||
+            isForecast.boolValue == true ||
+            cities.get(indexPath.row)?.isCurrentLocation?.boolValue == true {
             return false
         }
 
@@ -205,6 +248,8 @@ extension CitiesViewController
     {
         if tableView == self.searchDisplayController?.searchResultsTableView {
             return searchingCities.count
+        } else if isForecast.boolValue == true {
+            return weathers.count
         }
         
         return cities.count
@@ -223,18 +268,32 @@ extension CitiesViewController
                 cell!.textLabel?.text = "\(city.name), \(city.country)"
                 return cell!
             }
-        }
-        else if let city = cities.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
-            weatherCell.mainLabel.text = city.name
-            weatherCell.subtitleLabel.text = city.todayWeather?.title
-            if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
-                weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempCelcius as? Int))°C"
-            } else {
-                weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempFahrenheit as? Int))°F"
+        } else if isForecast.boolValue == true {
+            if let weather = weathers.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
+                weatherCell.mainLabel.text = weather.day
+                weatherCell.subtitleLabel.text = weather.title
+                if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                    weatherCell.temperatureLabel.text = "\(weather.temp)°C"
+                } else {
+                    weatherCell.temperatureLabel.text = "\(weather.temp)°F"
+                }
+                weatherCell.weatherImageView.image = Weather.weatherImage(weather.title)
+                
+                return weatherCell
             }
-            weatherCell.weatherImageView.image = city.todayWeather?.weatherImage()
-            
-            return weatherCell
+        } else {
+            if let city = cities.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
+                weatherCell.mainLabel.text = city.name
+                weatherCell.subtitleLabel.text = city.todayWeather?.title
+                if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                    weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempCelcius as? Int))°C"
+                } else {
+                    weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempFahrenheit as? Int))°F"
+                }
+                weatherCell.weatherImageView.image = city.todayWeather?.weatherImage()
+                
+                return weatherCell
+            }
         }
         return UITableViewCell()
     }

@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 import CoreData
 
+public typealias SimpleWeather = (title:String, day:String, temp:Int)
+
 @objc(Weather)
 public class Weather: AModel {
 
@@ -41,12 +43,17 @@ public class Weather: AModel {
     
     public func weatherImage() -> UIImage?
     {
+        return Weather.weatherImage(self.title)
+    }
+    
+    public static func weatherImage(title: String?) -> UIImage?
+    {
         var image : UIImage? = nil
-        
-        if let title = self.title {
+
+        if let sTitle = title {
             let formatedTitle : String
 
-            switch title {
+            switch sTitle {
             case "Clouds":
                 formatedTitle = "Cloudy"
             case "Clear":
@@ -58,12 +65,12 @@ public class Weather: AModel {
             case "Atmosphere":
                 formatedTitle = "Windy"
             default:
-                formatedTitle = title
+                formatedTitle = sTitle
             }
 
             image = UIImage(named: formatedTitle)
         }
-        
+
         if image == nil {
             image = UIImage(named: "Unknown")
         }
