@@ -28,6 +28,8 @@ class MainDataStore
     static let WeatherUrl = MainDataStore.BaseUrl + "/weather"
     let SeveralCitiesUrl = MainDataStore.BaseUrl + "/group"
     
+    let WunderGeoLookupUrl = "http://api.wunderground.com/api/ce4f06b766a604d5/geolookup/q/:coordinates.json"
+    
     /// Vars
     
     var delegate: MainDataStoreDelegate?
@@ -40,7 +42,7 @@ class MainDataStore
     */
     static func retrieveCities() -> [City]
     {
-        var cities = City.MR_findByAttribute("isCurrentLocation", withValue: false) as? [City]
+        var cities = City.MR_findByAttribute("isCurrentLocation", withValue: false, andOrderBy: "creationDate", ascending: true) as? [City]
 
         if cities == nil || cities!.count == 0 {
             var citiesTuples = [
@@ -72,7 +74,6 @@ class MainDataStore
             "units" : "metric"
             ])
             .responseJSON { [unowned self] (req, response, json, error) in
-                println(req, json, error)
                 
                 if (error == nil && json != nil) {
                     var json = JSON(json!)
@@ -88,37 +89,56 @@ class MainDataStore
         }
     }
     
-    func retrieveCurrentWeather(#coordinates: SimpleCoordinates)
+    private func didFindCityWeatherWithCoordinates(json: JSON)
     {
-        Alamofire.request(.GET, MainDataStore.WeatherUrl, parameters: [
-            "lat" : "\(coordinates.latitude)",
-            "lon" : "\(coordinates.longitude)",
-            "units" : "metric"
-            ])
+        if let city = City.MR_findFirstByAttribute("isCurrentLocation", withValue: true) as? City {
+            city.fromJson(json)
+            CoreDataHelper.saveAndWait()
+            self.delegate?.foundWeatherForCoordinates(city)
+        }
+        else if let city = City.MR_createEntity() as? City {
+            city.fromJson(json)
+            city.isCurrentLocation = true
+            CoreDataHelper.saveAndWait()
+            self.delegate?.foundWeatherForCoordinates(city)
+        } else {
+            self.delegate?.unableToFindWeatherForCoordinates(nil)
+        }
+
+    }
+
+    private func didFindCityWithCoordinates(json: JSON)
+    {
+        if let city = json["location"]["city"].string, country = json["location"]["country"].string {
+            
+            Alamofire.request(.GET, MainDataStore.WeatherUrl, parameters: [
+                "q" : "\(city),\(country)",
+                "units" : "metric"
+                ])
             .responseJSON { [unowned self] (req, _, json, error) in
-                println(req, json, error)
                 
                 if (error == nil && json != nil) {
                     var json = JSON(json!)
-                    
-                    if let city = City.MR_findFirstByAttribute("isCurrentLocation", withValue: true) as? City {
-                        city.fromJson(json)
-                        CoreDataHelper.saveAndWait()
-                        self.delegate?.foundWeatherForCoordinates(city)
-                    }
-                    else if let city = City.MR_createEntity() as? City {
-                        city.fromJson(json)
-                        city.isCurrentLocation = true
-                        CoreDataHelper.saveAndWait()
-                        self.delegate?.foundWeatherForCoordinates(city)
-                    } else {
-                        self.delegate?.unableToFindWeatherForCoordinates(nil)
-                    }
+                    self.didFindCityWeatherWithCoordinates(json)
                 }
                 else {
                     self.delegate?.unableToFindWeatherForCoordinates(error)
                 }
+            }
         }
     }
     
+    func retrieveCurrentWeather(#coordinates: SimpleCoordinates)
+    {
+        // Using wunderground API to look for the city using coordinates because openweathermap API sucks for this
+        Alamofire.request(.GET, WunderGeoLookupUrl.replace(":coordinates", withString: String(format: "%.2f,%.2f", coordinates.latitude, coordinates.longitude)), parameters: nil)
+        .responseJSON { [unowned self] (req, _, json, error) in
+            
+            if (error == nil && json != nil) {
+                self.didFindCityWithCoordinates(JSON(json!))
+            } else {
+                self.delegate?.unableToFindWeatherForCoordinates(error)
+            }
+        }
+    }
 }

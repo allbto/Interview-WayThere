@@ -94,7 +94,12 @@ class MainViewController: UIPageViewController
         super.viewWillAppear(animated)
         
         if cities.count > 0 {
-            _updateViewControllers()
+            
+            if let viewControllers = self.viewControllers as? [TodayViewController] {
+                for vc in viewControllers {
+                    vc.city = cities.get(vc.index)
+                }
+            }
         }
     }
 
@@ -145,6 +150,8 @@ extension MainViewController: CitiesViewControllerDelegate
 {
     func didFinishEditingCities()
     {
+        cities = []
+        dataStore.retrieveWeatherConfiguration()
     }
 }
 

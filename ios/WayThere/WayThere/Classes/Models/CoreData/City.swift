@@ -22,6 +22,12 @@ public class City: AModel {
     @NSManaged public var coordinates: Coordinates?
     @NSManaged public var wind: Wind?
     @NSManaged public var todayWeather: Weather?
+    @NSManaged public var creationDate: NSDate
+    
+    public override func awakeFromInsert() {
+        super.awakeFromInsert()
+        creationDate = NSDate()
+    }
     
     public override func fromJson(json: JSON)
     {

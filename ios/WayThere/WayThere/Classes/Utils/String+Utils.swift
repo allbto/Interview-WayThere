@@ -29,4 +29,9 @@ extension String
             self = "nil"
         }
     }
+    
+    func replace(str: String, withString str2: String) -> String
+    {
+        return self.stringByReplacingOccurrencesOfString(str, withString: str2)
+    }
 }

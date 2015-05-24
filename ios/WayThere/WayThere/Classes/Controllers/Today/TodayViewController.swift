@@ -31,10 +31,7 @@ class TodayViewController: UIViewController
                 locationLabel.text = "\(String(sCity.name)), \(String(sCity.country))"
                 
                 if sCity.isCurrentLocation?.boolValue == true {
-                    // Icon positioning
-                    var f = locationLabel.sizeThatFits(locationLabel.frame.size)
-                    currentIconImageView.frame.origin.x += f.width + 4;
-                    currentIconImageView.center.y = locationLabel.center.y
+                    currentIconImageView.hidden = false
                 } else {
                     currentIconImageView.hidden = true
                 }
@@ -56,7 +53,8 @@ class TodayViewController: UIViewController
                     if SettingsDataStore.settingValueForKey(.UnitOfLenght) as? String == SettingUnitOfLenght.Meters.rawValue {
                         infoWindSpeedLabel.text = "\(String(wind.speedMetric)) \(Wind.metricUnit)"
                     } else {
-                        infoWindSpeedLabel.text = "\(String(wind.speedImperial)) \(Wind.imperialUnit)"
+                        var speed = String(format: "%.2f", wind.speedImperial?.floatValue ?? 0)
+                        infoWindSpeedLabel.text = "\(speed) \(Wind.imperialUnit)"
                     }
                     infoWindDirectionLabel.text = wind.direction
                 }

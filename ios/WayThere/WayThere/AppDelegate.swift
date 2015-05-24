@@ -19,20 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setupCoreDataStack()
     }
     
-    private func _setUpApparences()
+    private func _setUpAppearances()
     {
+        // Page control
         var pageControl = UIPageControl.appearance();
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
-        pageControl.backgroundColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor.clearColor()
         
+        // Tab bar
         UITabBar.appearance().barTintColor = UIColor.whiteColor()
         UITabBar.appearance().backgroundColor = UIColor.whiteColor()
         
+        // Navigation bar
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "NavigationLine"), forBarMetrics: .Default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
         
+        // Tableview
+        
+        // Window
         self.window?.backgroundColor = UIColor.whiteColor()
     }
     
@@ -48,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _setUpCoreData()
         
         /// Design
-        _setUpApparences()
+        _setUpAppearances()
         
         // User defaults
         _setUpUserDefaults()

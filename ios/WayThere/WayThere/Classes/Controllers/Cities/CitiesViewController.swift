@@ -23,6 +23,7 @@ protocol CitiesViewControllerDelegate
             if let city = forecastCity {
                 dataStore.delegate = self
                 dataStore.retrieveWeatherForecastForCity(city)
+                self.title = city.name
             }
         }
     }
@@ -64,37 +65,54 @@ protocol CitiesViewControllerDelegate
     
     private func _hideSearchBar(active: Bool = false)
     {
-        self.searchDisplayController?.searchBar.hidden = true
-        
         if active {
             self.searchDisplayController?.setActive(false, animated: true)
             self.searchDisplayController?.searchBar.resignFirstResponder()
         }
-//        self.tableView.contentInset.top = 20
+
+        self.searchDisplayController?.searchBar.hidden = true
+        self.tableView.tableFooterView?.hidden = false
+        self.tableView.tableHeaderView = nil
     }
     
     private func _showSearchBar(active: Bool = true)
     {
         self.searchDisplayController?.searchBar.hidden = false
-//        self.tableView.contentInset.top = 64
-        
+        self.tableView.tableFooterView?.hidden = true
+        self.tableView.tableHeaderView = self.searchDisplayController?.searchBar
+
         if active {
             self.searchDisplayController?.setActive(true, animated: true)
             self.searchDisplayController?.searchBar.becomeFirstResponder()
         }
     }
     
+    private func _setUpBottomView()
+    {
+        var button = UIButton(frame: CGRect(x: 0, y: 0, width: 65, height: 65))
+        
+        button.setImage(UIImage(named: "AddButton"), forState: .Normal)
+        button.addTarget(self, action: "addCityAction:", forControlEvents: .TouchUpInside)
+        self.tableView.tableFooterView = button
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.whiteColor()
+        
+        // Setup tableView background view color
+        self.tableView.backgroundView = UIView(frame: self.view.bounds)
+        self.tableView.backgroundView?.backgroundColor = UIColor.whiteColor()
         
         // Configure DataStore
         dataStore.delegate = self
         
+        // Hide bar button item if isForecast
         if isForecast.boolValue == true {
-            self.navigationItem.leftBarButtonItem = nil
             self.navigationItem.rightBarButtonItem = nil
+        } else {
+            // Setup tableView bottom view
+            _setUpBottomView()
         }
     }
     
@@ -102,7 +120,7 @@ protocol CitiesViewControllerDelegate
         super.viewWillAppear(animated)
         _hideSearchBar()
         
-        if cities.count > 0 {
+        if cities.count > 0 || weathers.count > 0 {
             self.tableView.reloadData()
         }
         
@@ -128,8 +146,8 @@ protocol CitiesViewControllerDelegate
     
     @IBAction func cancelAction(sender: AnyObject)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
         delegate?.didFinishEditingCities()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -215,14 +233,30 @@ extension CitiesViewController
 {
     /// Rows
     
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        var deleteButton = UITableViewRowAction(style: .Default, title: "Delete", handler: { (action, indexPath) in
+            self.tableView.dataSource?.tableView?(
+                self.tableView,
+                commitEditingStyle: .Delete,
+                forRowAtIndexPath: indexPath
+            )
+            
+            return
+        })
+        
+        deleteButton.backgroundColor = UIColor(red:1, green:136 / 255, blue:71 / 255, alpha:1.0)
+        
+        return [deleteButton]
+    }
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
         if  tableView == self.searchDisplayController?.searchResultsTableView ||
             isForecast.boolValue == true ||
             cities.get(indexPath.row)?.isCurrentLocation?.boolValue == true {
-            return false
+                return false
         }
-
+        
         return true
     }
     
@@ -255,47 +289,68 @@ extension CitiesViewController
         return cities.count
     }
     
+    private func _searchCityCellForIndexPath(indexPath: NSIndexPath) -> UITableViewCell
+    {
+        if let city = searchingCities.get(indexPath.row) {
+            var cell = tableView.dequeueReusableCellWithIdentifier(DefaultCellIdentifier) as? UITableViewCell
+            
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: DefaultCellIdentifier)
+            }
+            
+            cell!.textLabel?.text = "\(city.name), \(city.country)"
+            return cell!
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    private func _forecastCellForIndexPath(indexPath: NSIndexPath) -> UITableViewCell
+    {
+        if let weather = weathers.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
+            weatherCell.mainLabel.text = weather.day
+            weatherCell.subtitleLabel.text = weather.title
+            if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                weatherCell.temperatureLabel.text = "\(weather.temp)°C"
+            } else {
+                weatherCell.temperatureLabel.text = "\(weather.temp)°F"
+            }
+            weatherCell.weatherImageView.image = Weather.weatherImage(weather.title)
+            
+            return weatherCell
+        } else {
+            return UITableViewCell()
+        }
+    }
+
+    private func _cityCellForIndexPath(indexPath: NSIndexPath) -> UITableViewCell
+    {
+        if let city = cities.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
+            weatherCell.mainLabel.text = city.name
+            weatherCell.subtitleLabel.text = city.todayWeather?.title
+            if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempCelcius as? Int))°C"
+            } else {
+                weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempFahrenheit as? Int))°F"
+            }
+            weatherCell.weatherImageView.image = city.todayWeather?.weatherImage()
+
+            //UIColor(red:1, green:136 / 255, blue:71 / 255, alpha:1.0), icon:UIImage(named:"DeleteIcon")) // #FF8847
+            return weatherCell
+        } else {
+            return UITableViewCell()
+        }
+    }
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if tableView == self.searchDisplayController?.searchResultsTableView {
-            if let city = searchingCities.get(indexPath.row) {
-                var cell = tableView.dequeueReusableCellWithIdentifier(DefaultCellIdentifier) as? UITableViewCell
-                
-                if cell == nil {
-                    cell = UITableViewCell(style: .Default, reuseIdentifier: DefaultCellIdentifier)
-                }
-                
-                cell!.textLabel?.text = "\(city.name), \(city.country)"
-                return cell!
-            }
+            return _searchCityCellForIndexPath(indexPath)
         } else if isForecast.boolValue == true {
-            if let weather = weathers.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
-                weatherCell.mainLabel.text = weather.day
-                weatherCell.subtitleLabel.text = weather.title
-                if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
-                    weatherCell.temperatureLabel.text = "\(weather.temp)°C"
-                } else {
-                    weatherCell.temperatureLabel.text = "\(weather.temp)°F"
-                }
-                weatherCell.weatherImageView.image = Weather.weatherImage(weather.title)
-                
-                return weatherCell
-            }
+            return _forecastCellForIndexPath(indexPath)
         } else {
-            if let city = cities.get(indexPath.row), weatherCell = tableView.dequeueReusableCellWithIdentifier(CellType.CityWeatherCell.rawValue) as? CityWeatherTableViewCell {
-                weatherCell.mainLabel.text = city.name
-                weatherCell.subtitleLabel.text = city.todayWeather?.title
-                if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
-                    weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempCelcius as? Int))°C"
-                } else {
-                    weatherCell.temperatureLabel.text = "\(String(city.todayWeather?.tempFahrenheit as? Int))°F"
-                }
-                weatherCell.weatherImageView.image = city.todayWeather?.weatherImage()
-                
-                return weatherCell
-            }
+            return _cityCellForIndexPath(indexPath)
         }
-        return UITableViewCell()
     }
 }
 
@@ -325,7 +380,7 @@ extension CitiesViewController : UISearchDisplayDelegate
 
     func searchDisplayControllerWillEndSearch(controller: UISearchDisplayController)
     {
-        self.searchDisplayController?.searchBar.hidden = true
+        _hideSearchBar()
     }
     
     func searchDisplayControllerDidBeginSearch(controller: UISearchDisplayController) {
@@ -333,7 +388,6 @@ extension CitiesViewController : UISearchDisplayDelegate
     
     func searchDisplayControllerDidEndSearch(controller: UISearchDisplayController)
     {
-        _hideSearchBar()
         searchingCities = []
         self.searchDisplayController?.searchResultsTableView.reloadData()
     }
