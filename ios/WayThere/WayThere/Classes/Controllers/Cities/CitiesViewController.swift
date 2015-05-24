@@ -103,9 +103,6 @@ protocol CitiesViewControllerDelegate
         // Setup tableView background view color
         self.tableView.backgroundView = UIView(frame: self.view.bounds)
         self.tableView.backgroundView?.backgroundColor = UIColor.whiteColor()
-
-        // Setup tableView bottom view
-        _setUpBottomView()
         
         // Configure DataStore
         dataStore.delegate = self
@@ -113,6 +110,9 @@ protocol CitiesViewControllerDelegate
         // Hide bar button item if isForecast
         if isForecast.boolValue == true {
             self.navigationItem.rightBarButtonItem = nil
+        } else {
+            // Setup tableView bottom view
+            _setUpBottomView()
         }
     }
     
@@ -120,7 +120,7 @@ protocol CitiesViewControllerDelegate
         super.viewWillAppear(animated)
         _hideSearchBar()
         
-        if cities.count > 0 {
+        if cities.count > 0 || weathers.count > 0 {
             self.tableView.reloadData()
         }
         
