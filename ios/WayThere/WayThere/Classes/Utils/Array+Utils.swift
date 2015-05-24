@@ -26,4 +26,17 @@ extension Array
         }
         return nil
     }
+    
+    mutating func remove<U: Equatable>(object: U) -> Int?
+    {
+        for (index, objectToCompare) in enumerate(self) {
+            if let to = objectToCompare as? U {
+                if object == to {
+                    self.removeAtIndex(index)
+                    return index
+                }
+            }
+        }
+        return nil
+    }
 }

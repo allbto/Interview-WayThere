@@ -28,9 +28,9 @@ class TodayViewController: UIViewController
         didSet
         {
             if let sCity = city {
-                locationLabel.text = "\(sCity.name!), \(sCity.country!)"
+                locationLabel.text = "\(String(sCity.name)), \(String(sCity.country))"
                 
-                if sCity.isCurrentLocation {
+                if sCity.isCurrentLocation?.boolValue == true {
                     // Icon positioning
                     var f = locationLabel.sizeThatFits(locationLabel.frame.size)
                     currentIconImageView.frame.origin.x += f.width + 4;
@@ -40,15 +40,24 @@ class TodayViewController: UIViewController
                 }
                 
                 if let weather = sCity.todayWeather {
-                    conditionLabel.text = "\(weather.tempCelcius)°C | \(weather.title)"
-                    infoRainPercentLabel.text = "\(weather.humidity)%"
-                    infoRainPressureLabel.text = "\(weather.pressure) hPa"
+                    if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
+                        conditionLabel.text = "\(String(weather.tempCelcius as? Int))°C"
+                    } else {
+                        conditionLabel.text = "\(String(weather.tempFahrenheit as? Int))°F"
+                    }
+                    conditionLabel.text! += " | \(String(weather.title))"
+                    infoRainPercentLabel.text = "\(String(weather.humidity))%"
+                    infoRainPressureLabel.text = "\(String(weather.pressure)) hPa"
                     infoRainQuantityLabel.text = "\(weather.rainAmount ?? 0) mm"
                     topImageView.image = weather.weatherImage()
                 }
 
                 if let wind = sCity.wind {
-                    infoWindSpeedLabel.text = "\(wind.speedMetric) \(Wind.metricUnit)"
+                    if SettingsDataStore.settingValueForKey(.UnitOfLenght) as? String == SettingUnitOfLenght.Meters.rawValue {
+                        infoWindSpeedLabel.text = "\(String(wind.speedMetric)) \(Wind.metricUnit)"
+                    } else {
+                        infoWindSpeedLabel.text = "\(String(wind.speedImperial)) \(Wind.imperialUnit)"
+                    }
                     infoWindDirectionLabel.text = wind.direction
                 }
             }
@@ -89,9 +98,8 @@ class TodayViewController: UIViewController
         
         let activityVC = UIActivityViewController(activityItems: [opening, weatherStatus], applicationActivities: nil)
         
-        //New Excluded Activities Code
+        // New Excluded Activities Code
         activityVC.excludedActivityTypes = [UIActivityTypeAddToReadingList]
-        //
         
         self.presentViewController(activityVC, animated: true, completion: nil)
     }

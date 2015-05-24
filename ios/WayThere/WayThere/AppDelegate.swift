@@ -25,6 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
         pageControl.backgroundColor = UIColor.whiteColor()
+        
+        UITabBar.appearance().barTintColor = UIColor.whiteColor()
+        UITabBar.appearance().backgroundColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "NavigationLine"), forBarMetrics: .Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
+        
+        self.window?.backgroundColor = UIColor.whiteColor()
     }
     
     private func _setUpUserDefaults()

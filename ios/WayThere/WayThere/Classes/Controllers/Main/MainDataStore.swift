@@ -25,7 +25,7 @@ class MainDataStore
     /// Urls
     
     static let BaseUrl = "http://api.openweathermap.org/data/2.5"
-    let WeatherUrl = MainDataStore.BaseUrl + "/weather"
+    static let WeatherUrl = MainDataStore.BaseUrl + "/weather"
     let SeveralCitiesUrl = MainDataStore.BaseUrl + "/group"
     
     /// Vars
@@ -38,9 +38,9 @@ class MainDataStore
     
     :returns: List of city stored in CoreData
     */
-    static func retrieveCities() -> [CD_City]
+    static func retrieveCities() -> [City]
     {
-        var cities = CD_City.MR_findAll() as? [CD_City]
+        var cities = City.MR_findByAttribute("isCurrentLocation", withValue: false) as? [City]
 
         if cities == nil || cities!.count == 0 {
             var citiesTuples = [
@@ -51,7 +51,7 @@ class MainDataStore
 
             cities = []
             for (id, name) in citiesTuples {
-                if var city = CD_City.MR_createEntity() as? CD_City {
+                if var city = City.MR_createEntity() as? City {
                     city.remoteId = id
                     city.name = name
                     cities!.append(city)
@@ -81,16 +81,16 @@ class MainDataStore
                         cities[index].fromJson(city)
                     }
                     CoreDataHelper.saveAndWait()
-                    self.delegate?.foundWeatherConfiguration(cities.map({ City(model: $0) }))
+                    self.delegate?.foundWeatherConfiguration(cities)
                 } else {
                     self.delegate?.unableToFindWeatherConfiguration(error)
                 }
         }
     }
     
-    func retrieveWeatherForLocation(coordinates: Coordinates)
+    func retrieveCurrentWeather(#coordinates: SimpleCoordinates)
     {
-        Alamofire.request(.GET, WeatherUrl, parameters: [
+        Alamofire.request(.GET, MainDataStore.WeatherUrl, parameters: [
             "lat" : "\(coordinates.latitude)",
             "lon" : "\(coordinates.longitude)",
             "units" : "metric"
@@ -101,12 +101,16 @@ class MainDataStore
                 if (error == nil && json != nil) {
                     var json = JSON(json!)
                     
-                    if var city = CD_City.MR_createEntity() as? CD_City {
+                    if let city = City.MR_findFirstByAttribute("isCurrentLocation", withValue: true) as? City {
                         city.fromJson(json)
-                        
-                        self.delegate?.foundWeatherForCoordinates(City(model: city))
- 
-                        city.MR_deleteEntity()
+                        CoreDataHelper.saveAndWait()
+                        self.delegate?.foundWeatherForCoordinates(city)
+                    }
+                    else if let city = City.MR_createEntity() as? City {
+                        city.fromJson(json)
+                        city.isCurrentLocation = true
+                        CoreDataHelper.saveAndWait()
+                        self.delegate?.foundWeatherForCoordinates(city)
                     } else {
                         self.delegate?.unableToFindWeatherForCoordinates(nil)
                     }

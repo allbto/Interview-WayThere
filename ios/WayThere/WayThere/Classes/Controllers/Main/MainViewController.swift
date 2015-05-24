@@ -9,18 +9,22 @@
 import UIKit
 import CoreLocation
 
+@objc protocol MainViewDelegate
+{
+    func didChangeCity(city: City)
+}
+
 class MainViewController: UIPageViewController
 {
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
-    let SettingsViewControllerIdentifier = "SettingsViewControllerIdentifier"
     let CitiesViewControllerIdentifier = "CitiesViewControllerIdentifier"
     let LocationAccuracy : Double = 100
     
+    @IBOutlet var mainViewDelegate: MainViewDelegate?
+    
     /// Views
-    var settingsNavigationViewController : UINavigationController?
     var citiesNavigationViewController : UINavigationController?
     var activityIndicator: UIActivityIndicatorView?
-    var viewImage: UIImageView?
 
     /// Objects
     var dataStore = MainDataStore()
@@ -71,6 +75,7 @@ class MainViewController: UIPageViewController
 
         // Configure PageViewController
         self.dataSource = self
+        self.delegate = self
         self.view.backgroundColor = UIColor.whiteColor()
 
         // Get user coordinates
@@ -83,25 +88,20 @@ class MainViewController: UIPageViewController
         dataStore.delegate = self
         dataStore.retrieveWeatherConfiguration()
     }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        if cities.count > 0 {
+            _updateViewControllers()
+        }
+    }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func menuAction(sender: AnyObject)
-    {
-        if settingsNavigationViewController == nil {
-            var vc = self.storyboard?.instantiateViewControllerWithIdentifier(SettingsViewControllerIdentifier) as! SettingsViewController
-            
-            vc.delegate = self
-            settingsNavigationViewController = UINavigationController(rootViewController: vc)
-        }
-        
-        if let settingsNVC = settingsNavigationViewController {
-            self.presentViewController(settingsNVC, animated: true, completion: nil)
-        }
     }
     
     @IBAction func citiesMenuAction(sender: AnyObject)
@@ -110,6 +110,7 @@ class MainViewController: UIPageViewController
             var vc = self.storyboard?.instantiateViewControllerWithIdentifier(CitiesViewControllerIdentifier) as! CitiesViewController
             
             vc.delegate = self
+            vc.isForecast = false
             citiesNavigationViewController = UINavigationController(rootViewController: vc)
         }
         
@@ -139,14 +140,6 @@ class MainViewController: UIPageViewController
     }
 }
 
-// MARK: - SettingsViewControllerDelegate
-extension MainViewController: SettingsViewControllerDelegate
-{
-    func didFinishEditingSettings()
-    {
-    }
-}
-
 // MARK: - CitiesViewControllerDelegate
 extension MainViewController: CitiesViewControllerDelegate
 {
@@ -161,11 +154,14 @@ extension MainViewController: MainDataStoreDelegate
     func _updateViewControllers()
     {
         if let city = currentCity {
-            if cities.count > 0 && cities[0].isCurrentLocation {
+            mainViewDelegate?.didChangeCity(city)
+            if cities.count > 0 && cities[0].isCurrentLocation?.boolValue == true {
                 cities[0] = city
             } else {
                 cities.insert(city, atIndex: 0)
             }
+        } else if (cities.count > 0) {
+            mainViewDelegate?.didChangeCity(cities[0])
         }
         
         self.setViewControllers([_viewControllerAtIndex(0)], direction: .Forward, animated: false) { [unowned self] (complete:Bool) -> Void in
@@ -187,6 +183,7 @@ extension MainViewController: MainDataStoreDelegate
     
     func foundWeatherForCoordinates(city : City)
     {
+        _hideActivityIndicator()
         city.isCurrentLocation = true
         currentCity = city
         _updateViewControllers()
@@ -261,6 +258,19 @@ extension MainViewController: UIPageViewControllerDataSource
     }
 }
 
+// MARK: - UIPageViewControllerDelegate
+extension MainViewController: UIPageViewControllerDelegate
+{
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool)
+    {
+        if completed && self.viewControllers.count > 0 {
+            if let todayVC = (self.viewControllers[0] as? TodayViewController), city = cities.get(todayVC.index) {
+                mainViewDelegate?.didChangeCity(city)
+            }
+        }
+    }
+}
+
 // MARK: - CLLocationManagerDelegate
 extension MainViewController: CLLocationManagerDelegate
 {
@@ -270,7 +280,7 @@ extension MainViewController: CLLocationManagerDelegate
 
         if manager.location.horizontalAccuracy < LocationAccuracy {
             locationManager.stopUpdatingLocation()
-            dataStore.retrieveWeatherForLocation(Coordinates(latitude: locValue.latitude, longitude: locValue.longitude))
+            dataStore.retrieveCurrentWeather(coordinates:SimpleCoordinates(latitude: locValue.latitude, longitude: locValue.longitude))
         }
     }
 }
