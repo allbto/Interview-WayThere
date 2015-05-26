@@ -189,7 +189,6 @@ class CitiesDataStore
                     weather.day = formater.stringFromDate(date)
                     weather.temp = Float(temp)
                     weather.cityId = city.remoteId
-                    weather.creationDate = NSDate()
                 }
             }
         }

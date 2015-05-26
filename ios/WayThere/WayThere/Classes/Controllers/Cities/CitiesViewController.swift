@@ -119,7 +119,8 @@ protocol CitiesViewControllerDelegate
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         _hideSearchBar()
-        
+
+        // Reload data to not show wrong information
         if cities.count > 0 || weathers.count > 0 {
             self.tableView.reloadData()
         }
@@ -170,9 +171,7 @@ extension CitiesViewController : CitiesDataStoreDelegate
     func foundCitiesForQuery(cities: [SimpleCity])
     {
         _hideActivityIndicator()
-
         searchingCities = cities
-        
         self.searchDisplayController?.searchResultsTableView.reloadData()
     }
     
@@ -211,6 +210,12 @@ extension CitiesViewController : CitiesDataStoreDelegate
 // MARK: - UIAlertViewDelegate
 extension CitiesViewController: UIAlertViewDelegate
 {
+    /**
+    Relaunch requests if they were unsuccessful and user decides to retry
+    
+    :param: alertView
+    :param: buttonIndex
+    */
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
     {
         if buttonIndex != alertView.cancelButtonIndex {
