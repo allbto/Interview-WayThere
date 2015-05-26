@@ -10,8 +10,6 @@ import Foundation
 import SwiftyJSON
 import CoreData
 
-public typealias SimpleWeather = (title:String, day:String, temp:Int)
-
 @objc(Weather)
 public class Weather: AModel {
 
@@ -23,6 +21,8 @@ public class Weather: AModel {
     @NSManaged public var tempCelcius: NSNumber?
     @NSManaged public var tempFahrenheit: NSNumber?
     @NSManaged public var creationDate: NSDate
+    @NSManaged public var cityId: String?
+    @NSManaged public var day: String?
     
     public var temp : Float {
         get { return tempCelcius?.floatValue ?? 0 }

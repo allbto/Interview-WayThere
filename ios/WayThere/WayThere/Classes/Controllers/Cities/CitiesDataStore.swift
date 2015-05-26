@@ -20,7 +20,7 @@ protocol CitiesDataStoreDelegate
     func didSaveNewCity(city: City)
     func didRemoveCity(city: City)
     
-    func foundWeatherForecastForCity(weathers: [SimpleWeather])
+    func foundWeatherForecastForCity(weathers: [Weather])
     func unableToFindForecastForCity(error: NSError?)
 }
 
@@ -104,6 +104,11 @@ class CitiesDataStore
     */
     func saveCity(city : SimpleCity)
     {
+        // Preventing user from including 2 times the same city
+        if let cityEntity = City.MR_findFirstByAttribute("remoteId", withValue: city.id) as? City {
+            return
+        }
+
         Alamofire.request(.GET, MainDataStore.WeatherUrl, parameters: [
             "id" : city.id,
             "units" : "metric"
@@ -132,18 +137,63 @@ class CitiesDataStore
     /**
     Remove city from CoreData
     Also remove related photo (CityPhoto, see TodayDataStore)
+    Also remove related weathers (see under)
     
     :param: city to remove
     */
     func removeCity(city : City)
     {
-        if let cityEntity = City.MR_findFirstByAttribute("remoteId", withValue: city.remoteId) as? City {
-            CityPhoto.MR_findByAttribute("cityId", withValue: cityEntity.remoteId).map({ $0.MR_deleteEntity() })
-            cityEntity.MR_deleteEntity()
-            
-            CoreDataHelper.saveAndWait()
-            self.delegate?.didRemoveCity(cityEntity)
+        var cityId = city.remoteId
+        
+        CityPhoto.MR_findByAttribute("cityId", withValue: cityId).map { $0.MR_deleteEntity() }
+        Weather.MR_findByAttribute("cityId", withValue: cityId).map { $0.MR_deleteEntity() }
+        city.MR_deleteEntity()
+        
+        CoreDataHelper.saveAndWait()
+        self.delegate?.didRemoveCity(city)
+    }
+    
+    /**
+    Get local stored weather for city only if weathers were saved on the same day (after 1 day needs to be reloaded)
+    Otherwise they are deleted from Core Data
+    
+    :param: city to get weathers from
+    
+    :returns: A weathers array corresponding to the latest weathers for the city or nil
+    */
+    private func _getWeatherForCity(city: City) -> [Weather]?
+    {
+        if let localWeathers = Weather.MR_findByAttribute("cityId", withValue: city.remoteId, andOrderBy: "creationDate", ascending: true) as? [Weather] where localWeathers.count > 0 {
+            if localWeathers[0].creationDate.dateComposents(unit: .CalendarUnitDay, toDate: NSDate()).day == 0 {
+                return localWeathers
+            } else {
+                localWeathers.map { $0.MR_deleteEntity() }
+                CoreDataHelper.saveAndWait()
+            }
         }
+        return nil
+
+    }
+    
+    private func _saveWeathersJSON(weathers: JSON, forCity city: City)
+    {
+        for (index, (sIndex : String, cityJSON : JSON)) in enumerate(weathers) {
+            if let title = cityJSON["weather"][0]["main"].string, timeStamp = cityJSON["dt"].int, temp = cityJSON["temp"]["day"].double {
+                var date = NSDate(timeIntervalSince1970: Double(timeStamp))
+                var formater = NSDateFormatter()
+                
+                formater.dateFormat = "EEEE"
+
+                if let weather = Weather.MR_createEntity() as? Weather {
+                    weather.title = title
+                    weather.day = formater.stringFromDate(date)
+                    weather.temp = Float(temp)
+                    weather.cityId = city.remoteId
+                    weather.creationDate = NSDate()
+                }
+            }
+        }
+        CoreDataHelper.saveAndWait()
     }
     
     /**
@@ -153,6 +203,13 @@ class CitiesDataStore
     */
     func retrieveWeatherForecastForCity(city: City)
     {
+        // Try to get local weathers for this city
+        if let weathers = _getWeatherForCity(city) {
+            delegate?.foundWeatherForecastForCity(weathers)
+            return
+        }
+        
+        // Not found requesting API
         Alamofire.request(.GET, FetchCityUrl, parameters: [
             "id"  : city.remoteId,
             "cnt" : NumberOfDaysToFetch,
@@ -162,18 +219,9 @@ class CitiesDataStore
                 
                 if (error == nil && json != nil) {
                     var json = JSON(json!)
-                    var weathers = [SimpleWeather]()
                     
-                    for (index, (sIndex : String, cityJSON : JSON)) in enumerate(json["list"]) {
-                        if let title = cityJSON["weather"][0]["main"].string, timeStamp = cityJSON["dt"].int, temp = cityJSON["temp"]["day"].double {
-                            var date = NSDate(timeIntervalSince1970: Double(timeStamp))
-                            var formater = NSDateFormatter()
-                            
-                            formater.dateFormat = "EEEE"
-                            weathers.append(SimpleWeather(title: title, day: formater.stringFromDate(date), temp: Int(temp)))
-                        }
-                    }
-                    self.delegate?.foundWeatherForecastForCity(weathers)
+                    self._saveWeathersJSON(json["list"], forCity: city)
+                    self.delegate?.foundWeatherForecastForCity(self._getWeatherForCity(city) ?? [])
                 } else {
                     self.delegate?.unableToFindForecastForCity(error)
                 }

@@ -39,7 +39,7 @@ protocol CitiesViewControllerDelegate
     var searchingCities = [SimpleCity]()
     
     // Forecast
-    var weathers = [SimpleWeather]()
+    var weathers = [Weather]()
     
     // MARK: - UIViewController
     
@@ -195,7 +195,7 @@ extension CitiesViewController : CitiesDataStoreDelegate
         }
     }
     
-    func foundWeatherForecastForCity(weathers: [SimpleWeather])
+    func foundWeatherForecastForCity(weathers: [Weather])
     {
         _hideActivityIndicator()
         self.weathers = weathers
@@ -311,11 +311,11 @@ extension CitiesViewController
             weatherCell.mainLabel.text = weather.day
             weatherCell.subtitleLabel.text = weather.title
             if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
-                weatherCell.temperatureLabel.text = "\(weather.temp)°C"
+                weatherCell.temperatureLabel.text = "\(String(weather.tempCelcius as? Int))°C"
             } else {
-                weatherCell.temperatureLabel.text = "\(weather.temp)°F"
+                weatherCell.temperatureLabel.text = "\(String(weather.tempFahrenheit as? Int))°F"
             }
-            weatherCell.weatherImageView.image = Weather.weatherImage(weather.title)
+            weatherCell.weatherImageView.image = weather.weatherImage()
             
             return weatherCell
         } else {

@@ -20,7 +20,9 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Weather" representedClassName="Weather" parentEntity="AModel" syncable="YES">
+        <attribute name="cityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="pressure" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -39,7 +41,7 @@
         <element name="AModel" positionX="-8055" positionY="-6309" width="128" height="45"/>
         <element name="City" positionX="-8118" positionY="-6435" width="128" height="165"/>
         <element name="Coordinates" positionX="-8091" positionY="-6354" width="128" height="75"/>
-        <element name="Weather" positionX="-8073" positionY="-6345" width="128" height="165"/>
+        <element name="Weather" positionX="-8073" positionY="-6345" width="128" height="195"/>
         <element name="Wind" positionX="-8109" positionY="-6372" width="128" height="105"/>
         <element name="CityPhoto" positionX="-8082" positionY="-6327" width="128" height="75"/>
     </elements>

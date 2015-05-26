@@ -51,6 +51,7 @@
 		9DFFCD491B14603B003501E4 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD481B14603B003501E4 /* Int+Random.swift */; };
 		9DFFCD4B1B1467E0003501E4 /* UIImageView+FromUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */; };
 		9DFFCD4D1B14A41F003501E4 /* CityPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */; };
+		9DFFCD4F1B14FFD8003501E4 /* NSDate+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4E1B14FFD8003501E4 /* NSDate+Adds.swift */; };
 		A386F3B33A67772338037183 /* Pods_WayThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC4A0D6ADB44A3AA9082989A /* Pods_WayThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -154,6 +155,7 @@
 		9DFFCD481B14603B003501E4 /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FromUrl.swift"; sourceTree = "<group>"; };
 		9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityPhoto.swift; path = CoreData/CityPhoto.swift; sourceTree = "<group>"; };
+		9DFFCD4E1B14FFD8003501E4 /* NSDate+Adds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Adds.swift"; sourceTree = "<group>"; };
 		EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -267,6 +269,7 @@
 				9D0F5D421B109E6800CE5E1B /* String+Utils.swift */,
 				9DFFCD481B14603B003501E4 /* Int+Random.swift */,
 				9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */,
+				9DFFCD4E1B14FFD8003501E4 /* NSDate+Adds.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				9D56A17A1B0D07DF004304F8 /* CitiesViewController.swift in Sources */,
 				9D5998741B093D6700E2FB04 /* AModel.swift in Sources */,
 				9D5998701B093D6700E2FB04 /* Weather.swift in Sources */,
+				9DFFCD4F1B14FFD8003501E4 /* NSDate+Adds.swift in Sources */,
 				9D56A1751B0D07D2004304F8 /* SettingsDataStore.swift in Sources */,
 				9D56A17D1B0D128C004304F8 /* CityWeatherTableViewCell.swift in Sources */,
 				9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */,
