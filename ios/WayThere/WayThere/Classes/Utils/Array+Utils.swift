@@ -27,6 +27,13 @@ extension Array
         return nil
     }
     
+    /**
+    Remove an object of the array and return the index removed
+    
+    :param: object to remove
+    
+    :returns: index of the removed element
+    */
     mutating func remove<U: Equatable>(object: U) -> Int?
     {
         for (index, objectToCompare) in enumerate(self) {

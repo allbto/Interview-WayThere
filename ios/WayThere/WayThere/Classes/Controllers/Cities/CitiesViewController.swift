@@ -39,7 +39,7 @@ protocol CitiesViewControllerDelegate
     var searchingCities = [SimpleCity]()
     
     // Forecast
-    var weathers = [SimpleWeather]()
+    var weathers = [Weather]()
     
     // MARK: - UIViewController
     
@@ -119,7 +119,8 @@ protocol CitiesViewControllerDelegate
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         _hideSearchBar()
-        
+
+        // Reload data to not show wrong information
         if cities.count > 0 || weathers.count > 0 {
             self.tableView.reloadData()
         }
@@ -170,9 +171,7 @@ extension CitiesViewController : CitiesDataStoreDelegate
     func foundCitiesForQuery(cities: [SimpleCity])
     {
         _hideActivityIndicator()
-
         searchingCities = cities
-        
         self.searchDisplayController?.searchResultsTableView.reloadData()
     }
     
@@ -195,7 +194,7 @@ extension CitiesViewController : CitiesDataStoreDelegate
         }
     }
     
-    func foundWeatherForecastForCity(weathers: [SimpleWeather])
+    func foundWeatherForecastForCity(weathers: [Weather])
     {
         _hideActivityIndicator()
         self.weathers = weathers
@@ -211,6 +210,12 @@ extension CitiesViewController : CitiesDataStoreDelegate
 // MARK: - UIAlertViewDelegate
 extension CitiesViewController: UIAlertViewDelegate
 {
+    /**
+    Relaunch requests if they were unsuccessful and user decides to retry
+    
+    :param: alertView
+    :param: buttonIndex
+    */
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
     {
         if buttonIndex != alertView.cancelButtonIndex {
@@ -311,11 +316,11 @@ extension CitiesViewController
             weatherCell.mainLabel.text = weather.day
             weatherCell.subtitleLabel.text = weather.title
             if SettingsDataStore.settingValueForKey(.UnitOfTemperature) as? String == SettingUnitOfTemperature.Celcius.rawValue {
-                weatherCell.temperatureLabel.text = "\(weather.temp)°C"
+                weatherCell.temperatureLabel.text = "\(String(weather.tempCelcius as? Int))°C"
             } else {
-                weatherCell.temperatureLabel.text = "\(weather.temp)°F"
+                weatherCell.temperatureLabel.text = "\(String(weather.tempFahrenheit as? Int))°F"
             }
-            weatherCell.weatherImageView.image = Weather.weatherImage(weather.title)
+            weatherCell.weatherImageView.image = weather.weatherImage()
             
             return weatherCell
         } else {

@@ -65,6 +65,10 @@ class MainDataStore
         return cities!
     }
     
+    /**
+    Retrieve cities to put on the main screen
+    First get them localy and then update the current weather of each cities
+    */
     func retrieveWeatherConfiguration()
     {
         var cities = MainDataStore.retrieveCities()
@@ -89,7 +93,12 @@ class MainDataStore
         }
     }
     
-    private func didFindCityWeatherWithCoordinates(json: JSON)
+    /**
+    Updates of creates a city in Core Data for the current location city of user
+
+    :param: json of the city
+    */
+    private func _didFindCityWeatherWithCoordinates(json: JSON)
     {
         if let city = City.MR_findFirstByAttribute("isCurrentLocation", withValue: true) as? City {
             city.fromJson(json)
@@ -107,7 +116,12 @@ class MainDataStore
 
     }
 
-    private func didFindCityWithCoordinates(json: JSON)
+    /**
+    Find city from Openweathermap API with found city and country
+    
+    :param: json to parse into city, country
+    */
+    private func _didFindCityWithCoordinates(json: JSON)
     {
         if let city = json["location"]["city"].string, country = json["location"]["country"].string {
             
@@ -119,7 +133,7 @@ class MainDataStore
                 
                 if (error == nil && json != nil) {
                     var json = JSON(json!)
-                    self.didFindCityWeatherWithCoordinates(json)
+                    self._didFindCityWeatherWithCoordinates(json)
                 }
                 else {
                     self.delegate?.unableToFindWeatherForCoordinates(error)
@@ -128,6 +142,14 @@ class MainDataStore
         }
     }
     
+    /**
+    Finds place from coordinates
+    - Check Wundergroup API to get the city and country of the coordinates
+    - Request Openweathermap API to get the correct id and weather for the found place
+    - Save it all in Core Data
+    
+    :param: coordinates to find city from
+    */
     func retrieveCurrentWeather(#coordinates: SimpleCoordinates)
     {
         // Using wunderground API to look for the city using coordinates because openweathermap API sucks for this
@@ -135,7 +157,7 @@ class MainDataStore
         .responseJSON { [unowned self] (req, _, json, error) in
             
             if (error == nil && json != nil) {
-                self.didFindCityWithCoordinates(JSON(json!))
+                self._didFindCityWithCoordinates(JSON(json!))
             } else {
                 self.delegate?.unableToFindWeatherForCoordinates(error)
             }

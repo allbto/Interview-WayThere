@@ -16,10 +16,12 @@ import CoreLocation
 
 class MainViewController: UIPageViewController
 {
+    /// Defines
     let TodayViewControllerIdentifier = "TodayViewControllerIdentifier"
     let CitiesViewControllerIdentifier = "CitiesViewControllerIdentifier"
     let LocationAccuracy : Double = 100
     
+    /// Outlets
     @IBOutlet var mainViewDelegate: MainViewDelegate?
     
     /// Views
@@ -94,12 +96,7 @@ class MainViewController: UIPageViewController
         super.viewWillAppear(animated)
         
         if cities.count > 0 {
-            
-            if let viewControllers = self.viewControllers as? [TodayViewController] {
-                for vc in viewControllers {
-                    vc.city = cities.get(vc.index)
-                }
-            }
+            _updateViewControllers()
         }
     }
 
@@ -158,6 +155,9 @@ extension MainViewController: CitiesViewControllerDelegate
 // MARK: - MainDataStoreDelegate
 extension MainViewController: MainDataStoreDelegate
 {
+    /**
+    Update UIPageViewController controllers, but first insert or update current location city in self.cities array
+    */
     func _updateViewControllers()
     {
         if let city = currentCity {
@@ -198,13 +198,19 @@ extension MainViewController: MainDataStoreDelegate
 
     func unableToFindWeatherForCoordinates(error : NSError?)
     {
-        // Do nothing
+        // Do nothing, it's ok not to find weather for coordinates
     }
 }
 
 // MARK: - UIAlertViewDelegate
 extension MainViewController: UIAlertViewDelegate
 {
+    /**
+    Relaunch requests if they were unsuccessful and user decides to retry
+    
+    :param: alertView
+    :param: buttonIndex
+    */
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
     {
         if buttonIndex != alertView.cancelButtonIndex {
