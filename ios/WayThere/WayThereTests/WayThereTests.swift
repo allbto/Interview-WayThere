@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import WayThere
 
 class WayThereTests: XCTestCase {
     

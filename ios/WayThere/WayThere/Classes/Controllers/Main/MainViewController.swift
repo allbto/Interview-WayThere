@@ -94,12 +94,7 @@ class MainViewController: UIPageViewController
         super.viewWillAppear(animated)
         
         if cities.count > 0 {
-            
-            if let viewControllers = self.viewControllers as? [TodayViewController] {
-                for vc in viewControllers {
-                    vc.city = cities.get(vc.index)
-                }
-            }
+            _updateViewControllers()
         }
     }
 

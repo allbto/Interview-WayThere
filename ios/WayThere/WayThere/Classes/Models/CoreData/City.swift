@@ -24,6 +24,8 @@ public class City: AModel {
     @NSManaged public var todayWeather: Weather?
     @NSManaged public var creationDate: NSDate
     
+    var backgroundImage: UIImage?
+    
     public override func awakeFromInsert() {
         super.awakeFromInsert()
         creationDate = NSDate()

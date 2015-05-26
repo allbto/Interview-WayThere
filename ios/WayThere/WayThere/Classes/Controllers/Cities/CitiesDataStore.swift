@@ -131,13 +131,16 @@ class CitiesDataStore
 
     /**
     Remove city from CoreData
+    Also remove related photo (CityPhoto, see TodayDataStore)
     
     :param: city to remove
     */
     func removeCity(city : City)
     {
         if let cityEntity = City.MR_findFirstByAttribute("remoteId", withValue: city.remoteId) as? City {
+            CityPhoto.MR_findByAttribute("cityId", withValue: cityEntity.remoteId).map({ $0.MR_deleteEntity() })
             cityEntity.MR_deleteEntity()
+            
             CoreDataHelper.saveAndWait()
             self.delegate?.didRemoveCity(cityEntity)
         }

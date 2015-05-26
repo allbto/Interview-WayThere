@@ -19,7 +19,6 @@
 		9D2FF3B41B07B433008EFFB8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3B31B07B433008EFFB8 /* Alamofire.framework */; };
 		9D2FF3B61B07B621008EFFB8 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2FF3B51B07B621008EFFB8 /* SwiftyJSON.framework */; };
 		9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2FF3B81B08A88F008EFFB8 /* Device.swift */; };
-		9D3CF1671B08F79800F626F6 /* UIVIew+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CF1661B08F79800F626F6 /* UIVIew+Adds.swift */; };
 		9D47E0EC1B09EAC6005CD736 /* WayThere.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D47E0EA1B09EAC6005CD736 /* WayThere.xcdatamodeld */; };
 		9D56A15A1B0B5ABA004304F8 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D56A1591B0B5ABA004304F8 /* SwitchTableViewCell.swift */; };
 		9D56A15C1B0B6A61004304F8 /* SelectMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D56A15B1B0B6A61004304F8 /* SelectMenuTableViewCell.swift */; };
@@ -48,6 +47,10 @@
 		9DFFCD411B127066003501E4 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFFCD401B127066003501E4 /* MagicalRecord.framework */; };
 		9DFFCD431B12711C003501E4 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFFCD421B12711C003501E4 /* MagicalRecord.framework */; };
 		9DFFCD451B12711F003501E4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFFCD441B12711F003501E4 /* Nimble.framework */; };
+		9DFFCD471B1354D0003501E4 /* TodayDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD461B1354D0003501E4 /* TodayDataStore.swift */; };
+		9DFFCD491B14603B003501E4 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD481B14603B003501E4 /* Int+Random.swift */; };
+		9DFFCD4B1B1467E0003501E4 /* UIImageView+FromUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */; };
+		9DFFCD4D1B14A41F003501E4 /* CityPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */; };
 		A386F3B33A67772338037183 /* Pods_WayThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC4A0D6ADB44A3AA9082989A /* Pods_WayThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -95,7 +98,6 @@
 		9D2FF3B31B07B433008EFFB8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/Alamofire.framework"; sourceTree = "<group>"; };
 		9D2FF3B51B07B621008EFFB8 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThere/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		9D2FF3B81B08A88F008EFFB8 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		9D3CF1661B08F79800F626F6 /* UIVIew+Adds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIVIew+Adds.swift"; sourceTree = "<group>"; };
 		9D47E0EB1B09EAC6005CD736 /* WayThere.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WayThere.xcdatamodel; sourceTree = "<group>"; };
 		9D56A1591B0B5ABA004304F8 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = Settings/Cells/SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		9D56A15B1B0B6A61004304F8 /* SelectMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectMenuTableViewCell.swift; path = Settings/Cells/SelectMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,10 @@
 		9DFFCD401B127066003501E4 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/MagicalRecord.framework"; sourceTree = "<group>"; };
 		9DFFCD421B12711C003501E4 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/MagicalRecord.framework"; sourceTree = "<group>"; };
 		9DFFCD441B12711F003501E4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Pods/../build/Debug-iphoneos/Pods-WayThereTests/Nimble.framework"; sourceTree = "<group>"; };
+		9DFFCD461B1354D0003501E4 /* TodayDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataStore.swift; sourceTree = "<group>"; };
+		9DFFCD481B14603B003501E4 /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
+		9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FromUrl.swift"; sourceTree = "<group>"; };
+		9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityPhoto.swift; path = CoreData/CityPhoto.swift; sourceTree = "<group>"; };
 		EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -256,10 +262,11 @@
 			children = (
 				9D5998521B08FEA100E2FB04 /* UIImage+ImageEffects.swift */,
 				9D2FF3B81B08A88F008EFFB8 /* Device.swift */,
-				9D3CF1661B08F79800F626F6 /* UIVIew+Adds.swift */,
 				9D6ADB491B0A5EB4003AB030 /* CoreDataHelper.swift */,
 				9D56A1721B0D0196004304F8 /* Array+Utils.swift */,
 				9D0F5D421B109E6800CE5E1B /* String+Utils.swift */,
+				9DFFCD481B14603B003501E4 /* Int+Random.swift */,
+				9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -277,8 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				9D56A17B1B0D1256004304F8 /* Cells */,
-				9D56A1771B0D07DF004304F8 /* CitiesDataStore.swift */,
 				9D56A1781B0D07DF004304F8 /* CitiesViewController.swift */,
+				9D56A1771B0D07DF004304F8 /* CitiesDataStore.swift */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -294,6 +301,7 @@
 		9D59986A1B093D5E00E2FB04 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */,
 				9D59986C1B093D6700E2FB04 /* City.swift */,
 				9D59986B1B093D6700E2FB04 /* Weather.swift */,
 				9D59986D1B093D6700E2FB04 /* Wind.swift */,
@@ -366,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				9D8E54D21B11E356005FE694 /* TodayViewController.swift */,
+				9DFFCD461B1354D0003501E4 /* TodayDataStore.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -631,8 +640,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D5998731B093D6700E2FB04 /* Coordinates.swift in Sources */,
-				9D3CF1671B08F79800F626F6 /* UIVIew+Adds.swift in Sources */,
 				9D6ADB4A1B0A5EB4003AB030 /* CoreDataHelper.swift in Sources */,
+				9DFFCD4D1B14A41F003501E4 /* CityPhoto.swift in Sources */,
 				9D56A1791B0D07DF004304F8 /* CitiesDataStore.swift in Sources */,
 				9D56A15C1B0B6A61004304F8 /* SelectMenuTableViewCell.swift in Sources */,
 				9D56A17A1B0D07DF004304F8 /* CitiesViewController.swift in Sources */,
@@ -643,14 +652,17 @@
 				9D8E072C1B074F1100E0FFF3 /* AppDelegate.swift in Sources */,
 				9D2FF3A41B07A869008EFFB8 /* MainViewController.swift in Sources */,
 				9D56A1711B0CF88A004304F8 /* Settings.swift in Sources */,
+				9DFFCD471B1354D0003501E4 /* TodayDataStore.swift in Sources */,
 				9D8E54CF1B11E311005FE694 /* TabsController.swift in Sources */,
 				9D5998721B093D6700E2FB04 /* Wind.swift in Sources */,
 				9D56A16F1B0CF840004304F8 /* TableViewCells.swift in Sources */,
 				9D0F5D431B109E6800CE5E1B /* String+Utils.swift in Sources */,
 				9D5998531B08FEA100E2FB04 /* UIImage+ImageEffects.swift in Sources */,
 				9D56A1731B0D0196004304F8 /* Array+Utils.swift in Sources */,
+				9DFFCD4B1B1467E0003501E4 /* UIImageView+FromUrl.swift in Sources */,
 				9D56A15A1B0B5ABA004304F8 /* SwitchTableViewCell.swift in Sources */,
 				9D8E54D31B11E356005FE694 /* TodayViewController.swift in Sources */,
+				9DFFCD491B14603B003501E4 /* Int+Random.swift in Sources */,
 				9D2FF3AE1B07A891008EFFB8 /* MainDataStore.swift in Sources */,
 				9D2FF3B91B08A88F008EFFB8 /* Device.swift in Sources */,
 				9D47E0EC1B09EAC6005CD736 /* WayThere.xcdatamodeld in Sources */,

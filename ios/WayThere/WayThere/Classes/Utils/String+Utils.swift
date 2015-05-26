@@ -21,6 +21,12 @@ func unwrap(any:Any) -> Any? {
 
 extension String
 {
+    /**
+    Creates a string from any optional value, to avoid the "Optional(toto)" in a displayable text label for example
+    If :optional has a value self will be the description of that value otherwise self will be "nil"
+    
+    :param: optional Any optional value
+    */
     init(_ optional: Any?)
     {
         if let value = unwrap(optional) {
@@ -30,8 +36,17 @@ extension String
         }
     }
     
-    func replace(str: String, withString str2: String) -> String
+    /**
+    Replace every :strFrom by :strTo
+    So "I am a potato".replace("potato", "couch potato") -> "I am a couch potato"
+    
+    :param: strFrom to be replaced
+    :param: strTo   to replace
+    
+    :returns: String from self with :str replaced
+    */
+    func replace(strFrom: String, withString strTo: String) -> String
     {
-        return self.stringByReplacingOccurrencesOfString(str, withString: str2)
+        return self.stringByReplacingOccurrencesOfString(strFrom, withString: strTo)
     }
 }

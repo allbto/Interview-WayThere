@@ -12,14 +12,12 @@ enum SettingKey : String
 {
     case UnitOfLenght = "unit_of_lenght"
     case UnitOfTemperature = "unit_of_temperature"
-    case STRVMode = "strv_mode"
-    case GIFMode = "gif_mode"
+    case ClassicMode = "classic_mode"
     
     static let defaults : [String : AnyObject] = [
             SettingKey.UnitOfLenght.rawValue : SettingUnitOfLenght.Meters.rawValue,
             SettingKey.UnitOfTemperature.rawValue : SettingUnitOfTemperature.Celcius.rawValue,
-            SettingKey.STRVMode.rawValue : false,
-            SettingKey.GIFMode.rawValue : false,
+            SettingKey.ClassicMode.rawValue : false
         ]
 }
 

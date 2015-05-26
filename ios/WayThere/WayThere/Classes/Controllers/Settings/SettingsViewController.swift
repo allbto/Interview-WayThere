@@ -25,8 +25,7 @@ class SettingsViewController: UITableViewController
                 Cell(title: "Unit of temperature", key: SettingKey.UnitOfTemperature.rawValue, value: SettingsDataStore.settingValueForKey(.UnitOfTemperature), type:.SelectCell, data: SettingUnitOfTemperature.allRawValues)
                 ]),
             Section(title: "Bonus", cells:[
-                Cell(title: "STRV mode (no background)", key: SettingKey.STRVMode.rawValue, value: SettingsDataStore.settingValueForKey(.STRVMode), type:.SwitchCell, data: nil),
-                Cell(title: "GIF mode", key: SettingKey.GIFMode.rawValue, value: SettingsDataStore.settingValueForKey(.GIFMode), type:.SwitchCell, data: nil)
+                Cell(title: "Classic mode (no background)", key: SettingKey.ClassicMode.rawValue, value: SettingsDataStore.settingValueForKey(.ClassicMode), type:.SwitchCell, data: nil)
                 ])
         ]
     }
