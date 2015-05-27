@@ -1,10 +1,16 @@
 # WayThere
-WayThere is a simple yet beautiful weather iOS/web app
-
+WayThere is a simple yet beautiful weather iOS/web app.
 This is a test project for [STRV](http://strv.com).
+
+#### Hello STRV Software engineer!
+
+![Welcome image](ios/images/welcome.png)
+
 In this repo you will find 2 folders `ios` and `web` each of them containing a README.md for further instructions.
 
 * [ios/](ios/) contains all the Swift source code and the Xcode project for **WayThere**
-* [web/](web/) is a *little* bonus that I made before getting the instructions, just to show that I'm not the man of one techno.
+* [web/](web/) is a *little* bonus that I made before getting the instructions (I've just been told it was a Weather App), just to show that I'm not the man of one techno.
+
+Following the instructions and my own methods of work, I've been doing all my devs in a branch called `dev`, I also used issues and milestones to organize my progression.
 
 Enjoy !

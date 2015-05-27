@@ -29,7 +29,7 @@ class CitiesDataStore
     /// Vars
     
     let CountOfQueryResult = 5
-    let NumberOfDaysToFetch = 5
+    let NumberOfDaysToFetch = 7
     
     var delegate: CitiesDataStoreDelegate?
     var isQuerying = false

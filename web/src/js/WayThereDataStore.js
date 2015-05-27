@@ -239,8 +239,7 @@
             });
 
             return weathers;
-        }
-
+        };
     });
 
 })(angular);
