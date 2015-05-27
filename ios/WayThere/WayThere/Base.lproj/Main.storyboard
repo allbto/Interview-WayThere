@@ -481,6 +481,9 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="61" y="367" width="41" height="18"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22°C | Sunny" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmz-iU-q2B">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -501,7 +504,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rainy" translatesAutoresizingMaskIntoConstraints="NO" id="YFZ-4m-iPS">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rainy_small" translatesAutoresizingMaskIntoConstraints="NO" id="YFZ-4m-iPS">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="IzP-FT-BHF"/>
@@ -525,6 +528,9 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="175" y="367" width="51" height="18"/>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain_drop" translatesAutoresizingMaskIntoConstraints="NO" id="1iv-A5-gdW">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -550,6 +556,9 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="290" y="367" width="64" height="18"/>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="celcius" translatesAutoresizingMaskIntoConstraints="NO" id="blb-Ml-Z4H">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -575,6 +584,9 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="95" y="452" width="55" height="18"/>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind_small" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-Vq-iLq">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -588,7 +600,8 @@
                                         <exclude reference="clV-v5-dcB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="101" y="410" width="40" height="40"/>
                                     <mask key="constraints">
                                         <include reference="JPW-BR-31e"/>
                                         <include reference="clV-v5-dcB"/>
@@ -600,6 +613,9 @@
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="265" y="452" width="31" height="18"/>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compass" translatesAutoresizingMaskIntoConstraints="NO" id="PLQ-Px-mwN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -613,7 +629,8 @@
                                         <exclude reference="kJW-gh-LMB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="259" y="410" width="40" height="40"/>
                                     <mask key="constraints">
                                         <include reference="VfB-rn-kJj"/>
                                         <include reference="kJW-gh-LMB"/>
@@ -650,7 +667,8 @@
                                         <exclude reference="gBl-S4-bRg"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="100" y="495" width="200" height="1"/>
                                     <mask key="constraints">
                                         <exclude reference="W22-yt-duk"/>
                                         <include reference="gBl-S4-bRg"/>
@@ -664,6 +682,9 @@
                                     <color key="titleColor" red="1" green="0.53333333333333333" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="177" y="513" width="47" height="33"/>
+                                </variation>
                                 <connections>
                                     <action selector="shareWeatherAction:" destination="K5K-Zd-BJM" eventType="touchUpInside" id="Dbt-kB-92F"/>
                                 </connections>
@@ -694,6 +715,9 @@
                                     <color key="titleColor" red="1" green="0.53333333329999999" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="337" y="72" width="47" height="33"/>
+                                </variation>
                                 <connections>
                                     <action selector="shareWeatherAction:" destination="K5K-Zd-BJM" eventType="touchUpInside" id="0AJ-4g-SRX"/>
                                 </connections>
@@ -1018,7 +1042,7 @@
     <resources>
         <image name="ForecastIcon" width="23" height="22"/>
         <image name="ListIcon" width="22" height="14"/>
-        <image name="Rainy" width="22" height="22"/>
+        <image name="Rainy_small" width="22" height="22"/>
         <image name="SettingsIcon" width="23" height="23"/>
         <image name="TodayIcon" width="24" height="24"/>
         <image name="Unknown" width="64" height="128"/>
