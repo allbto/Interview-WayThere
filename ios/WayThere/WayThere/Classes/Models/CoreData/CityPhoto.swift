@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 @objc(CityPhoto)
-class CityPhoto: AModel {
+public class CityPhoto: AModel {
 
-    @NSManaged var url: String?
-    @NSManaged var cityId: String?
+    @NSManaged public var url: String?
+    @NSManaged public var cityId: String?
 
 }

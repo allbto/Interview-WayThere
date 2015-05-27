@@ -18,7 +18,8 @@ class CoreDataModelsTests: XCTestCase {
         super.setUp()
 
         // Setup the default model from the current class' bundle
-        MagicalRecord.setDefaultModelFromClass(CoreDataModelsTests.self)
+        //MagicalRecord.setDefaultModelFromClass(CoreDataModelsTests.self)
+        NSManagedObjectModel.MR_setDefaultManagedObjectModel(NSManagedObjectModel.MR_mergedObjectModelFromMainBundle())
         
         // Setup a default store
         MagicalRecord.setupCoreDataStackWithInMemoryStore()
@@ -38,21 +39,18 @@ class CoreDataModelsTests: XCTestCase {
     
     func testCreateCity()
     {
-        MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            var city = City.MR_createInContext(context) as? City
-            
-            expect(city).toNot(beNil())
-            
-            city!.remoteId = "3067696"
-            city!.name = "Prague"
-            city!.country = "CZ"
-            city!.coordinates = Coordinates.MR_createInContext(context) as? Coordinates
-            city!.coordinates?.latitude = NSNumber(double: 50.09)
-            city!.coordinates?.longitude = NSNumber(double: 14.42)
+        var city = City.MR_createEntity() as? City
+        
+        expect(city).toNot(beNil())
+        
+        city!.remoteId = "3067696"
+        city!.name = "Prague"
+        city!.country = "CZ"
+        city!.coordinates = Coordinates.MR_createEntity() as? Coordinates
+        city!.coordinates?.latitude = NSNumber(double: 50.09)
+        city!.coordinates?.longitude = NSNumber(double: 14.42)
 
-        }
-
-        var city = City.MR_findFirst() as? City
+        city = City.MR_findFirst() as? City
         
         expect(city).toNot(beNil())
         expect(city!.remoteId).to(equal("3067696"))
@@ -60,25 +58,18 @@ class CoreDataModelsTests: XCTestCase {
         expect(city!.country).to(equal("CZ"))
         expect(city!.coordinates?.latitude?.doubleValue).to(equal(50.09))
         expect(city!.coordinates?.longitude?.doubleValue).to(equal(14.42))
-        
-        MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            city!.MR_deleteInContext(context)
-        }
-        expect(City.MR_findFirst()).to(beNil())
     }
     
     func testCreateWind()
     {
-        MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            var wind = Wind.MR_createInContext(context) as? Wind
+        var wind = Wind.MR_createEntity() as? Wind
 
-            expect(wind).toNot(beNil())
+        expect(wind).toNot(beNil())
 
-            wind!.speed = 2.47
-            wind!.degree = 214.501
-        }
+        wind!.speed = 2.47
+        wind!.degree = 214.501
         
-        var wind = Wind.MR_findFirst() as? Wind
+        wind = Wind.MR_findFirst() as? Wind
         
         expect(wind).toNot(beNil())
         expect(wind!.speedMetric!.floatValue).to(equal(2.47))
@@ -94,25 +85,18 @@ class CoreDataModelsTests: XCTestCase {
 
         wind!.degree = 12
         expect(wind!.direction!).to(equal("NNE"))
-
-        MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            wind!.MR_deleteInContext(context)
-        }
-        expect(Wind.MR_findFirst()).to(beNil())
     }
     
     func testCreateWeather()
     {
-        MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            var weather = Weather.MR_createInContext(context) as? Weather
-            
-            expect(weather).toNot(beNil())
-            
-            weather!.title = "Clear"
-            weather!.temp = 1
-        }
+        var weather = Weather.MR_createEntity() as? Weather
         
-        var weather = Weather.MR_findFirst() as? Weather
+        expect(weather).toNot(beNil())
+        
+        weather!.title = "Clear"
+        weather!.temp = 1
+        
+        weather = Weather.MR_findFirst() as? Weather
         
         expect(weather).toNot(beNil())
         expect(weather!.title).to(equal("Clear"))
@@ -126,11 +110,6 @@ class CoreDataModelsTests: XCTestCase {
         weather!.temp = 34
         expect(weather!.tempCelcius!.floatValue).to(equal(34))
         expect(weather!.tempFahrenheit!.floatValue).to(equal(93.2))
-        
-        MagicalRecord.saveUsingCurrentThreadContextWithBlockAndWait { (context:NSManagedObjectContext!) -> Void in
-            weather!.MR_deleteInContext(context)
-        }
-        expect(Wind.MR_findFirst()).to(beNil())
     }
 }
 

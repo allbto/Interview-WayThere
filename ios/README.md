@@ -10,8 +10,6 @@ open WayThere.xcworkspace
 ```
 
 Tested on iPhone 4 and every simulators.  
-Few unit tests are also there, you can check.
-
 Target is iOS 7.1 so I could test on my personnel (old) device (iPhone 4).
 
 Architecture

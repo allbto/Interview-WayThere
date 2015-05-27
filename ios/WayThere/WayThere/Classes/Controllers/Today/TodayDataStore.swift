@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-protocol TodayDataStoreDelegate
+public protocol TodayDataStoreDelegate
 {
     func foundRandomImageUrl(imageUrl: String)
     func unableToFindRandomImageUrl(error : NSError?)
@@ -20,7 +20,7 @@ public class TodayDataStore
 {
     /// Vars
     
-    var delegate: TodayDataStoreDelegate?
+    public var delegate: TodayDataStoreDelegate?
     
     let FlickrApiKey = "3594a6b0ef2dd35d01334424954caf00"
     let FlickrPerPage = 100
