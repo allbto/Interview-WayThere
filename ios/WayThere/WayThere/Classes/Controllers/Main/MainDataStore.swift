@@ -47,8 +47,8 @@ class MainDataStore
         if cities == nil || cities!.count == 0 {
             var citiesTuples = [
                 ("3067696", "Prague"),
-                ("2990440", "Nice"),
-                ("2988507", "Paris")
+                ("2988507", "Paris"),
+                ("2990440", "Nice")
             ]
 
             cities = []

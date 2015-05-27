@@ -27,6 +27,7 @@ class MainViewController: UIPageViewController
     /// Views
     var citiesNavigationViewController : UINavigationController?
     var activityIndicator: UIActivityIndicatorView?
+    var pageControl: UIPageControl?
 
     /// Objects
     var dataStore = MainDataStore()
@@ -71,6 +72,17 @@ class MainViewController: UIPageViewController
         activityIndicator?.hidden = true
     }
     
+    private func _setUpPageControl()
+    {
+        var pageControlHeight : CGFloat = 50
+
+        pageControl = UIPageControl(frame: self.view.bounds)
+        pageControl?.frame.size.height = pageControlHeight
+        pageControl?.center = self.view.center
+        pageControl?.frame.origin.y = self.view.bounds.height - (pageControlHeight * 2)
+        self.view.addSubview(pageControl!)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -89,15 +101,14 @@ class MainViewController: UIPageViewController
         // Configure DataStore
         dataStore.delegate = self
         dataStore.retrieveWeatherConfiguration()
+        
+        // Setup pageControl
+        _setUpPageControl()
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        if cities.count > 0 {
-            _updateViewControllers()
-        }
     }
 
     override func didReceiveMemoryWarning()
@@ -158,7 +169,7 @@ extension MainViewController: MainDataStoreDelegate
     /**
     Update UIPageViewController controllers, but first insert or update current location city in self.cities array
     */
-    func _updateViewControllers()
+    func updateViewControllers()
     {
         if let city = currentCity {
             mainViewDelegate?.didChangeCity(city)
@@ -179,7 +190,7 @@ extension MainViewController: MainDataStoreDelegate
     func foundWeatherConfiguration(cities : [City])
     {
         self.cities = cities
-        _updateViewControllers()
+        updateViewControllers()
     }
     
     func unableToFindWeatherConfiguration(error : NSError?)
@@ -193,7 +204,7 @@ extension MainViewController: MainDataStoreDelegate
         _hideActivityIndicator()
         city.isCurrentLocation = true
         currentCity = city
-        _updateViewControllers()
+        updateViewControllers()
     }
 
     func unableToFindWeatherForCoordinates(error : NSError?)
@@ -262,11 +273,13 @@ extension MainViewController: UIPageViewControllerDataSource
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int
     {
+        pageControl?.numberOfPages = cities.count
         return cities.count
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int
     {
+        pageControl?.currentPage = 0
         return 0
     }
 }
@@ -278,6 +291,7 @@ extension MainViewController: UIPageViewControllerDelegate
     {
         if completed && self.viewControllers.count > 0 {
             if let todayVC = (self.viewControllers[0] as? TodayViewController), city = cities.get(todayVC.index) {
+                pageControl?.currentPage = todayVC.index
                 mainViewDelegate?.didChangeCity(city)
             }
         }

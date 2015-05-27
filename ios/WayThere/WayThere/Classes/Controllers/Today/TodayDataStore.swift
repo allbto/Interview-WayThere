@@ -22,7 +22,8 @@ public class TodayDataStore
     
     var delegate: TodayDataStoreDelegate?
     
-    let FlickrApiKey = "3aaa020c958965016924a8b0c4bed415"
+    let FlickrApiKey = "3594a6b0ef2dd35d01334424954caf00"
+    let FlickrPerPage = 100
     
     // Url
     
@@ -76,7 +77,9 @@ public class TodayDataStore
             "safe_search" : "1",
             "content_type": "1",
             "format" : "json",
-            "nojsoncallback" : "1"
+            "nojsoncallback" : "1",
+            "privacy_filter" : "1",
+            "per_page" : FlickrPerPage
             ])
             .responseJSON { [unowned self] (request, response, json, error) -> Void in
                 
