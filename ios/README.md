@@ -15,8 +15,7 @@ Architecture
 With iOS, one needs to have ViewControllers to interact with the view elements.  
 In addition to that, every ViewController have a DataStore, a simple class that will be the link between the ViewController and the data.  
 This class is responsible for all data management, which mean either getting/sending information from/to an API, or deal with the local storage (CoreData for example).  
-This way the ViewController is doing only what his name is describing, controlling the view, and for each events, the ViewController will call a function from the DataStore,  
-this one will do what it needs to do (send, receive, store data) then call a function from it's delegate to notice the ViewController that the data is available, or that the action was done with success or error.  
+This way the ViewController is doing only what his name is describing, controlling the view, and for each events, the ViewController will call a function from the DataStore, this one will do what it needs to do (send, receive, store data) then call a function from it's delegate to notice the ViewController that the data is available, or that the action was done with success or error.  
 
 Here is an example of how to get cities:
 
