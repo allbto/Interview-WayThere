@@ -52,6 +52,7 @@
 		9DFFCD4B1B1467E0003501E4 /* UIImageView+FromUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */; };
 		9DFFCD4D1B14A41F003501E4 /* CityPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */; };
 		9DFFCD4F1B14FFD8003501E4 /* NSDate+Adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD4E1B14FFD8003501E4 /* NSDate+Adds.swift */; };
+		9DFFCD511B15EEF8003501E4 /* DataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFCD501B15EEF8003501E4 /* DataStoreTests.swift */; };
 		A386F3B33A67772338037183 /* Pods_WayThere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B402E644EC3CF3A4C0BCCA /* Pods_WayThere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC4A0D6ADB44A3AA9082989A /* Pods_WayThereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -156,6 +157,7 @@
 		9DFFCD4A1B1467E0003501E4 /* UIImageView+FromUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FromUrl.swift"; sourceTree = "<group>"; };
 		9DFFCD4C1B14A41F003501E4 /* CityPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityPhoto.swift; path = CoreData/CityPhoto.swift; sourceTree = "<group>"; };
 		9DFFCD4E1B14FFD8003501E4 /* NSDate+Adds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Adds.swift"; sourceTree = "<group>"; };
+		9DFFCD501B15EEF8003501E4 /* DataStoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStoreTests.swift; sourceTree = "<group>"; };
 		EECE369DDD30A57AFE75DEC7 /* Pods_WayThereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WayThereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -386,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				9DFFCD291B126AA1003501E4 /* CoreDataModelsTests.swift */,
+				9DFFCD501B15EEF8003501E4 /* DataStoreTests.swift */,
 				9DFFCD391B126DBC003501E4 /* WayThereTests.swift */,
 				9DFFCD371B126DBC003501E4 /* Supporting Files */,
 			);
@@ -680,6 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DFFCD3A1B126DBC003501E4 /* WayThereTests.swift in Sources */,
+				9DFFCD511B15EEF8003501E4 /* DataStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

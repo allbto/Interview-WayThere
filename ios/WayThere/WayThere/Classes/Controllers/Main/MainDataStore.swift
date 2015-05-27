@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import MagicalRecord
 
-protocol MainDataStoreDelegate
+public protocol MainDataStoreDelegate
 {
     func foundWeatherConfiguration(cities : [City])
     func unableToFindWeatherConfiguration(error : NSError?)
@@ -20,7 +20,7 @@ protocol MainDataStoreDelegate
     func unableToFindWeatherForCoordinates(error : NSError?)
 }
 
-class MainDataStore
+public class MainDataStore
 {
     /// Urls
     
@@ -32,7 +32,11 @@ class MainDataStore
     
     /// Vars
     
-    var delegate: MainDataStoreDelegate?
+    public var delegate: MainDataStoreDelegate?
+    
+    /// Funcs
+    
+    public init() {}
     
     /**
     Retrieve cities stored in CoreData
@@ -40,7 +44,7 @@ class MainDataStore
     
     :returns: List of city stored in CoreData
     */
-    static func retrieveCities() -> [City]
+    static public func retrieveCities() -> [City]
     {
         var cities = City.MR_findByAttribute("isCurrentLocation", withValue: false, andOrderBy: "creationDate", ascending: true) as? [City]
 
@@ -69,7 +73,7 @@ class MainDataStore
     Retrieve cities to put on the main screen
     First get them localy and then update the current weather of each cities
     */
-    func retrieveWeatherConfiguration()
+    public func retrieveWeatherConfiguration()
     {
         var cities = MainDataStore.retrieveCities()
 
@@ -150,7 +154,7 @@ class MainDataStore
     
     :param: coordinates to find city from
     */
-    func retrieveCurrentWeather(#coordinates: SimpleCoordinates)
+    public func retrieveCurrentWeather(#coordinates: SimpleCoordinates)
     {
         // Using wunderground API to look for the city using coordinates because openweathermap API sucks for this
         Alamofire.request(.GET, WunderGeoLookupUrl.replace(":coordinates", withString: String(format: "%.2f,%.2f", coordinates.latitude, coordinates.longitude)), parameters: nil)
