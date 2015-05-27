@@ -1,0 +1,6 @@
+framework module Pods_WayThereTests {
+  umbrella header "Pods-WayThereTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
