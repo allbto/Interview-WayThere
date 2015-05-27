@@ -28,8 +28,8 @@
         };
     });
 
-    app.controller('WayThereController', function($scope, WayThereDataStore) {
-
+    app.controller('WayThereController', function($scope, WayThereDataStore, $modal)
+    {
         //
         //  Vars
         //
@@ -48,6 +48,7 @@
                 disablekb : 1,
                 showinfo : 0,
                 vq : 'hd720',
+                start: '30',
                 iv_load_policy : 3
             },
             videoId : 'x0Pa8aIqmNI'
@@ -60,17 +61,6 @@
         //
 
         /// Carousel
-
-        $scope.$watch('yt.player', function(newVal, oldVal) {
-            // Override of angular-youtube-embed assignation to not loose original player
-            if (oldVal && !newVal.hasOwnProperty('mute'))
-                $scope.yt.player = oldVal;
-        });
-
-        $scope.$watch('yt.videoId', function(newVal) {
-            if ($scope.yt.player)
-                $scope.yt.player.loadVideoById(newVal, 50 * 5, "hd720");
-        });
 
         $scope.setMute =  function(newVal) {
             $scope.mute = newVal;
@@ -108,6 +98,7 @@
                     $scope.onSlideChanged(0);
                 });
             }
+
             if (player.hasOwnProperty('mute'))
             {
                 player.mute();
