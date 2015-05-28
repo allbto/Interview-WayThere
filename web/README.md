@@ -6,7 +6,7 @@ To compile this project, please run the following:
 ```shell
 npm install     # may need to be administrator or root
 bower install
-grunt prod
+grunt
 ```
 
 Troubleshooting
