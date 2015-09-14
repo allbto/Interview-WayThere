@@ -1,8 +1,6 @@
 # WayThere
 WayThere is a simple yet beautiful weather iOS/web app.
-This is a test project for [STRV](http://strv.com).
-
-![Welcome image](ios/images/welcome.png)
+This is an interview test project.
 
 In this repo you will find 2 folders `ios` and `web` each of them containing a README.md for further instructions.
 
