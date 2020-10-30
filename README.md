@@ -1,6 +1,7 @@
 # WayThere
+
 WayThere is a simple yet beautiful weather iOS app.       
-This is an interview test project.
+This is an interview project.
 
 In this repo you will find 2 folders `ios` and `web` each of them containing a README.md for further instructions.
 
